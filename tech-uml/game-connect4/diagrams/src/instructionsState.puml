@@ -1,0 +1,31 @@
+@startuml instructionsState
+
+hide empty description
+
+state A as " "
+state B as "LessThan4DiscsInPlace"
+state C as "4DiscsInPlace"
+state D as " " <<choice>>
+state E as "GameActive"
+state F as " "
+state G as "GameOver: Red wins"
+state H as "GameOver: Yellow wins"
+state I as "GameOver: Even"
+
+[*] --> A
+A --> B: insert Yellow
+B --> A : insert Red
+B --> C : [yellowDiscs == 4]
+C --> D : insert Red
+C --> H : [isConnect4Yellow]
+D --> E : notConnect4AndMoreDiscs
+E --> F : insert Yellow
+F --> D : insert Red
+D --> G : [isConnected4Red]
+G --> [*]
+D --> I : [notConnected4AndNoMoreDiscs]
+I --> [*]
+F --> H : [isConnected4Yellow]
+H --> [*]
+
+@enduml

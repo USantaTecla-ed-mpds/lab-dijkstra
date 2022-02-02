@@ -1,0 +1,485 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+skinparam nodesep 25
+skinparam ranksep 20
+'left to right direction
+
+object ":Connect4" as Connect4
+object ":Board" as Board
+
+'together {
+  object ":HollowSquare" as HollowSquare11
+  object ":HollowSquare" as HollowSquare12
+  object ":HollowSquare" as HollowSquare13
+  object ":HollowSquare" as HollowSquare14
+  object ":HollowSquare" as HollowSquare15
+  object ":HollowSquare" as HollowSquare16
+  object ":HollowSquare" as HollowSquare17
+
+  object ":HollowSquare" as HollowSquare21
+  object ":HollowSquare" as HollowSquare22
+  object ":HollowSquare" as HollowSquare23
+  object ":HollowSquare" as HollowSquare24
+  object ":HollowSquare" as HollowSquare25
+  object ":HollowSquare" as HollowSquare26
+  object ":HollowSquare" as HollowSquare27
+
+  object ":HollowSquare" as HollowSquare31
+  object ":HollowSquare" as HollowSquare32
+  object ":HollowSquare" as HollowSquare33
+  object ":HollowSquare" as HollowSquare34
+  object ":HollowSquare" as HollowSquare35
+  object ":HollowSquare" as HollowSquare36
+  object ":HollowSquare" as HollowSquare37
+
+  object ":HollowSquare" as HollowSquare41
+  object ":HollowSquare" as HollowSquare42
+  object ":HollowSquare" as HollowSquare43
+  object ":HollowSquare" as HollowSquare44
+  object ":HollowSquare" as HollowSquare45
+  object ":HollowSquare" as HollowSquare46
+  object ":HollowSquare" as HollowSquare47
+
+  object ":HollowSquare" as HollowSquare51
+  object ":HollowSquare" as HollowSquare52
+  object ":HollowSquare" as HollowSquare53
+  object ":HollowSquare" as HollowSquare54
+  object ":HollowSquare" as HollowSquare55
+  object ":HollowSquare" as HollowSquare56
+  object ":HollowSquare" as HollowSquare57
+
+  object ":HollowSquare" as HollowSquare61
+  object ":HollowSquare" as HollowSquare62
+  object ":HollowSquare" as HollowSquare63
+  object ":HollowSquare" as HollowSquare64
+  object ":HollowSquare" as HollowSquare65
+  object ":HollowSquare" as HollowSquare66
+  object ":HollowSquare" as HollowSquare67
+'}
+
+object ":Coordinate" as Coordinate11 {
+    row = 1
+    column = 1
+}
+object ":Coordinate" as Coordinate12 {
+    row = 1
+    column = 2
+}
+object ":Coordinate" as Coordinate13 {
+    row = 1
+    column = 3
+}
+object ":Coordinate" as Coordinate14 {
+    row = 1
+    column = 4
+}
+object ":Coordinate" as Coordinate15 {
+    row = 1
+    column = 5
+}
+object ":Coordinate" as Coordinate16 {
+    row = 1
+    column = 6
+}
+object ":Coordinate" as Coordinate17 {
+    row = 1
+    column = 7
+}
+
+object ":Coordinate" as Coordinate21 {
+    row = 2
+    column = 1
+}
+object ":Coordinate" as Coordinate22 {
+    row = 2
+    column = 2
+}
+object ":Coordinate" as Coordinate23 {
+    row = 2
+    column = 3
+}
+object ":Coordinate" as Coordinate24 {
+    row = 2
+    column = 4
+}
+object ":Coordinate" as Coordinate25 {
+    row = 2
+    column = 5
+}
+object ":Coordinate" as Coordinate26 {
+    row = 2
+    column = 6
+}
+object ":Coordinate" as Coordinate27 {
+    row = 2
+    column = 7
+}
+
+object ":Coordinate" as Coordinate31 {
+    row = 3
+    column = 1
+}
+object ":Coordinate" as Coordinate32 {
+    row = 3
+    column = 2
+}
+object ":Coordinate" as Coordinate33 {
+    row = 3
+    column = 3
+}
+object ":Coordinate" as Coordinate34 {
+    row = 3
+    column = 4
+}
+object ":Coordinate" as Coordinate35 {
+    row = 3
+    column = 5
+}
+object ":Coordinate" as Coordinate36 {
+    row = 3
+    column = 6
+}
+object ":Coordinate" as Coordinate37 {
+    row = 3
+    column = 7
+}
+
+object ":Coordinate" as Coordinate41 {
+    row = 4
+    column = 1
+}
+object ":Coordinate" as Coordinate42 {
+    row = 4
+    column = 2
+}
+object ":Coordinate" as Coordinate43 {
+    row = 4
+    column = 3
+}
+object ":Coordinate" as Coordinate44 {
+    row = 4
+    column = 4
+}
+object ":Coordinate" as Coordinate45 {
+    row = 4
+    column = 5
+}
+object ":Coordinate" as Coordinate46 {
+    row = 4
+    column = 6
+}
+object ":Coordinate" as Coordinate47 {
+    row = 4
+    column = 7
+}
+
+object ":Coordinate" as Coordinate51 {
+    row = 5
+    column = 1
+}
+object ":Coordinate" as Coordinate52 {
+    row = 5
+    column = 2
+}
+object ":Coordinate" as Coordinate53 {
+    row = 5
+    column = 3
+}
+object ":Coordinate" as Coordinate54 {
+    row = 5
+    column = 4
+}
+object ":Coordinate" as Coordinate55 {
+    row = 5
+    column = 5
+}
+object ":Coordinate" as Coordinate56 {
+    row = 5
+    column = 6
+}
+object ":Coordinate" as Coordinate57 {
+    row = 5
+    column = 7
+}
+
+object ":Coordinate" as Coordinate61 {
+    row = 6
+    column = 1
+}
+object ":Coordinate" as Coordinate62 {
+    row = 6
+    column = 2
+}
+object ":Coordinate" as Coordinate63 {
+    row = 6
+    column = 3
+}
+object ":Coordinate" as Coordinate64 {
+    row = 6
+    column = 4
+}
+object ":Coordinate" as Coordinate65 {
+    row = 6
+    column = 5
+}
+object ":Coordinate" as Coordinate66 {
+    row = 6
+    column = 6
+}
+object ":Coordinate" as Coordinate67 {
+    row = 6
+    column = 7
+}
+
+object Disc1_1
+object Disc1_2
+object Disc1_3
+object Disc1_4
+
+object Disc2_1
+object Disc2_2
+object Disc2_3
+
+object Yellow
+object Red
+
+Connect4 *-------- Board
+
+Board *-- HollowSquare11
+Board *-- HollowSquare12
+Board *-- HollowSquare13
+Board *-- HollowSquare14
+Board *-- HollowSquare15
+Board *-- HollowSquare16
+Board *-- HollowSquare17
+
+HollowSquare11 *-right-> Coordinate11
+HollowSquare12 *-right-> Coordinate12
+HollowSquare13 *-right-> Coordinate13
+HollowSquare14 *-right-> Coordinate14
+HollowSquare15 *-right-> Coordinate15
+HollowSquare16 *-right-> Coordinate16
+HollowSquare17 *-right-> Coordinate17
+
+Board *-- HollowSquare21
+Board *-- HollowSquare22
+Board *-- HollowSquare23
+Board *-- HollowSquare24
+Board *-- HollowSquare25
+Board *-- HollowSquare26
+Board *-- HollowSquare27
+
+HollowSquare21 *-right-> Coordinate21
+HollowSquare22 *-right-> Coordinate22
+HollowSquare23 *-right-> Coordinate23
+HollowSquare24 *-right-> Coordinate24
+HollowSquare25 *-right-> Coordinate25
+HollowSquare26 *-right-> Coordinate26
+HollowSquare27 *-right-> Coordinate27
+
+Board *-- HollowSquare31
+Board *-- HollowSquare32
+Board *-- HollowSquare33
+Board *-- HollowSquare34
+Board *-- HollowSquare35
+Board *-- HollowSquare36
+Board *-- HollowSquare37
+
+HollowSquare31 *-right-> Coordinate31
+HollowSquare32 *-right-> Coordinate32
+HollowSquare33 *-right-> Coordinate33
+HollowSquare34 *-right-> Coordinate34
+HollowSquare35 *-right-> Coordinate35
+HollowSquare36 *-right-> Coordinate36
+HollowSquare37 *-right-> Coordinate37
+
+Board *-- HollowSquare41
+Board *-- HollowSquare42
+Board *-- HollowSquare43
+Board *-- HollowSquare44
+Board *-- HollowSquare45
+Board *-- HollowSquare46
+Board *-- HollowSquare47
+
+HollowSquare41 *-right-> Coordinate41
+HollowSquare42 *-right-> Coordinate42
+HollowSquare43 *-right-> Coordinate43
+HollowSquare44 *-right-> Coordinate44
+HollowSquare45 *-right-> Coordinate45
+HollowSquare46 *-right-> Coordinate46
+HollowSquare47 *-right-> Coordinate47
+
+Board *-- HollowSquare51
+Board *-- HollowSquare52
+Board *-- HollowSquare53
+Board *-- HollowSquare54
+Board *-- HollowSquare55
+Board *-- HollowSquare56
+Board *-- HollowSquare57
+
+HollowSquare51 *-right-> Coordinate51
+HollowSquare52 *-right-> Coordinate52
+HollowSquare53 *-right-> Coordinate53
+HollowSquare54 *-right-> Coordinate54
+HollowSquare55 *-right-> Coordinate55
+HollowSquare56 *-right-> Coordinate56
+HollowSquare57 *-right-> Coordinate57
+
+Board *-- HollowSquare61
+Board *-- HollowSquare62
+Board *-- HollowSquare63
+Board *-- HollowSquare64
+Board *-- HollowSquare65
+Board *-- HollowSquare66
+Board *-- HollowSquare67
+
+HollowSquare61 *-right-> Coordinate61
+HollowSquare62 *-right-> Coordinate62
+HollowSquare63 *-right-> Coordinate63
+HollowSquare64 *-right-> Coordinate64
+HollowSquare65 *-right-> Coordinate65
+HollowSquare66 *-right-> Coordinate66
+HollowSquare67 *-right-> Coordinate67
+
+HollowSquare61 *-down-> Disc1_1
+Disc1_1 *-down-> Yellow
+HollowSquare62 *-down-> Disc1_2
+Disc1_2 *-down-> Yellow
+HollowSquare63 *-down--> Disc1_3
+Disc1_3 *-down-> Yellow
+HollowSquare64 *-down-> Disc1_4
+Disc1_4 *-down-> Yellow
+
+HollowSquare65 *-down-> Disc2_1
+Disc2_1 *-down-> Red
+HollowSquare66 *-down-> Disc2_2
+Disc2_2 *-down-> Red
+HollowSquare67 *-down-> Disc2_3
+Disc2_3 *-down-> Red
+
+HollowSquare11 -[hidden]down-> HollowSquare21
+HollowSquare12 -[hidden]down-> HollowSquare22
+HollowSquare13 -[hidden]down-> HollowSquare23
+HollowSquare14 -[hidden]down-> HollowSquare24
+HollowSquare15 -[hidden]down-> HollowSquare25
+HollowSquare16 -[hidden]down-> HollowSquare26
+HollowSquare17 -[hidden]down-> HollowSquare27
+
+HollowSquare21 -[hidden]down-> HollowSquare31
+HollowSquare22 -[hidden]down-> HollowSquare32
+HollowSquare23 -[hidden]down-> HollowSquare33
+HollowSquare24 -[hidden]down-> HollowSquare34
+HollowSquare25 -[hidden]down-> HollowSquare35
+HollowSquare26 -[hidden]down-> HollowSquare36
+HollowSquare27 -[hidden]down-> HollowSquare37
+
+HollowSquare31 -[hidden]down-> HollowSquare41
+HollowSquare32 -[hidden]down-> HollowSquare42
+HollowSquare33 -[hidden]down-> HollowSquare43
+HollowSquare34 -[hidden]down-> HollowSquare44
+HollowSquare35 -[hidden]down-> HollowSquare45
+HollowSquare36 -[hidden]down-> HollowSquare46
+HollowSquare37 -[hidden]down-> HollowSquare47
+
+HollowSquare41 -[hidden]down-> HollowSquare51
+HollowSquare42 -[hidden]down-> HollowSquare52
+HollowSquare43 -[hidden]down-> HollowSquare53
+HollowSquare44 -[hidden]down-> HollowSquare54
+HollowSquare45 -[hidden]down-> HollowSquare55
+HollowSquare46 -[hidden]down-> HollowSquare56
+HollowSquare47 -[hidden]down-> HollowSquare57
+
+HollowSquare51 -[hidden]down-> HollowSquare61
+HollowSquare52 -[hidden]down-> HollowSquare62
+HollowSquare53 -[hidden]down-> HollowSquare63
+HollowSquare54 -[hidden]down-> HollowSquare64
+HollowSquare55 -[hidden]down-> HollowSquare65
+HollowSquare56 -[hidden]down-> HollowSquare66
+HollowSquare57 -[hidden]down-> HollowSquare67
+
+Coordinate11 -[hidden]down-> Coordinate21
+Coordinate12 -[hidden]down-> Coordinate22
+Coordinate13 -[hidden]down-> Coordinate23
+Coordinate14 -[hidden]down-> Coordinate24
+Coordinate15 -[hidden]down-> Coordinate25
+Coordinate16 -[hidden]down-> Coordinate26
+Coordinate17 -[hidden]down-> Coordinate27
+
+Coordinate21 -[hidden]down-> Coordinate31
+Coordinate22 -[hidden]down-> Coordinate32
+Coordinate23 -[hidden]down-> Coordinate33
+Coordinate24 -[hidden]down-> Coordinate34
+Coordinate25 -[hidden]down-> Coordinate35
+Coordinate26 -[hidden]down-> Coordinate36
+Coordinate27 -[hidden]down-> Coordinate37
+
+Coordinate31 -[hidden]down-> Coordinate41
+Coordinate32 -[hidden]down-> Coordinate42
+Coordinate33 -[hidden]down-> Coordinate43
+Coordinate34 -[hidden]down-> Coordinate44
+Coordinate35 -[hidden]down-> Coordinate45
+Coordinate36 -[hidden]down-> Coordinate46
+Coordinate37 -[hidden]down-> Coordinate47
+
+Coordinate41 -[hidden]down-> Coordinate51
+Coordinate42 -[hidden]down-> Coordinate52
+Coordinate43 -[hidden]down-> Coordinate53
+Coordinate44 -[hidden]down-> Coordinate54
+Coordinate45 -[hidden]down-> Coordinate55
+Coordinate46 -[hidden]down-> Coordinate56
+Coordinate47 -[hidden]down-> Coordinate57
+
+Coordinate51 -[hidden]down-> Coordinate61
+Coordinate52 -[hidden]down-> Coordinate62
+Coordinate53 -[hidden]down-> Coordinate63
+Coordinate54 -[hidden]down-> Coordinate64
+Coordinate55 -[hidden]down-> Coordinate65
+Coordinate56 -[hidden]down-> Coordinate66
+Coordinate57 -[hidden]down-> Coordinate67
+
+Coordinate61 -[hidden]up-> Coordinate51
+Coordinate62 -[hidden]up-> Coordinate52
+Coordinate63 -[hidden]up-> Coordinate53
+Coordinate64 -[hidden]up-> Coordinate54
+Coordinate65 -[hidden]up-> Coordinate55
+Coordinate66 -[hidden]up-> Coordinate56
+Coordinate67 -[hidden]up-> Coordinate57
+
+together {
+  object Player1
+  object Player2
+}
+
+Board *-up-> Player1
+Board *-up-> Player2
+
+Player1 ---[hidden]up> Player2
+
+together {
+  object Disc1_5
+  object Disc1_21
+  object "Yellow" as Yellow1
+}
+
+together {
+  object Disc2_4
+  object Disc2_21
+  object "Red" as Red1
+}
+
+Player1 *-right-> Disc1_21
+Player1 *-right-> Disc1_5
+Disc1_5 <|-- Yellow1
+Disc1_21 <|-- Yellow1
+Disc1_5 -[hidden]right> Disc1_21
+Disc1_5 .. Disc1_21: 17 discs
+
+Player2 *-right-> Disc2_21
+Player2 *-right-> Disc2_4
+Disc2_4 <|-- Red1
+Disc2_21 <|-- Red1
+Disc2_4 -[hidden]right> Disc2_21
+Disc2_4 .. Disc2_21: 18 discs
+
+@enduml

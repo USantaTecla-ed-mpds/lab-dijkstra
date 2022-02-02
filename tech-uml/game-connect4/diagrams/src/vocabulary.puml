@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Connect4
+class Player
+class Board
+class Turn
+class Goal
+class Horizontal
+class Vertical
+class Diagonal
+class Disc
+class Color
+class Yellow
+class Red
+class Goal
+class HollowSquare
+class Coordinate
+class Insert
+
+Connect4 *--> Board
+Connect4 *--> Turn
+Connect4 *--> "2" Player
+
+Player *--> "0..21" Disc
+Player *--> Color
+Disc *--> Color
+Color <|-- Yellow
+Color <|-- Red
+Player --> Goal
+Goal <|-- Horizontal
+Goal <|-- Vertical
+Goal <|-- Diagonal
+Goal ..> "4..21" Insert
+Insert ..> HollowSquare
+
+Board *--> "6x7" HollowSquare
+HollowSquare ..> "0..1" Disc
+HollowSquare *--> Coordinate
+
+
+
+
+@enduml

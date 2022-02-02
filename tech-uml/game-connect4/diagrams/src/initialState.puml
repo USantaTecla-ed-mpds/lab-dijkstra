@@ -1,0 +1,218 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+skinparam nodesep 25
+skinparam ranksep 20
+'left to right direction
+'skinparam linetype polyline
+'skinparam linetype ortho
+
+object ":Connect4" as Connect4
+object ":Board" as Board
+
+object HollowSquare11
+object HollowSquare17
+
+object HollowSquare21
+object HollowSquare27
+
+object HollowSquare31
+object HollowSquare37
+
+object HollowSquare41
+object HollowSquare47
+
+object HollowSquare51
+object HollowSquare57
+
+object HollowSquare61
+object HollowSquare67
+
+object ":Coordinate" as Coordinate11 {
+    row = 1
+    column = 1
+}
+object ":Coordinate" as Coordinate17 {
+    row = 1
+    column = 7
+}
+
+object ":Coordinate" as Coordinate21 {
+    row = 2
+    column = 1
+}
+object ":Coordinate" as Coordinate27 {
+    row = 2
+    column = 7
+}
+
+object ":Coordinate" as Coordinate31 {
+    row = 3
+    column = 1
+}
+object ":Coordinate" as Coordinate37 {
+    row = 3
+    column = 7
+}
+
+object ":Coordinate" as Coordinate41 {
+    row = 4
+    column = 1
+}
+object ":Coordinate" as Coordinate47 {
+    row = 4
+    column = 7
+}
+
+object ":Coordinate" as Coordinate51 {
+    row = 5
+    column = 1
+}
+object ":Coordinate" as Coordinate57 {
+    row = 5
+    column = 7
+}
+
+object ":Coordinate" as Coordinate61 {
+    row = 6
+    column = 1
+}
+object ":Coordinate" as Coordinate67 {
+    row = 6
+    column = 7
+}
+
+
+Connect4 *--------- Board
+
+Board *-- HollowSquare11
+Board *-- HollowSquare17
+
+HollowSquare11 *-left-> Coordinate11
+HollowSquare17 *-right-> Coordinate17
+
+Board *-- HollowSquare21
+Board *-- HollowSquare27
+
+HollowSquare21 *-left-> Coordinate21
+HollowSquare27 *-right-> Coordinate27
+
+Board *-- HollowSquare31
+Board *-- HollowSquare37
+
+HollowSquare31 *-left-> Coordinate31
+HollowSquare37 *-right-> Coordinate37
+
+Board *-- HollowSquare41
+Board *-- HollowSquare47
+
+HollowSquare41 *-left-> Coordinate41
+HollowSquare47 *-right-> Coordinate47
+
+Board *-- HollowSquare51
+Board *-- HollowSquare57
+
+HollowSquare51 *-left-> Coordinate51
+HollowSquare57 *-right-> Coordinate57
+
+Board *-- HollowSquare61
+Board *-- HollowSquare67
+
+HollowSquare61 *-left-> Coordinate61
+HollowSquare67 *-right-> Coordinate67
+
+HollowSquare11 -[hidden]right-> HollowSquare17
+HollowSquare21 -[hidden]right-> HollowSquare27
+HollowSquare31 -[hidden]right-> HollowSquare37
+HollowSquare41 -[hidden]right-> HollowSquare47
+HollowSquare51 -[hidden]right-> HollowSquare57
+HollowSquare61 -[hidden]right-> HollowSquare67
+
+HollowSquare11 .. HollowSquare17 : row of objects: 12, 13, 14, 15, 16
+HollowSquare21 .. HollowSquare27 : row of objects: 22, 23, 24, 25, 26
+HollowSquare31 .. HollowSquare37 : row of objects: 32, 33, 34, 35, 36
+HollowSquare41 .. HollowSquare47 : row of objects: 42, 43, 44, 45, 46
+HollowSquare51 .. HollowSquare57 : row of objects: 52, 53, 54, 55, 56
+HollowSquare61 .. HollowSquare67 : row of objects: 62, 63, 64, 65, 66
+
+HollowSquare11 -[hidden]down-> HollowSquare21
+HollowSquare17 -[hidden]down-> HollowSquare27
+
+HollowSquare21 -[hidden]down-> HollowSquare31
+HollowSquare27 -[hidden]down-> HollowSquare37
+
+HollowSquare31 -[hidden]down-> HollowSquare41
+HollowSquare37 -[hidden]down-> HollowSquare47
+
+HollowSquare41 -[hidden]down-> HollowSquare51
+HollowSquare47 -[hidden]down-> HollowSquare57
+
+HollowSquare51 -[hidden]down-> HollowSquare61
+HollowSquare57 -[hidden]down-> HollowSquare67
+
+Coordinate11 -[hidden]down-> Coordinate21
+Coordinate17 -[hidden]down-> Coordinate27
+
+Coordinate21 -[hidden]down-> Coordinate31
+Coordinate27 -[hidden]down-> Coordinate37
+
+Coordinate31 -[hidden]down-> Coordinate41
+Coordinate37 -[hidden]down-> Coordinate47
+
+Coordinate41 -[hidden]down-> Coordinate51
+Coordinate47 -[hidden]down-> Coordinate57
+
+Coordinate51 -[hidden]down-> Coordinate61
+Coordinate57 -[hidden]down-> Coordinate67
+
+Coordinate61 -[hidden]up-> Coordinate51
+Coordinate67 -[hidden]up-> Coordinate57
+
+together {
+  object Player1
+  object Player2
+}
+
+Board *--up-> Player1
+Board *-up-> Player2
+
+Player1 ---[hidden]up> Player2
+
+together {
+  object Disc1_1
+  object Yellow1
+}
+
+together {
+  object Disc1_21
+  object Yellow21
+}
+
+Player1 *-right Disc1_1
+Disc1_1 <|-- Yellow1
+Player1 *-left Disc1_21
+Disc1_21 <|-- Yellow21
+
+Disc1_1 -[hidden]----> Disc1_21
+Disc1_1 . Disc1_21 : 21 discs
+
+
+together {
+  object Disc2_1
+  object Red1
+}
+
+together {
+  object Disc2_21
+  object Red21
+}
+
+Player2 *-left Disc2_1
+Disc2_1 <|--up Red1
+Player2 *-left Disc2_21
+Disc2_21 <|--up Red21
+
+Disc2_1 -[hidden]> Disc2_21
+Disc2_1 . Disc2_21 : 21 discs
+
+@enduml
