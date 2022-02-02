@@ -18,19 +18,19 @@ Universo Santa Tecla
 [Youtube](https://www.youtube.com/watch?v=yjgQXcFVBQY)
 ### vocabulary
 
-![Vocabulario]()  
+![Vocabulario](diagrams/out/vocabulary.svg)  
   
 ### initialState  
   
-![Estado_inicial]()  
+![Estado_inicial](diagrams/out/initialState.svg)  
   
 ### finalState 
 
-![Estado_final]()  
+![Estado_final](diagrams/out/finalState.svg)  
   
 ### instructions  
   
-![Instrucciones]()  
+![Instrucciones](diagrams/out/instructionsState.svg)  
   
-![Instrucciones]()  
+![Instrucciones](diagrams/out/instructionsActivity.svg)
   

@@ -1,0 +1,277 @@
+@startuml
+object ":Klondike" as Klondike
+object ":Board" as Board
+
+object ":SuitPile" as SuitPile1
+object ":SuitPile" as SuitPile2
+object ":SuitPile" as SuitPile3
+object ":SuitPile" as SuitPile4
+
+object ":StackPile" as StackPile1
+object ":StackPile" as StackPile2
+object ":StackPile" as StackPile3
+object ":StackPile" as StackPile4
+object ":StackPile" as StackPile5
+object ":StackPile" as StackPile6
+object ":StackPile" as StackPile7
+
+object ":Deck" as Deck
+
+object ":Stack" as Stack1
+object ":Stack" as Stack2
+object ":Stack" as Stack3
+object ":Stack" as Stack4
+object ":Stack" as Stack5
+object ":Stack" as Stack6
+object ":Stack" as Stack7
+
+object ":Card" as S1C1
+S1C1 : Suit = "Diamonds"
+S1C1 : Rank = "8"
+
+object ":Card" as S2C1
+object ":Card" as S2C2
+S2C1 : Suit = "Spades"
+S2C1 : Rank = "6"
+S2C2 : Suit = "Diamonds"
+S2C2 : Rank = "7"
+
+object ":Card" as S3C1
+object ":Card" as S3C2
+object ":Card" as S3C3
+S3C1 : Suit = "Clubs"
+S3C1 : Rank = "10"
+S3C2 : Suit = "Spades"
+S3C2 : Rank = "9"
+S3C3 : Suit = "Spades"
+S3C3 : Rank = "Q"
+
+object ":Card" as S4C1
+object ":Card" as S4C2
+object ":Card" as S4C3
+object ":Card" as S4C4
+S4C1 : Suit = "Clubs"
+S4C1 : Rank = "9"
+S4C2 : Suit = "Hearts"
+S4C2 : Rank = "Q"
+S4C3 : Suit = "Clubs"
+S4C3 : Rank = "8"
+S4C4 : Suit = "Diamonds"
+S4C4 : Rank = "4"
+
+object ":Card" as S5C1
+object ":Card" as S5C2
+object ":Card" as S5C3
+object ":Card" as S5C4
+object ":Card" as S5C5
+S5C1 : Suit = "Diamonds"
+S5C1 : Rank = "J"
+S5C2 : Suit = "Spades"
+S5C2 : Rank = "A"
+S5C3 : Suit = "Clubs"
+S5C3 : Rank = "Q"
+S5C4 : Suit = "Hearts"
+S5C4 : Rank = "10"
+S5C5 : Suit = "Diamonds"
+S5C5 : Rank = "10"
+
+object ":Card" as S6C1
+object ":Card" as S6C2
+object ":Card" as S6C3
+object ":Card" as S6C4
+object ":Card" as S6C5
+object ":Card" as S6C6
+S6C1 : Suit = "Clubs"
+S6C1 : Rank = "7"
+S6C2 : Suit = "Diamonds"
+S6C2 : Rank = "3"
+S6C3 : Suit = "Diamonds"
+S6C3 : Rank = "2"
+S6C4 : Suit = "Diamonds"
+S6C4 : Rank = "K"
+S6C5 : Suit = "Hearts"
+S6C5 : Rank = "K"
+S6C6 : Suit = "Clubs"
+S6C6 : Rank = "6"
+
+object ":Card" as S7C1
+object ":Card" as S7C2
+object ":Card" as S7C3
+object ":Card" as S7C4
+object ":Card" as S7C5
+object ":Card" as S7C6
+object ":Card" as S7C7
+S7C1 : Suit = "Clubs"
+S7C1 : Rank = "3"
+S7C2 : Suit = "Spades"
+S7C2 : Rank = "K"
+S7C3 : Suit = "Diamonds"
+S7C3 : Rank = "9"
+S7C4 : Suit = "Spades"
+S7C4 : Rank = "7"
+S7C5 : Suit = "Clubs"
+S7C5 : Rank = "J"
+S7C6 : Suit = "Hearts"
+S7C6 : Rank = "2"
+S7C7 : Suit = "Hearts"
+S7C7 : Rank = "9"
+
+Klondike *--> Board
+
+Board *--> SuitPile1
+Board *--> SuitPile2
+Board *--> SuitPile3
+Board *--> SuitPile4
+
+Board *--> StackPile1
+Board *--> StackPile2
+Board *--> StackPile3
+Board *--> StackPile4
+Board *--> StackPile5
+Board *--> StackPile6
+Board *--> StackPile7
+
+Board *--> Deck
+
+object ":Card" as Card1
+object ":Card" as Card2
+object ":Card" as Card3
+object ":Card" as Card4
+object ":Card" as Card5
+object ":Card" as Card6
+object ":Card" as Card7
+object ":Card" as Card8
+object ":Card" as Card9
+object ":Card" as Card10
+object ":Card" as Card11
+object ":Card" as Card12
+object ":Card" as Card13
+object ":Card" as Card14
+object ":Card" as Card15
+object ":Card" as Card16
+object ":Card" as Card17
+object ":Card" as Card18
+object ":Card" as Card19
+object ":Card" as Card20
+object ":Card" as Card21
+object ":Card" as Card22
+object ":Card" as Card23
+object ":Card" as Card24
+
+Card1 : Suit = "Hearts"
+Card1 : Rank = "3"
+Card2 : Suit = "Clubs"
+Card2 : Rank = "5"
+Card3 : Suit = "Hearts"
+Card3 : Rank = "A"
+Card4 : Suit = "Spades"
+Card4 : Rank = "5"
+Card5 : Suit = "Spades"
+Card5 : Rank = "3"
+Card6 : Suit = "Diamonds"
+Card6 : Rank = "Q"
+Card7 : Suit = "Spades"
+Card7 : Rank = "8"
+Card8 : Suit = "Hearts"
+Card8 : Rank = "8"
+Card9 : Suit = "Diamonds"
+Card9 : Rank = "5"
+Card10 : Suit = "Diamonds"
+Card10 : Rank = "A"
+Card11 : Suit = "Hearts"
+Card11 : Rank = "5"
+Card12 : Suit = "Clubs"
+Card12 : Rank = "K"
+Card13 : Suit = "Hearts"
+Card13 : Rank = "J"
+Card14 : Suit = "Spades"
+Card14 : Rank = "2"
+Card15 : Suit = "Diamonds"
+Card15 : Rank = "J"
+Card16 : Suit = "Spades"
+Card16 : Rank = "10"
+Card17 : Suit = "Clubs"
+Card17 : Rank = "A"
+Card18 : Suit = "Hearts"
+Card18 : Rank = "6"
+Card19 : Suit = "Diamonds"
+Card19 : Rank = "6"
+Card20 : Suit = "Hearts"
+Card20 : Rank = "7"
+Card21 : Suit = "Clubs"
+Card21 : Rank = "2"
+Card22 : Suit = "Diamonds"
+Card22 : Rank = "4"
+Card23 : Suit = "Clubs"
+Card23 : Rank = "4"
+Card24 : Suit = "Hearts"
+Card24 : Rank = "4"
+
+StackPile1 *--> Stack1
+StackPile2 *--> Stack2
+StackPile3 *--> Stack3
+StackPile4 *--> Stack4
+StackPile5 *--> Stack5
+StackPile6 *--> Stack6
+StackPile7 *--> Stack7
+
+Stack1 *--> S1C1
+
+Stack2 *--> S2C1
+Stack2 *--> S2C2
+
+Stack3 *--> S3C1
+Stack3 *--> S3C2
+Stack3 *--> S3C3
+
+Stack4 *--> S4C1
+Stack4 *--> S4C2
+Stack4 *--> S4C3
+Stack4 *--> S4C4
+
+Stack5 *--> S5C1
+Stack5 *--> S5C2
+Stack5 *--> S5C3
+Stack5 *--> S5C4
+Stack5 *--> S5C5
+
+Stack6 *--> S6C1
+Stack6 *--> S6C2
+Stack6 *--> S6C3
+Stack6 *--> S6C4
+Stack6 *--> S6C5
+Stack6 *--> S6C6
+
+Stack7 *--> S7C1
+Stack7 *--> S7C2
+Stack7 *--> S7C3
+Stack7 *--> S7C4
+Stack7 *--> S7C5
+Stack7 *--> S7C6
+Stack7 *--> S7C7
+
+Deck *--> Card1
+Deck *--> Card2
+Deck *--> Card3
+Deck *--> Card4
+Deck *--> Card5
+Deck *--> Card6
+Deck *--> Card7
+Deck *--> Card8
+Deck *--> Card9
+Deck *--> Card10
+Deck *--> Card11
+Deck *--> Card12
+Deck *--> Card13
+Deck *--> Card14
+Deck *--> Card15
+Deck *--> Card16
+Deck *--> Card17
+Deck *--> Card18
+Deck *--> Card19
+Deck *--> Card20
+Deck *--> Card21
+Deck *--> Card22
+Deck *--> Card23
+Deck *--> Card24
+@enduml

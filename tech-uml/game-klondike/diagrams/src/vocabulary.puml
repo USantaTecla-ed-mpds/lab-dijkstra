@@ -1,0 +1,28 @@
+@startuml
+skinparam groupInheritance 2
+Klondike *--> "52" Card
+Klondike *--> "1" Goal
+Klondike *--> "1" Board
+Board *--> "4" SuitPile
+Board *--> "7" StackPile
+Board *--> "1" Deck
+SuitPile o--> Card
+Goal ..> Action
+Goal --> SuitPile
+Deck *--> Card
+Card *--> "1" Rank
+Card *--> "1" Suit
+Suit *--> "1" Color
+Color <|-- Black
+Color <|-- Red
+Action <|-- Grab
+Action <|-- Pile
+Action <|-- Move
+Stack *--> Card
+Grab ..> Deck
+Pile ..> SuitPile
+Pile ..> Card
+Move ..> Stack
+Move ..> StackPile
+StackPile o--> Card
+@enduml

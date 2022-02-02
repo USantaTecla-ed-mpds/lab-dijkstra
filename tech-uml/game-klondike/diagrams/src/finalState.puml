@@ -1,0 +1,241 @@
+@startuml
+object ":Klondike" as Klondike
+object ":Board" as Board
+
+object ":SuitPile" as SuitPile1
+object ":SuitPile" as SuitPile2
+object ":SuitPile" as SuitPile3
+object ":SuitPile" as SuitPile4
+
+object ":StackPile" as StackPile1
+object ":StackPile" as StackPile2
+object ":StackPile" as StackPile3
+object ":StackPile" as StackPile4
+object ":StackPile" as StackPile5
+object ":StackPile" as StackPile6
+object ":StackPile" as StackPile7
+
+object ":Deck" as Deck
+
+Klondike *--> Board
+
+Board *--> SuitPile1
+Board *--> SuitPile2
+Board *--> SuitPile3
+Board *--> SuitPile4
+
+Board *--> StackPile1
+Board *--> StackPile2
+Board *--> StackPile3
+Board *--> StackPile4
+Board *--> StackPile5
+Board *--> StackPile6
+Board *--> StackPile7
+
+Board *--> Deck
+
+object ":Card" as SpadesA
+object ":Card" as Spades2
+object ":Card" as Spades3
+object ":Card" as Spades4
+object ":Card" as Spades5
+object ":Card" as Spades6
+object ":Card" as Spades7
+object ":Card" as Spades8
+object ":Card" as Spades9
+object ":Card" as SpadesJ
+object ":Card" as SpadesQ
+object ":Card" as SpadesK
+
+object ":Card" as DiamondsA
+object ":Card" as Diamonds2
+object ":Card" as Diamonds3
+object ":Card" as Diamonds4
+object ":Card" as Diamonds5
+object ":Card" as Diamonds6
+object ":Card" as Diamonds7
+object ":Card" as Diamonds8
+object ":Card" as Diamonds9
+object ":Card" as DiamondsJ
+object ":Card" as DiamondsQ
+object ":Card" as DiamondsK
+
+object ":Card" as ClubsA
+object ":Card" as Clubs2
+object ":Card" as Clubs3
+object ":Card" as Clubs4
+object ":Card" as Clubs5
+object ":Card" as Clubs6
+object ":Card" as Clubs7
+object ":Card" as Clubs8
+object ":Card" as Clubs9
+object ":Card" as ClubsJ
+object ":Card" as ClubsQ
+object ":Card" as ClubsK
+
+object ":Card" as HeartsA
+object ":Card" as Hearts2
+object ":Card" as Hearts3
+object ":Card" as Hearts4
+object ":Card" as Hearts5
+object ":Card" as Hearts6
+object ":Card" as Hearts7
+object ":Card" as Hearts8
+object ":Card" as Hearts9
+object ":Card" as HeartsJ
+object ":Card" as HeartsQ
+object ":Card" as HeartsK
+
+SuitPile1 *--> SpadesA
+SuitPile1 *--> Spades2
+SuitPile1 *--> Spades3
+SuitPile1 *--> Spades4
+SuitPile1 *--> Spades5
+SuitPile1 *--> Spades6
+SuitPile1 *--> Spades7
+SuitPile1 *--> Spades8
+SuitPile1 *--> Spades9
+SuitPile1 *--> SpadesJ
+SuitPile1 *--> SpadesQ
+SuitPile1 *--> SpadesK
+
+SuitPile2 *--> DiamondsA
+SuitPile2 *--> Diamonds2
+SuitPile2 *--> Diamonds3
+SuitPile2 *--> Diamonds4
+SuitPile2 *--> Diamonds5
+SuitPile2 *--> Diamonds6
+SuitPile2 *--> Diamonds7
+SuitPile2 *--> Diamonds8
+SuitPile2 *--> Diamonds9
+SuitPile2 *--> DiamondsJ
+SuitPile2 *--> DiamondsQ
+SuitPile2 *--> DiamondsK
+
+SuitPile3 *--> ClubsA
+SuitPile3 *--> Clubs2
+SuitPile3 *--> Clubs3
+SuitPile3 *--> Clubs4
+SuitPile3 *--> Clubs5
+SuitPile3 *--> Clubs6
+SuitPile3 *--> Clubs7
+SuitPile3 *--> Clubs8
+SuitPile3 *--> Clubs9
+SuitPile3 *--> ClubsJ
+SuitPile3 *--> ClubsQ
+SuitPile3 *--> ClubsK
+
+SuitPile4 *--> HeartsA
+SuitPile4 *--> Hearts2
+SuitPile4 *--> Hearts3
+SuitPile4 *--> Hearts4
+SuitPile4 *--> Hearts5
+SuitPile4 *--> Hearts6
+SuitPile4 *--> Hearts7
+SuitPile4 *--> Hearts8
+SuitPile4 *--> Hearts9
+SuitPile4 *--> HeartsJ
+SuitPile4 *--> HeartsQ
+SuitPile4 *--> HeartsK
+
+SpadesA : Suit = "Spades"
+SpadesA : Rank = "A"
+Spades2 : Suit = "Spades"
+Spades2 : Rank = "2"
+Spades3 : Suit = "Spades"
+Spades3 : Rank = "3"
+Spades4 : Suit = "Spades"
+Spades4 : Rank = "4"
+Spades5 : Suit = "Spades"
+Spades5 : Rank = "5"
+Spades6 : Suit = "Spades"
+Spades6 : Rank = "6"
+Spades7 : Suit = "Spades"
+Spades7 : Rank = "7"
+Spades8 : Suit = "Spades"
+Spades8 : Rank = "8"
+Spades9 : Suit = "Spades"
+Spades9 : Rank = "9"
+SpadesJ : Suit = "Spades"
+SpadesJ : Rank = "J"
+SpadesQ : Suit = "Spades"
+SpadesQ : Rank = "Q"
+SpadesK : Suit = "Spades"
+SpadesK : Rank = "K"
+
+DiamondsA : Suit = "Diamonds"
+DiamondsA : Rank = "A"
+Diamonds2 : Suit = "Diamonds"
+Diamonds2 : Rank = "2"
+Diamonds3 : Suit = "Diamonds"
+Diamonds3 : Rank = "3"
+Diamonds4 : Suit = "Diamonds"
+Diamonds4 : Rank = "4"
+Diamonds5 : Suit = "Diamonds"
+Diamonds5 : Rank = "5"
+Diamonds6 : Suit = "Diamonds"
+Diamonds6 : Rank = "6"
+Diamonds7 : Suit = "Diamonds"
+Diamonds7 : Rank = "7"
+Diamonds8 : Suit = "Diamonds"
+Diamonds8 : Rank = "8"
+Diamonds9 : Suit = "Diamonds"
+Diamonds9 : Rank = "9"
+DiamondsJ : Suit = "Diamonds"
+DiamondsJ : Rank = "J"
+DiamondsQ : Suit = "Diamonds"
+DiamondsQ : Rank = "Q"
+DiamondsK : Suit = "Diamonds"
+DiamondsK : Rank = "K"
+
+ClubsA : Suit = "Clubs"
+ClubsA : Rank = "A"
+Clubs2 : Suit = "Clubs"
+Clubs2 : Rank = "2"
+Clubs3 : Suit = "Clubs"
+Clubs3 : Rank = "3"
+Clubs4 : Suit = "Clubs"
+Clubs4 : Rank = "4"
+Clubs5 : Suit = "Clubs"
+Clubs5 : Rank = "5"
+Clubs6 : Suit = "Clubs"
+Clubs6 : Rank = "6"
+Clubs7 : Suit = "Clubs"
+Clubs7 : Rank = "7"
+Clubs8 : Suit = "Clubs"
+Clubs8 : Rank = "8"
+Clubs9 : Suit = "Clubs"
+Clubs9 : Rank = "9"
+ClubsJ : Suit = "Clubs"
+ClubsJ : Rank = "J"
+ClubsQ : Suit = "Clubs"
+ClubsQ : Rank = "Q"
+ClubsK : Suit = "Clubs"
+ClubsK : Rank = "K"
+
+HeartsA : Suit = "Hearts"
+HeartsA : Rank = "A"
+Hearts2 : Suit = "Hearts"
+Hearts2 : Rank = "2"
+Hearts3 : Suit = "Hearts"
+Hearts3 : Rank = "3"
+Hearts4 : Suit = "Hearts"
+Hearts4 : Rank = "4"
+Hearts5 : Suit = "Hearts"
+Hearts5 : Rank = "5"
+Hearts6 : Suit = "Hearts"
+Hearts6 : Rank = "6"
+Hearts7 : Suit = "Hearts"
+Hearts7 : Rank = "7"
+Hearts8 : Suit = "Hearts"
+Hearts8 : Rank = "8"
+Hearts9 : Suit = "Hearts"
+Hearts9 : Rank = "9"
+HeartsJ : Suit = "Hearts"
+HeartsJ : Rank = "J"
+HeartsQ : Suit = "Hearts"
+HeartsQ : Rank = "Q"
+HeartsK : Suit = "Hearts"
+HeartsK : Rank = "K"
+
+@enduml
