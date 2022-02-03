@@ -19,7 +19,7 @@ class Diagonal
 
 Connect4 *--> Board
 Connect4 *--> "42" Disc
-Connect4 --> "2" Player: isUsedBy
+Connect4 *--> "2" Player
 Connect4 *--> Turn
 
 Player --> "21" Disc

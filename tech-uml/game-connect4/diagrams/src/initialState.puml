@@ -173,8 +173,8 @@ together {
   object Player2
 }
 
-Board *--up-> Player1
-Board *-up-> Player2
+Connect4 *--up-> Player1
+Connect4 *-up-> Player2
 
 Player1 ---[hidden]up> Player2
 
