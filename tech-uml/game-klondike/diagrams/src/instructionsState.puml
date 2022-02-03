@@ -1,0 +1,14 @@
+@startuml instructionsState
+
+state FreshDeck as " "
+state Grab as " "
+
+[*] --> FreshDeck
+FreshDeck --> FreshDeck : Move or Pile
+FreshDeck --> Grab : [Not can Move or Pile]
+Grab --> Grab : Grab
+Grab --> FreshDeck : [Can Move or Pile]
+Grab --> [*] : [No new Cards]
+FreshDeck --> [*] : [All cards piled]
+
+@enduml
