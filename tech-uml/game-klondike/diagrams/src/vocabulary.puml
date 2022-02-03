@@ -1,4 +1,4 @@
-@startuml
+@startuml vocabulary
 skinparam groupInheritance 2
 Klondike *--> "52" Card
 Klondike *--> "1" Goal
@@ -9,7 +9,7 @@ Board *--> "1" Deck
 SuitPile o--> Card
 Goal ..> Action
 Goal --> SuitPile
-Deck *--> Card
+Deck o--> Card
 Card *--> "1" Rank
 Card *--> "1" Suit
 Suit *--> "1" Color
@@ -18,11 +18,12 @@ Color <|-- Red
 Action <|-- Grab
 Action <|-- Pile
 Action <|-- Move
-Stack *--> Card
+Stack *--> "1..*" Card
 Grab ..> Deck
-Pile ..> SuitPile
+Pile ..> SuitPile : target
 Pile ..> Card
 Move ..> Stack
-Move ..> StackPile
+Move ..> StackPile : target
+Move ..> Card
 StackPile o--> Card
 @enduml

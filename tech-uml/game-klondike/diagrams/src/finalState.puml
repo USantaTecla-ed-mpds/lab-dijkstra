@@ -1,4 +1,4 @@
-@startuml
+@startuml finalState
 object ":Klondike" as Klondike
 object ":Board" as Board
 
@@ -7,32 +7,12 @@ object ":SuitPile" as SuitPile2
 object ":SuitPile" as SuitPile3
 object ":SuitPile" as SuitPile4
 
-object ":StackPile" as StackPile1
-object ":StackPile" as StackPile2
-object ":StackPile" as StackPile3
-object ":StackPile" as StackPile4
-object ":StackPile" as StackPile5
-object ":StackPile" as StackPile6
-object ":StackPile" as StackPile7
-
-object ":Deck" as Deck
-
 Klondike *--> Board
 
 Board *--> SuitPile1
 Board *--> SuitPile2
 Board *--> SuitPile3
 Board *--> SuitPile4
-
-Board *--> StackPile1
-Board *--> StackPile2
-Board *--> StackPile3
-Board *--> StackPile4
-Board *--> StackPile5
-Board *--> StackPile6
-Board *--> StackPile7
-
-Board *--> Deck
 
 object ":Card" as SpadesA
 object ":Card" as Spades2

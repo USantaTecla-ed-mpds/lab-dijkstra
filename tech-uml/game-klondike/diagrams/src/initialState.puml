@@ -1,11 +1,6 @@
-@startuml
+@startuml initialState
 object ":Klondike" as Klondike
 object ":Board" as Board
-
-object ":SuitPile" as SuitPile1
-object ":SuitPile" as SuitPile2
-object ":SuitPile" as SuitPile3
-object ":SuitPile" as SuitPile4
 
 object ":StackPile" as StackPile1
 object ":StackPile" as StackPile2
@@ -16,14 +11,6 @@ object ":StackPile" as StackPile6
 object ":StackPile" as StackPile7
 
 object ":Deck" as Deck
-
-object ":Stack" as Stack1
-object ":Stack" as Stack2
-object ":Stack" as Stack3
-object ":Stack" as Stack4
-object ":Stack" as Stack5
-object ":Stack" as Stack6
-object ":Stack" as Stack7
 
 object ":Card" as S1C1
 S1C1 : Suit = "Diamonds"
@@ -118,11 +105,6 @@ S7C7 : Rank = "9"
 
 Klondike *--> Board
 
-Board *--> SuitPile1
-Board *--> SuitPile2
-Board *--> SuitPile3
-Board *--> SuitPile4
-
 Board *--> StackPile1
 Board *--> StackPile2
 Board *--> StackPile3
@@ -207,48 +189,40 @@ Card23 : Rank = "4"
 Card24 : Suit = "Hearts"
 Card24 : Rank = "4"
 
-StackPile1 *--> Stack1
-StackPile2 *--> Stack2
-StackPile3 *--> Stack3
-StackPile4 *--> Stack4
-StackPile5 *--> Stack5
-StackPile6 *--> Stack6
-StackPile7 *--> Stack7
+StackPile1 *--> S1C1
 
-Stack1 *--> S1C1
+StackPile2 *--> S2C1
+StackPile2 *--> S2C2
 
-Stack2 *--> S2C1
-Stack2 *--> S2C2
+StackPile3 *--> S3C1
+StackPile3 *--> S3C2
+StackPile3 *--> S3C3
 
-Stack3 *--> S3C1
-Stack3 *--> S3C2
-Stack3 *--> S3C3
+StackPile4 *--> S4C1
+StackPile4 *--> S4C2
+StackPile4 *--> S4C3
+StackPile4 *--> S4C4
 
-Stack4 *--> S4C1
-Stack4 *--> S4C2
-Stack4 *--> S4C3
-Stack4 *--> S4C4
+StackPile5 *--> S5C1
+StackPile5 *--> S5C2
+StackPile5 *--> S5C3
+StackPile5 *--> S5C4
+StackPile5 *--> S5C5
 
-Stack5 *--> S5C1
-Stack5 *--> S5C2
-Stack5 *--> S5C3
-Stack5 *--> S5C4
-Stack5 *--> S5C5
+StackPile6 *--> S6C1
+StackPile6 *--> S6C2
+StackPile6 *--> S6C3
+StackPile6 *--> S6C4
+StackPile6 *--> S6C5
+StackPile6 *--> S6C6
 
-Stack6 *--> S6C1
-Stack6 *--> S6C2
-Stack6 *--> S6C3
-Stack6 *--> S6C4
-Stack6 *--> S6C5
-Stack6 *--> S6C6
-
-Stack7 *--> S7C1
-Stack7 *--> S7C2
-Stack7 *--> S7C3
-Stack7 *--> S7C4
-Stack7 *--> S7C5
-Stack7 *--> S7C6
-Stack7 *--> S7C7
+StackPile7 *--> S7C1
+StackPile7 *--> S7C2
+StackPile7 *--> S7C3
+StackPile7 *--> S7C4
+StackPile7 *--> S7C5
+StackPile7 *--> S7C6
+StackPile7 *--> S7C7
 
 Deck *--> Card1
 Deck *--> Card2
