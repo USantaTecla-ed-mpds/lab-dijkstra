@@ -1,0 +1,20 @@
+@startuml instructionsActivity
+start
+while (AllCardsArePiled) is (no)
+  while (CanMove or CanPile) is (no)
+    if (CanGrab) then (yes)
+      :Grab;
+    endif
+    if (NewDeckCard) then (Block)
+      stop
+    else (yes)
+    endif
+  endwhile (yes)
+  if (CanMove) then (yes)
+    :Move;
+  elseif (CanPile) then (yes)
+    :Pile;
+  endif
+endwhile (Win)
+stop
+@enduml
