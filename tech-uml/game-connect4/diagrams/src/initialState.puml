@@ -180,12 +180,12 @@ Player1 ---[hidden]up> Player2
 
 together {
   object Disc1_1
-  object Yellow1
+  object "Yellow" as Yellow1
 }
 
 together {
   object Disc1_21
-  object Yellow21
+  object "Yellow" as Yellow21
 }
 
 Player1 *-right Disc1_1
@@ -199,12 +199,12 @@ Disc1_1 . Disc1_21 : 21 discs
 
 together {
   object Disc2_1
-  object Red1
+  object "Red" as Red1
 }
 
 together {
   object Disc2_21
-  object Red21
+  object "Red" as Red21
 }
 
 Player2 *-left Disc2_1

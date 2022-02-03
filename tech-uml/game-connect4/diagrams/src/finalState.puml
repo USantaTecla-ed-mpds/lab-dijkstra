@@ -241,8 +241,13 @@ object Disc2_1
 object Disc2_2
 object Disc2_3
 
-object Yellow
-object Red
+object "Yellow" as Yellow1
+object "Yellow" as Yellow2
+object "Yellow" as Yellow3
+object "Yellow" as Yellow4
+object "Red" as Red1
+object "Red" as Red2
+object "Red" as Red3
 
 Connect4 *-------- Board
 
@@ -343,20 +348,20 @@ HollowSquare66 *-right-> Coordinate66
 HollowSquare67 *-right-> Coordinate67
 
 HollowSquare61 *-down-> Disc1_1
-Disc1_1 *-down-> Yellow
+Disc1_1 *-down-> Yellow1
 HollowSquare62 *-down-> Disc1_2
-Disc1_2 *-down-> Yellow
+Disc1_2 *-down-> Yellow2
 HollowSquare63 *-down--> Disc1_3
-Disc1_3 *-down-> Yellow
+Disc1_3 *-down-> Yellow3
 HollowSquare64 *-down-> Disc1_4
-Disc1_4 *-down-> Yellow
+Disc1_4 *-down-> Yellow4
 
 HollowSquare65 *-down-> Disc2_1
-Disc2_1 *-down-> Red
+Disc2_1 *-down-> Red1
 HollowSquare66 *-down-> Disc2_2
-Disc2_2 *-down-> Red
+Disc2_2 *-down-> Red2
 HollowSquare67 *-down-> Disc2_3
-Disc2_3 *-down-> Red
+Disc2_3 *-down-> Red3
 
 HollowSquare11 -[hidden]down-> HollowSquare21
 HollowSquare12 -[hidden]down-> HollowSquare22
@@ -459,26 +464,28 @@ Player1 ---[hidden]up> Player2
 together {
   object Disc1_5
   object Disc1_21
-  object "Yellow" as Yellow1
+  object "Yellow" as Yellow5
+  object "Yellow" as Yellow21
 }
 
 together {
   object Disc2_4
   object Disc2_21
-  object "Red" as Red1
+  object "Red" as Red4
+  object "Red" as Red21
 }
 
 Player1 *-right-> Disc1_21
 Player1 *-right-> Disc1_5
-Disc1_5 <|-- Yellow1
-Disc1_21 <|-- Yellow1
+Disc1_5 <|-- Yellow5
+Disc1_21 <|-- Yellow21
 Disc1_5 -[hidden]right> Disc1_21
 Disc1_5 .. Disc1_21: 17 discs
 
 Player2 *-right-> Disc2_21
 Player2 *-right-> Disc2_4
-Disc2_4 <|-- Red1
-Disc2_21 <|-- Red1
+Disc2_4 <|-- Red4
+Disc2_21 <|-- Red21
 Disc2_4 -[hidden]right> Disc2_21
 Disc2_4 .. Disc2_21: 18 discs
 
