@@ -1,0 +1,93 @@
+@startuml
+
+object ":Klondike" as Klondike
+object ":Waste" as Waste
+object ":Deck" as Deck
+object ":Pile" as Pile
+object ":Foundation" as Foundation
+object ":Card" as Card
+object ":Card" as Card2
+object ":Card" as Card3
+object ":Card" as Card4
+object ":Card" as CardWaste
+note as N2
+one card face up and the rest of 
+the cards face down (under the face up card)
+end note
+object ":Card" as CardDeck {
+  flip = false
+}
+object ":Card" as CardPile {
+ stick = "heart"
+ color = "red"
+ rank = "seven"
+ flip = true
+}
+object ":Card" as CardPile2 {
+ stick = "diamond"
+ color = "red"
+ rank = "queen"
+ flip= true
+}
+object ":Card" as CardPile3 {
+ stick = "diamond"
+ color = "red"
+ rank = "three"
+ flip= true
+}
+object ":Card" as CardPile4 {
+ stick = "heart"
+ color = "red"
+ rank = "three"
+ flip= true
+}
+object ":Card" as CardPile5 {
+ stick = "pike"
+ color = "black"
+ rank = "five"
+ flip= true
+}
+object ":Card" as CardPile6 {
+ stick = "pike"
+ color = "black"
+ rank = "seven"
+ flip= true
+}
+object ":Card" as CardPile7 {
+ stick = "club"
+ color = "black"
+ rank = "six"
+ flip= true
+}
+
+Klondike *-down-> "1"  Waste
+Klondike *-down-> "1" Deck
+Klondike *-down-> "7"  Pile
+Klondike *-down-> "4"  Foundation
+
+Foundation o-down-> "0"  Card
+Foundation o-down-> "0"  Card2
+Foundation o-down-> "0"  Card3
+Foundation o-down-> "0"  Card4
+
+Waste o-down-> "0"  CardWaste
+
+Deck o-down-> "24"  CardDeck
+
+Pile *-down-> "1"  CardPile
+Pile *-down->"2"   CardPile2
+Pile *-down-> "3"   CardPile3
+Pile *-down-> "4"   CardPile4
+Pile *-down-> "5"   CardPile5
+Pile *-down-> "6"   CardPile6
+Pile *-down-> "7"   CardPile7
+
+
+CardPile2 .. N2
+CardPile3 .. N2
+CardPile4 .. N2
+CardPile5 .. N2
+CardPile6 .. N2
+CardPile7 .. N2
+
+@enduml

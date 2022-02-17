@@ -1,0 +1,76 @@
+@startuml
+
+object ":Klondike" as Klondike
+object ":Waste" as Waste
+object ":Deck" as Deck
+object ":Pile" as Pile
+object ":Foundation" as Foundation
+object ":Card" as Card {
+ stick = "heart"
+ color = "red"
+ rank = "king"
+ flip = true
+}
+object ":Card" as Card2 {
+ stick = "diamond"
+ color = "red"
+ rank = "king"
+ flip = true
+}
+object ":Card" as Card3 {
+ stick = "club"
+ color = "black"
+ rank = "king"
+ flip = true
+}
+object ":Card" as Card4 {
+ stick = "pike"
+ color = "black"
+ rank = "king"
+ flip = true
+}
+object ":Card" as CardWaste
+note as N2
+all cards ordered from lowest to highest 
+with the last card visible above the others.
+All cards are face up, one on top of the other.
+end note
+object ":Card" as CardDeck 
+object ":Card" as CardPile 
+object ":Card" as CardPile2 
+object ":Card" as CardPile3
+object ":Card" as CardPile4
+object ":Card" as CardPile5 
+object ":Card" as CardPile6 
+object ":Card" as CardPile7
+
+Klondike *-down-> "1"  Waste
+Klondike *-down-> "1" Deck
+Klondike *-down-> "7"  Pile
+Klondike *-down-> "4"  Foundation
+
+Foundation o-down-> "13"  Card
+Foundation o-down-> "13"  Card2
+Foundation o-down-> "13"  Card3
+Foundation o-down-> "13"  Card4
+
+Waste o-down-> "0"  CardWaste
+
+Deck o-down-> "0"  CardDeck
+
+Pile *-down-> "0"  CardPile
+Pile *-down->"0"   CardPile2
+Pile *-down-> "0"   CardPile3
+Pile *-down-> "0"   CardPile4
+Pile *-down-> "0"   CardPile5
+Pile *-down-> "0"   CardPile6
+Pile *-down-> "0"   CardPile7
+
+
+Card .. N2
+Card2 .. N2
+Card3 .. N2
+Card4 .. N2
+
+
+@enduml

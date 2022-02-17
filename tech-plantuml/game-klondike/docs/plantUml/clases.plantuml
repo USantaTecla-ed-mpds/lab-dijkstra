@@ -1,0 +1,38 @@
+@startuml
+
+Klondike *-down-> "1" Waste
+Klondike *-down-> "1" Deck
+Klondike *-down-> "7" Pile
+Klondike *-down-> "4" Foundation
+Klondike *-down-> Goal
+Pile *-down-> "1..7" Card
+Klondike *-down-> "52" Card
+Card *-down-> "4" Stick
+Card *-down-> "1..13" Rank
+Stick *-down-> Color
+Color <|-down- Red
+Color <|-down- Black
+Goal -down-> Action
+Action *-down-> "1" Move
+Move .left.> Card
+Waste o-down-> "0..*" Card
+Deck o-down-> "1..*" Card
+Foundation o-down-> "1..13" Card
+Move <|-down- WasteToDeck
+Move <|-down- WasteToPile
+Move <|-down- PileToFoundation
+Move <|-down- FoundationToPile
+Move <|-down- WasteToFoundation
+Move <|-down- DeckToWaste
+Move <|-down- PileToPile
+Stick <|-down- Heart
+Stick <|-down- Diamond
+Stick <|-down- Pike
+Stick <|-down- Club
+Heart -down-> Red
+Diamond -down-> Red
+Pike -down-> Black
+Club -down-> Black
+
+
+@enduml
