@@ -18,7 +18,7 @@ Universo Santa Tecla
 [Youtube](https://www.youtube.com/watch?v=yjgQXcFVBQY)
 ### vocabulary
 
-![Vocabulario]()  
+![Vocabulario](./docs/images/klondike_class.png)  
   
 ### initialState  
   
