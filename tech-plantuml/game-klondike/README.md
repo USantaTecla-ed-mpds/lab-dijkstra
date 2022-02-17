@@ -22,11 +22,11 @@ Universo Santa Tecla
   
 ### initialState  
   
-![Estado_inicial]()  
+![Estado_inicial](./docs/images/Klondike_estado_inicial_objetos.png)  
   
 ### finalState 
 
-![Estado_final]()  
+![Estado_final](./docs/images/klondike_estado_final_objetos.png)  
   
 ### instructions  
   
