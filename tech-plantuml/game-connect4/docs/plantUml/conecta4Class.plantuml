@@ -1,0 +1,40 @@
+@startuml
+class Conecta4
+
+Conecta4 *-- Player :2
+Conecta4 *-- Turn: n
+Conecta4 *-- Insertion: n
+Conecta4 o-- Goal
+Conecta4 *-- Piece :2 x 21
+Conecta4 *-- Board :1
+
+Player --> Goal
+Player --> Insertion :n
+
+Piece <|-- Yellow
+Piece <|-- Red
+
+Goal <|-- Diagonal
+Goal <|-- Horizontal
+Goal <|-- Vertical
+
+Diagonal *--> Piece
+Diagonal *--> Box
+
+Horizontal *--> Piece
+Horizontal *--> Box
+
+Vertical *--> Piece
+Vertical *--> Box
+
+Board *-- Box :7 x 6
+Insertion --> Piece
+Insertion --> Box
+
+Goal *-- Insertion :4
+
+Turn --> Player :1
+
+
+
+@enduml

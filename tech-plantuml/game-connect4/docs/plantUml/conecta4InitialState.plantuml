@@ -1,0 +1,29 @@
+@startuml
+
+object ":Conecta4" as partida
+object ":Board" as board
+object ":Turn1" as turn1
+object ":Player1" as player1
+object ":Yellow" as yellow
+object ":Player2" as player2
+object ":Red" as red
+object ":Insertion1" as insertion1
+object ":Box" as box
+
+board : -Empty
+
+partida *-- turn1
+partida *-- board
+partida *-- player1
+partida *-- player2
+
+player1 --> yellow
+player1 --> insertion1
+insertion1 ..> box
+insertion1 ..> yellow
+
+turn1 --> player1
+
+player2 --> red
+
+@enduml
