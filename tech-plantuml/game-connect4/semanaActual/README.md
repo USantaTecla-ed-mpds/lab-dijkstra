@@ -27,7 +27,7 @@ Universo Santa Tecla
   
 ### finalState 
 
-![Estado_final]()  
+![Estado_final](./docs/images/FinalState-Final_State_Connect4.svg)  
   
 ### instructions  
   
