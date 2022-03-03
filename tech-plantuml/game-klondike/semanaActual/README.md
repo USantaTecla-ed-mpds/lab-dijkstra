@@ -20,7 +20,7 @@ Universo Santa Tecla
 
 ### vocabulary
 
-![Vocabulario](./docs/images/klondike-Klondike.svg)  
+![Vocabulario](./docs/images/Vocabulary.png)  
   
 ### initialState  
   

@@ -4,3 +4,8 @@ Universo Santa Tecla
   
 ## requirements 
 
+## Initial state
+[my link](StateInitial.xml)
+
+## Second state
+[my link](StateSecond.xml)

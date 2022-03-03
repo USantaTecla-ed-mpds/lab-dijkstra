@@ -4,3 +4,10 @@ Universo Santa Tecla
   
 ## requirements 
 
+![image](image.png)
+
+## Initial state
+[my link](Klondike_XML.xml)
+
+## Second state
+[my link](Klondike_XML2.xml)

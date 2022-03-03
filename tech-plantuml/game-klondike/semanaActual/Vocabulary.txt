@@ -1,0 +1,110 @@
+class Waste 
+
+class Klondike
+class Player
+class Move
+{
+ - origin: Pile
+  -cardList: Card
+  -destination: Pile
+}
+class Goal
+note left
+Build the four 
+SuitePile of 
+cards ranked by 
+color starting 
+with aces in 
+ascending order 
+end note
+
+Abstract Pile
+{
+ - cardList: List
+ #validMove(): boolean
+}
+class Foundation
+class Card
+{
+ - rank: Rank
+ - isTumedUp: boolean
+}
+class Stock
+class Waste 
+class Tableau
+Abstract Suit
+Enum Rank
+{
+  A
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+  10
+  J
+  Q
+  K
+}
+Abstract Color
+class Club
+class Spade
+class Diamond
+class Heart
+class Red
+Class Black
+class Destination
+class Origin
+
+Klondike *-down-> "4" Foundation
+Klondike *-down->  Player
+Klondike *-down-> Stock
+Klondike *-down-> Waste
+Klondike *-down-> "7" Tableau
+
+
+Player -down-> Goal
+Player .down.> "n" Move
+
+Move -down-> "1..14" Card
+Move *-right-> Origin
+Move *-right-> Destination
+
+Goal -down-> "4" Foundation : Complet
+Goal -.-right-> "n" Move
+
+Pile o-down-> "0..52" Card
+Pile <|-down- Foundation
+Pile <|-down-  Stock
+Pile <|-down- Waste
+Pile <|-down- Tableau
+
+Card *-down-> Suit
+Card *-down-> Rank
+
+Suit <|-down- Club
+Suit <|-down- Spade
+Suit <|-down- Diamond
+Suit <|-down- Heart
+Suit *-down- Color
+
+Foundation -down-> Suit
+Foundation -down-> "0..14" Card
+
+Color <|-down- Black
+Color <|-down- Red
+
+Club *-down-> Black
+Diamond *-down-> Red
+Heart *-down-> Red
+Spade *-down-> Black
+
+Stock -down-> "0..24" Card
+Tableau -down-> "0..n" Card
+Waste -down-> "0..n" Card
+
+Destination -down-> Pile
+Origin -down-> Pile

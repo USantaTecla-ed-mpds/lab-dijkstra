@@ -1,0 +1,233 @@
+{
+    "klondike" : {
+        "stock": {
+            "maxCards": 20,
+            "cards": [{
+                "isTumedUp": false,
+                "rank": null,
+                "suite": null,
+                "color": null
+            }]
+        },
+        "waste":{
+            "maxCards": 3,
+            "cards": [{
+                "isTumedUp": true,
+                "rank": "8",
+                "suite": "heart",
+                "color": "black"
+            },
+            {
+                "isTumedUp": true,
+                "rank": "7",
+                "suite": "club",
+                "color": "black"
+            },
+            {
+                "isTumedUp": true,
+                "rank": "7",
+                "suite": "heart",
+                "color": "black"
+            }]
+        },
+        "foundation": {
+            "foundation1": {
+                "maxCards": 1,
+                "cards": [{
+                    "isTumedUp": true,
+                    "rank": "A",
+                    "suite": "heart",
+                    "color": "black"
+                }]
+            },
+            "foundation2": {
+                "maxCards": 1,
+                "cards": [{
+                    "isTumedUp": true,
+                    "rank": "A",
+                    "suite": "club",
+                    "color": "black"
+                }]
+            },
+            "foundation3": {},
+            "foundation4": {}
+        },
+        "tableau": {
+            "tableau1": {},
+            "tableau2": {
+                "maxCards": 4,
+                "cards": [{
+                    "isTumedUp": true,
+                    "rank": "10",
+                    "suite": "heart",
+                    "color": "black"
+                },
+                {
+                    "isTumedUp": true,
+                    "rank": "J",
+                    "suite": "heart",
+                    "color": "red"
+                },
+                {
+                    "isTumedUp": true,
+                    "rank": "Q",
+                    "suite": "club",
+                    "color": "black"
+                },
+                {
+                    "isTumedUp": true,
+                    "rank": "K",
+                    "suite": "diamond",
+                    "color": "red"
+                }]
+            },
+            "tableau3": {
+                "maxCards": 2,
+                "cards": [{
+                    "isTumedUp": true,
+                    "rank": "4",
+                    "suite": "heart",
+                    "color": "red"
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suite": null,
+                    "color": null
+                }]
+            },
+            "tableau4": {
+                "maxCards": 3,
+                "cards": [{
+                    "isTumedUp": true,
+                    "rank": "4",
+                    "suite": "diamond",
+                    "color": "red"
+                },
+                {
+                    "isTumedUp": true,
+                    "rank": "5",
+                    "suite": "heart",
+                    "color": "black"
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suite": null,
+                    "color": null
+                }]
+            },
+            "tableau5": {
+                "maxCards": 5,
+                "cards": [{
+                    "isTumedUp": true,
+                    "rank": "2",
+                    "suite": "heart",
+                    "color": "red"
+                },
+                {
+                    "isTumedUp": true,
+                    "rank": "3",
+                    "suite": "heart",
+                    "color": "black"
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suite": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suite": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suite": null,
+                    "color": null
+                }]
+            },
+            "tableau6": {
+                "maxCards": 5,
+                "cards": [{
+                    "isTumedUp": true,
+                    "rank": "8",
+                    "suite": "club",
+                    "color": "black"
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suite": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suite": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suite": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suite": null,
+                    "color": null
+                }]
+            },
+            "tableau7": {
+                "maxCards": 7,
+                "cards": [{
+                    "isTumedUp": true,
+                    "rank": "J",
+                    "suite": "heart",
+                    "color": "black"
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suite": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suite": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suite": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suite": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suite": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suite": null,
+                    "color": null
+                }]
+            }
+        }
+    }
+  }

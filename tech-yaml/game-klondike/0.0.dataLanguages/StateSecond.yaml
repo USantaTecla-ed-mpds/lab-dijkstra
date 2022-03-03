@@ -1,0 +1,127 @@
+klondike:
+  stock:
+    maxCards: 20
+    card1:
+      isTumedUp: false
+      rank:
+      suite:
+      color:
+  waste:
+    maxCards: 3
+    card1:
+      isTumedUp: true
+      rank: 8
+      suite: heart
+      color: black
+    card2:
+      isTumedUp: true
+      rank: 7
+      suite: club
+      color: black
+    card3:
+      isTumedUp: true
+      rank: 7
+      suite: heart
+      color: black
+  foundation:
+    foundation1:
+      maxCards: 1
+      card1:
+        isTumedUp: true
+        rank: A
+        suite: heart
+        color: black
+    foundation2:
+      maxCards: 1
+      card1:
+        isTumedUp: true
+        rank: A
+        suite: club
+        color: black
+    foundation3:
+    foundation4:
+  tableau:
+    tableau1:
+    tableau2:
+      maxCards: 4
+      card1:
+        isTumedUp: true
+        rank: 10
+        suite: heart
+        color: black
+      card2:
+        isTumedUp: true
+        rank: J
+        suite: heart
+        color: red
+      card3:
+        isTumedUp: true
+        rank: Q
+        suite: club
+        color: black
+      card4:
+        isTumedUp: true
+        rank: K
+        suite: diamond
+        color: red
+    tableau3:
+      maxCards: 2
+      card1:
+        isTumedUp: true
+        rank: 4
+        suite: heart
+        color: red
+      card2:
+    tableau4:
+      maxCards: 3
+      card1:
+        isTumedUp: true
+        rank: 4
+        suite: diamond
+        color: red
+      card2:
+        isTumedUp: true
+        rank: 5
+        suite: heart
+        color: black
+      card3:
+    tableau5:
+      maxCards: 5
+      card1:
+        isTumedUp: true
+        rank: 2
+        suite: heart
+        color: red
+      card2:
+        isTumedUp: true
+        rank: 3
+        suite: heart
+        color: black
+      card3:
+      card4:
+      card4:
+    tableau6:
+      maxCards: 5
+      card1:
+        isTumedUp: true
+        rank: 8
+        suite: club
+        color: black
+      card2:
+      card3:
+      card4:
+      card5:
+    tableau7:
+      maxCards: 7
+      card1:
+        isTumedUp: true
+        rank: J
+        suite: heart
+        color: black
+      card2:
+      card3:
+      card4:
+      card5:
+      card6:
+      card7:
+

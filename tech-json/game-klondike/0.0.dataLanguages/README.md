@@ -4,3 +4,10 @@ Universo Santa Tecla
   
 ## requirements 
 
+[image](image.png)
+
+## Initial state
+[my link](StateInitial.json)
+
+## Second state
+[my link](StateSecond.json)

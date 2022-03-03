@@ -1,0 +1,209 @@
+{
+    "klondike" : {
+        "stock": {
+            "maxCards": 24,
+            "card": {}
+        },
+        "waste": {
+            "maxCards": 0,
+            "card": {}
+        },
+        "foundation": {
+            "foundtion1": {},
+            "foundtion2": {},
+            "foundtion3": {},
+            "foundtion4": {}
+        },
+        "tableau": {
+            "tableau1": {
+                "maxCards": 1,
+                "card": {
+                    "isTumedUp": true,
+                    "rank": "k",
+                    "suit": "diamond",
+                    "color": "red"
+                }
+            },
+            "tableau2": {
+                "maxCards": 2,
+                "cards": [{
+                    "isTumedUp": true,
+                    "rank": "4",
+                    "suit": "diamond",
+                    "color": "red"
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                }]
+            },
+            "tableau3": {
+                "maxCards": 3,
+                "cards": [{
+                    "isTumedUp": true,
+                    "rank": "J",
+                    "suit": "heart",
+                    "color": "red"
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                }]
+            },
+            "tableau4": {
+                "maxCards": 4,
+                "cards": [{
+                    "isTumedUp": true,
+                    "rank": "2",
+                    "suit": "heart",
+                    "color": "red"
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                }]
+            },
+            "tableau5": {
+                "maxCards": 5,
+                "cards": [{
+                    "isTumedUp": true,
+                    "rank": "3",
+                    "suit": "heart",
+                    "color": "black"
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                }]
+            },
+            "tableau6": {
+                "maxCards": 6,
+                "cards": [{
+                    "isTumedUp": true,
+                    "rank": "10",
+                    "suit": "diamond",
+                    "color": "black"
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                }]
+            },
+            "tableau7": {
+                "maxCards": 7,
+                "cards": [{
+                    "isTumedUp": true,
+                    "rank": "J",
+                    "suit": "diamond",
+                    "color": "black"
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                },
+                {
+                    "isTumedUp": false,
+                    "rank": null,
+                    "suit": null,
+                    "color": null
+                }]
+            }
+        }
+    }
+}
