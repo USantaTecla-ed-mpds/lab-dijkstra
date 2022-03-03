@@ -85,6 +85,10 @@ klondike:
         suite: heart
         color: black
       card3:
+        isTumedUp: false
+        rank:
+        suite:
+        color:
     tableau5:
       maxCards: 5
       card1:
@@ -98,8 +102,20 @@ klondike:
         suite: heart
         color: black
       card3:
+        isTumedUp: false
+        rank:
+        suite:
+        color:
       card4:
-      card4:
+        isTumedUp: false
+        rank:
+        suite:
+        color:
+      card5:
+        isTumedUp: false
+        rank:
+        suite:
+        color:
     tableau6:
       maxCards: 5
       card1:
@@ -108,9 +124,25 @@ klondike:
         suite: club
         color: black
       card2:
+        isTumedUp: false
+        rank:
+        suite:
+        color:
       card3:
+        isTumedUp: false
+        rank:
+        suite:
+        color:
       card4:
+        isTumedUp: false
+        rank:
+        suite:
+        color:
       card5:
+        isTumedUp: false
+        rank:
+        suite:
+        color:
     tableau7:
       maxCards: 7
       card1:
@@ -119,9 +151,33 @@ klondike:
         suite: heart
         color: black
       card2:
+        isTumedUp: false
+        rank:
+        suite:
+        color:
       card3:
+        isTumedUp: false
+        rank:
+        suite:
+        color:
       card4:
+        isTumedUp: false
+        rank:
+        suite:
+        color:
       card5:
+        isTumedUp: false
+        rank:
+        suite:
+        color:
       card6:
+        isTumedUp: false
+        rank:
+        suite:
+        color:
       card7:
+        isTumedUp: false
+        rank:
+        suite:
+        color:
 
