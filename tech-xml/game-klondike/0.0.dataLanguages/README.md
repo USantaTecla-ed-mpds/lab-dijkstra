@@ -6,8 +6,5 @@ Universo Santa Tecla
 
 ![image](image.png)
 
-## Initial state
+## History
 [my link](Klondike_XML.xml)
-
-## Second state
-[my link](Klondike_XML2.xml)
