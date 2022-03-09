@@ -2,7 +2,7 @@ class Waste
 
 class Klondike
 class Player
-class Move
+class Movement
 class Goal
 note left
 Build the four 
@@ -17,6 +17,7 @@ Abstract Pile
 class Foundation
 class Card
 {
+ - rank: Rank
  - isTumedUp: boolean
 }
 class Stock
@@ -46,6 +47,17 @@ class Diamond
 class Heart
 class Red
 Class Black
+Enum MovementType
+{
+  StockToWaste
+  WasteToFoundation
+  WasteToTableau
+  WasteToStock
+  TableauToFoundation
+  FoundationToTableau
+  TableauToTableau
+  FoundationToFoundation
+}
 
 Klondike *-down-> "4" Foundation
 Klondike *-down->  Player
@@ -55,14 +67,14 @@ Klondike *-down-> "7" Tableau
 
 
 Player -down-> Goal
-Player .down.> "n" Move
+Player .down.> "n" Movement
 
-Move -down-> "1..n" Card
-Move *-down-> Pile : Origin
-Move *-down-> Pile : Destination
+Movement -down-> "1..n" Card
+Movement *-down-> Pile : Origin
+Movement *-down-> Pile : Destination
 
 Goal -down-> "4" Foundation : Complet
-Goal -.-right-> "n" Move
+Goal -.-right-> "n" Movement
 
 Pile <|-down- Foundation
 Pile <|-down-  Stock
@@ -92,3 +104,5 @@ Spade *-down-> Black
 Stock o-down-> "0..24" Card
 Tableau o-down-> "0..n" Card
 Waste o-down-> "0..n" Card
+
+Movement -right-> MovementType :Types

@@ -1,0 +1,42 @@
+@startuml
+start
+:Barajar;
+:Preparar Stock con 24 cartas;
+:Repartir 28 cartas entre tableau;
+note right
+  Las cartas boca 
+  arriba se ubican 
+  sobra las cartas 
+  boca abajo.
+end note
+:Prepara Tableau 1. 1 carta arriba;
+:Prepara Tableau 2. 1 carta arriba, 1 carta abajo;
+:Prepara Tableau 3. 1 carta arriba, 2 carta abajo;
+:Prepara Tableau 4. 1 carta arriba, 3 carta abajo;
+:Prepara Tableau 5. 1 carta arriba, 4 carta abajo;
+:Prepara Tableau 6. 1 carta arriba, 5 carta abajo;
+:Prepara Tableau 7. 1 carta arriba, 6 carta abajo;
+switch (mover)
+case ( StockToWaste = true )
+  if (stockIsEmpty) then (NO)
+   :move;
+  endif
+  stop
+:Print "Invalid movement. Waste is empty";
+case (WasteToFoundation = true)
+  :move;
+case (WasteToTableau = true)
+  :move;
+case (WasteToStock = true)
+  :move;
+case (TableauToFoundation = true)
+  :move;
+case (FoundationToTableau = true)
+  :move;
+case (TableauToTableau = true)
+  :move;
+case (FoundationToFoundation = true)
+  :move;
+endswitch
+stop
+@enduml

@@ -1,0 +1,90 @@
+@startuml
+object ":Klondike" as klondike
+object ":Stock" as stock
+object ":Waste" as waste
+object ":Foundation" as foundation1
+object ":Foundation" as foundation2
+object ":Foundation" as foundation3
+object ":Foundation" as foundation4
+object ":Tableau" as tableau1
+object ":Tableau" as tableau2
+object ":Tableau" as tableau3
+object ":Tableau" as tableau4
+object ":Tableau" as tableau5
+object ":Tableau" as tableau6
+object ":Tableau" as tableau7
+object ":Card" as card1
+object ":Card" as card2
+object ":Card" as card3
+object ":Card" as card4
+object ":Card" as card5
+object ":Card" as card6
+object ":Card" as card7
+object ":Card" as card8
+
+foundation1 o--> card1
+foundation1 o--> card2
+foundation2 o--> card3
+foundation2 o--> card4
+foundation3 o--> card5
+foundation3 o--> card6
+foundation4 o--> card7
+foundation4 o--> card8
+
+card1 : faceUp = true
+card1 : rank = "A"
+card1 : suit = "heart"
+
+card2 : faceUp = true
+card2 : rank = "K"
+card2 : suit = "heart"
+
+card3 : faceUp = true
+card3 : rank = "A"
+card3 : suit = "spade"
+
+card4 : faceUp = true
+card4 : rank = "K"
+card4 : suit = "spade"
+
+card5 : faceUp = true
+card5 : rank = "A"
+card5 : suit = "diamond"
+
+card6 : faceUp = true
+card6 : rank = "K"
+card6 : suit = "diamond"
+
+card7 : faceUp = true
+card7 : rank = "A"
+card7 : suit = "club"
+
+card8 : faceUp = true
+card8 : rank = "K"
+card8 : suit = "club"
+
+note bottom of stock : empty
+note bottom of waste : empty
+note bottom of tableau1 : empty
+note bottom of tableau2 : empty
+note bottom of tableau3 : empty
+note bottom of tableau4 : empty
+note bottom of tableau5 : empty
+note bottom of tableau6 : empty
+note bottom of tableau7 : empty
+note "In foundation the cards are ordered from A to K " as N1
+
+klondike *--> stock
+klondike *--> waste
+klondike *--> foundation1
+klondike *--> foundation2
+klondike *--> foundation3
+klondike *--> foundation4
+klondike *-->tableau1
+klondike *-->tableau2
+klondike *-->tableau3
+klondike *-->tableau4
+klondike *-->tableau5
+klondike *-->tableau6
+klondike *-->tableau7
+@enduml
