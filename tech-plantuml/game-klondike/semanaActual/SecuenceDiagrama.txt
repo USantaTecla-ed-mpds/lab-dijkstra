@@ -18,13 +18,23 @@ end note
 :Prepara Tableau 7. 1 carta arriba, 6 carta abajo;
 switch (mover)
 case ( StockToWaste = true )
-  if (stockIsEmpty) then (NO)
+  if (stockIsEmpty?) then (NO)
    :move;
+  else (YES)
+  :Not move;
   endif
-  stop
-:Print "Invalid movement. Waste is empty";
 case (WasteToFoundation = true)
-  :move;
+  if (foundationIsEmpty?) then (NO)
+   if (cardIsConsecutive?) then (YES)
+    :move;
+   else (NO)
+    :Not move;
+   endif
+  elseif (card == "A") then (yes)
+    :move;
+  else (NO)
+  :Not move;
+  endif
 case (WasteToTableau = true)
   :move;
 case (WasteToStock = true)
