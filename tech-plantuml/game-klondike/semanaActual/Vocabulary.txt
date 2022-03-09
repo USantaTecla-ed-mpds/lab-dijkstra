@@ -52,7 +52,6 @@ Enum MovementType
   StockToWaste
   WasteToFoundation
   WasteToTableau
-  WasteToStock
   TableauToFoundation
   FoundationToTableau
   TableauToTableau
