@@ -1,0 +1,55 @@
+@startuml
+title: Connect4 - Initial State
+
+object ":Connect4" as connect4
+object "player1 :Player" as player1{
+  name = "David"
+  color = "Yellow"
+}
+object ":Turn" as turn
+object "player2 :Player" as player2{
+  name = "Xavi"
+  color = "Red"
+}
+object ":Board" as board
+object ":Square" as square1{
+  row = 0
+  column = 0
+  token = null
+}
+note left
+From 0x0 to 5x6 squares
+on board without token
+end note
+object ":Square" as square2{
+  row = 5
+  column = 0
+  token = token1
+}
+object ":Row" as row
+object ":Column" as column
+object ":Insertion" as insertion
+object "token1 :Token" as token{
+  color = Red;
+}
+
+connect4 *--> player1
+connect4 *--> player2
+connect4 *--> turn
+connect4 *--> board
+
+turn --> player2
+
+player2 .--> board
+
+board *--> square1
+board --> insertion
+board *--> square2
+
+insertion --> token
+insertion --> square2
+
+square2 --> row
+square2 --> column
+@enduml
+

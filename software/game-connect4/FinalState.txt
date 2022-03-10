@@ -1,0 +1,89 @@
+@startuml
+title: Connect4 - Final State
+
+object ":Connect4" as connect4
+object ":Turn" as turn
+object "player1 :Player" as player1{
+  name = "David"
+}
+object "player2:Player" as player2{
+  name = "Xavi"
+}
+object ":Board" as board
+object ":Insertion" as insertion{
+  isWinner = true
+}
+object ":Square" as square{
+  row = "N"
+  column = "N"
+  token = null
+}
+note right
+Empty square
+on board without token
+end note
+object ":Square" as square1{
+  row = "5"
+  column = "0"
+  token = "token0_Red"
+}
+object ":Square" as square2{
+  row = "5"
+  column = "1"
+  token = "token1_Red"
+}
+object ":Square" as square3{
+  row = "5"
+  column = "2"
+  token = "token2_Red"
+}
+object ":Square" as square4{
+  row = "4"
+  column = "0"
+  token = "token4_Yellow"
+}
+object ":Square" as square5{
+  row = "3"
+  column = "0"
+  token = "token5_Yellow"
+}
+object ":Square" as square6{
+  row = "2"
+  column = "0"
+  token = "token5_Yellow"
+}
+object "token3 :Token" as token{
+  color = "Red"
+}
+object ":Square" as square7{
+  row = "5"
+  column = "3"
+  token = "token5_Red"
+}
+object ":Row" as row
+object ":Column" as column
+
+connect4 *-->turn
+connect4 *-->board
+connect4 --->player1
+
+turn --> player2
+
+player2 .--> board
+
+board *--> insertion
+board *--> square
+board *--> square1
+board *--> square2
+board *--> square3
+board *--> square4
+board *--> square5
+board *--> square6
+
+insertion --> token
+insertion --> square7
+
+square7 --> row
+square7 --> column
+@enduml
+

@@ -1,0 +1,49 @@
+@startuml
+title: Connect4
+class Connect4
+class Turn
+class Player
+class Goal
+class Board
+class Diagonal
+class Horizontal
+class Vertical
+class Insertion
+class Token
+class Square
+Enum Color
+{
+ Red
+ Yellow
+}
+class Row
+class Column
+
+Connect4 *--> "7..42" Turn
+Connect4 *--> "2" Player
+Connect4 *--> Board
+
+Turn -down-> Player
+
+Player -down-> Goal
+Player .-down-> Board
+Player --> "21" Token
+
+Goal <|-down- Diagonal
+Goal <|-down- Horizontal
+Goal <|-down- Vertical
+Goal -down-> "4" Insertion
+
+Board -down-> "7..42" Insertion
+Board *-down-> Square :6x7
+
+Insertion -down-> Token
+Insertion -down-> Square
+
+Square -left-> "0..1" Token
+Square -down-> Row
+Square -down-> Column
+
+Token -down-> Color
+@enduml
+
