@@ -1,38 +1,50 @@
 @startuml
 title: Connect4
 class Connect4
-class Turn
+class Turn {
+ playerTurn: "value"
+}
 class Player
 class Goal
+note left
+ Four consecutive tokens
+ inserted of the same color. 
+end note
 class Board
 class Diagonal
 class Horizontal
 class Vertical
 class Insertion
 class Token
+note left
+ Player one 21 red tokens and
+ Player two 21 yellow tokens
+end note
 class Square
 Enum Color
 {
  Red
  Yellow
 }
-class Row
-class Column
+class Coordinate{
+ rowX
+ columnY
+}
 
-Connect4 *--> "7..42" Turn
+Connect4 *--> Turn
 Connect4 *--> "2" Player
 Connect4 *--> Board
 
-Turn -down-> Player
+Turn -down-> "2" Player
 
 Player -down-> Goal
-Player .-down-> Board
+Player -down-> Board
 Player --> "21" Token
 
 Goal <|-down- Diagonal
 Goal <|-down- Horizontal
 Goal <|-down- Vertical
-Goal -down-> "4" Insertion
+Goal .-down-> "4..21" Insertion
 
 Board -down-> "7..42" Insertion
 Board *-down-> Square :6x7
@@ -41,8 +53,7 @@ Insertion -down-> Token
 Insertion -down-> Square
 
 Square -left-> "0..1" Token
-Square -down-> Row
-Square -down-> Column
+Square *--> Coordinate
 
 Token -down-> Color
 @enduml
