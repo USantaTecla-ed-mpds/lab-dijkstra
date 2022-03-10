@@ -9,27 +9,30 @@ Universo Santa Tecla
     * [initialState](#initialState)  
     * [finalState](#finalState)
     * [instructions](#instructions)  
-
+    
 ## domainModel  
   
-![klondike](../game-klondike/docs/images/klondike.png)  
+![klondike](./docs/images/klondike.png)  
 
 [WIKI](https://es.wikipedia.org/wiki/Solitario_de_cartas)
 
 [Youtube](https://www.youtube.com/watch?v=yjgQXcFVBQY)
 
-
 ### vocabulary
 
-![Vocabulario]()  
+![Vocabulario](./docs/images/Vocabulary.png)  
   
 ### initialState  
   
-![Estado_inicial]()  
+![Estado_inicial](./docs/images/InitialState.png)  
   
 ### finalState 
 
-![Estado_final]()  
+![Estado_final](./docs/images/FinalState.png)  
+
+### diagram of sequence
+
+![Estado_final](./docs/images/SecuenceDiagrama.png) 
   
 ### instructions  
   
