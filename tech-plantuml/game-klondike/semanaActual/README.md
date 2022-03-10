@@ -29,6 +29,10 @@ Universo Santa Tecla
 ### finalState 
 
 ![Estado_final](./docs/images/FinalState.png)  
+
+### diagram of sequence
+
+![Estado_final](./docs/images/SecuenceDiagrama.png) 
   
 ### instructions  
   

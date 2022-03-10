@@ -1,120 +1,137 @@
 @startuml
 start
-:Barajar;
-:Preparar Stock con 24 cartas;
-:Repartir 28 cartas entre tableau;
-note right
-  Tableu cards are 
-  stacked and the 
-  face up card is 
-  placed on top 
-end note
-:Prepara Tableau 1. 1 carta arriba;
-:Prepara Tableau 2. 1 carta arriba, 1 carta abajo;
-:Prepara Tableau 3. 1 carta arriba, 2 carta abajo;
-:Prepara Tableau 4. 1 carta arriba, 3 carta abajo;
-:Prepara Tableau 5. 1 carta arriba, 4 carta abajo;
-:Prepara Tableau 6. 1 carta arriba, 5 carta abajo;
-:Prepara Tableau 7. 1 carta arriba, 6 carta abajo;
-floating note left: The tool did not allow to complete the switch
-
-while (Are the four fundations completed? || There are not more movements?)
-  switch (mover)
-case ( StockToWaste = true )
- if (is stock empty?) then (YES)
-  if (is waste empty?) then (YES)
+:Shuffle;
+:Prepare Stock with 24 cards;
+:Prepare tableaus with 28 cards;
+Note right
+  A total of seven tableau 
+  of cards are placed. From left 
+  to right, each tableau must 
+  contain one more card than 
+  the previous one. 
+  The first (leftmost) tableau 
+  contains a single faceup card, 
+  the second tableau contains 
+  two cards (one facedown, one faceup),
+  the third contains 
+  three (two facedown, one faceup), 
+  and so on. , to the seventh 
+  tableau of seven cards 
+  (six face down and one face up). 
+  The top card of each tableau 
+  must be face up. 
+end Note
+while (Are the four fundations completed? || There are Not more Movements?)
+  switch (Move)
+case (StockToWaste)
+ if (Is stock empty?) then (Yes)
+  if (Is waste empty?) then (Yes)
    :No move;
-  else (NO)
-   :Move all cards from waste to stock;
+  else (No)
+   :Move all cards from 
+   waste to stock;
   endif
- else (NO)
+ else (No)
   :Move;
  endif
-case (WasteToFoundation = true)
-  if (is foundation empty?) then (NO)
-   if (is the card consecutive ascending?) then (YES)
-    :move;
-   else (NO)
-    :Not move;
+case (WasteToFoundation)
+  if (Is foundation empty?) then (No)
+   if (Is the card consecutive 
+   ascending?) then (Yes)
+    :Move;
+   else (No)
+    :Not Move;
    endif
-  elseif (is card "A"?) then (yes)
-    :move;
-  else (NO)
-  :Not move;
+  elseif (Is card "A"?) then (Yes)
+    :Move;
+  else (No)
+  :Not Move;
   endif
-case (WasteToTableau = true)
-  if (is tableau empty?) then (YES)
-   if (is card rank K?) then (YES)
-    :move;
+case (WasteToTableau)
+  if (Is tableau empty?) then (Yes)
+   if (Is card rank K?) then (Yes)
+    :Move;
    else (No)
     :No move;
    endif
-  elseif (is the card consecutive descending?) then (YES)
-   if (is the card different color?) then (YES)
-    :move;
-   else (NO)
+  elseif (Is the card consecutive
+  descending?) then (Yes)
+   if (Is the card 
+different color?) then (Yes)
+    :Move;
+   else (No)
     :No move;
    endif
   else (No)
    :No move;
   endif
-case (TableauToFoundation = true)
- if (is foundation empty?) then (YES)
-  if (is card "A"?) then (YES)
-   :mover;
-   note right
-      Show card
-    end note
-  else (NO)
+case (TableauToFoundation)
+ if (Is foundation empty?) then (Yes)
+  if (Is card "A"?) then (Yes)
+   :Mover;
+   (A)
+  else (No)
    :No move;
   endif
- else (NO)
-  if (is cars consecutive ascending && is suit type equals?) then (SI)
-   :move;
-   note right
-      Show card
-    end note
-  else (NO)
+ else (No)
+  if (Is cars consecutive ascending 
+  && Is suit type equals?) then (SI)
+   :Move;
+   (A)
+  else (No)
    :No move;
   endif
  endif
-case (FoundationToTableau = true)
-  if (is tableau empty?) then (YES)
-   if (is card "K"?) then (YES)
-    :move;
-   else (NO)
+case (FoundationToTableau)
+  if (Is tableau empty?) then (Yes)
+   if (Is card "K"?) then (Yes)
+    :Move;
+   else (No)
     :No move;
    endif
-  elseif (is card consecutive desending? && is card color different?) then (YES)
-   :move;
-  else (NO)
+  elseif (Is card consecutive desending? 
+  && Is card color different?) then (Yes)
+   :Move;
+  else (No)
    :No move;
   endif
-case (TableauToTableau = true)
-  if (is tableau empty?) then (YES)
-   if (is card "K") then (YES)
-    :move;
-    note right
-      Show card
-    end note
-   else (NO)
-    :no move;
+case (TableauToTableau)
+  if (Is tableau empty?) then (Yes)
+   if (Is card "K") then (Yes)
+    :Move;
+    (A)
+   else (No)
+    :No move;
    endif
-  else (NO)
-   if (is card consecutive desending? && is card color different?) then (YES)
-    :move;
-    if (Does the origin tableau contains at least one card facedown?) then (YES)
-     :show card of origin tableau;
-    else (NO)
-     :do not show;
-    endif
-   else (NO)
-    :no move;
+  else (No)
+   if (Is card consecutive desending? 
+   && Is card color different?) then (Yes)
+    :Move;
+    (A)
+   else (No)
+    :No move;
    endif
   endif
-case (FoundationToFoundation = true)
-  :move;
+case (FoundationToFoundation)
+ if (Is the destination Foundation empty?) then (Yes)
+  if (Is card "A") then (Yes)
+   :Move;
+  else (No)
+   :No move;
+  endif
+ else (No)
+  :No move;
+ endif
 endswitch
 endwhile
+stop
+
+start
+(A)
+if (Does the origin tableau contains at least one card facedown?) then (Yes)
+     :show card of origin tableau;
+    else (No)
+     :do Not show;
+    endif
 stop
 @enduml
