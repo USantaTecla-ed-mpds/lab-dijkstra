@@ -9,7 +9,7 @@ Universo Santa Tecla
     * [initialState](#initialState)  
     * [finalState](#finalState)
     * [instructions](#instructions)  
-
+    
 ## domainModel  
   
 ![klondike](./docs/images/klondike.png)  
@@ -18,3 +18,25 @@ Universo Santa Tecla
 
 [Youtube](https://www.youtube.com/watch?v=yjgQXcFVBQY)
 
+### vocabulary
+
+![Vocabulario](./docs/images/Vocabulary.png)  
+  
+### initialState  
+  
+![Estado_inicial](./docs/images/InitialState.png)  
+  
+### finalState 
+
+![Estado_final](./docs/images/FinalState.png)  
+
+### diagram of sequence
+
+![Estado_final](./docs/images/SecuenceDiagrama.png) 
+  
+### instructions  
+  
+![Instrucciones]()  
+  
+![Instrucciones]()  
+  

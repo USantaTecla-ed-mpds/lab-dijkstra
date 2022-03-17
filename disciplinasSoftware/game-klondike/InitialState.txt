@@ -1,0 +1,127 @@
+@startuml
+object ":Klondike" as klondike
+object ":Stock" as stock
+object ":Waste" as waste
+object ":Foundation" as foundation1
+object ":Foundation" as foundation2
+object ":Foundation" as foundation3
+object ":Foundation" as foundation4
+object ":Tableau" as tableau1
+object ":Tableau" as tableau2
+object ":Tableau" as tableau3
+object ":Tableau" as tableau4
+object ":Tableau" as tableau5
+object ":Tableau" as tableau6
+object ":Tableau" as tableau7
+object ":Card" as card1
+object ":Card" as card2
+object ":Card" as card3
+object ":Card" as card4
+object ":Card" as card5
+object ":Card" as card6
+object ":Card" as card7
+object ":Card" as card8
+object ":Card" as card9
+object ":Card" as card10
+object ":Card" as card11
+object ":Card" as card12
+object ":Card" as card13
+object ":Card" as card14
+
+stock o--> card1
+tableau1 o--> card2
+tableau2 o--> card3
+tableau2 o--> card4
+tableau3 o--> card5
+tableau3 o--> card6
+tableau4 o--> card7
+tableau4 o--> card8
+tableau5 o--> card9
+tableau5 o--> card10
+tableau6 o--> card11
+tableau6 o--> card12
+tableau7 o--> card13
+tableau7 o--> card14
+
+card1 : faceUp = false
+card1 : rank = random
+card1 : suit = random
+
+card2 : faceUp = true
+card2 : rank = "4"
+card2 : suit = "heart"
+
+card3 : faceUp = false
+card3 : rank = random
+card3 : suit = rendom
+
+card4 : faceUp = true
+card4 : rank = "K"
+card4 : suit = "spade"
+
+card5 : faceUp = false
+card5 : rank = random
+card5 : suit = random
+
+card6 : faceUp = true
+card6 : rank = "Q"
+card6 : suit = "sapde"
+
+card7 : faceUp = false
+card7 : rank = random
+card7 : suit = random
+
+card8 : faceUp = true
+card8 : rank = "A"
+card8 : suit = "club"
+
+card9 : faceUp = false
+card9 : rank = random
+card9 : suit = random
+
+card10 : faceUp = true
+card10 : rank = "2"
+card10 : suit = "heart"
+
+card11 : faceUp = false
+card11 : rank = random
+card11 : suit = random
+
+card12 : faceUp = true
+card12 : rank = "10"
+card12 : suit = "spade"
+
+card13 : faceUp = false
+card13 : rank = random
+card13 : suit = random
+
+card14 : faceUp = true
+card14 : rank = "K"
+card14 : suit = "club"
+
+note bottom of card1 : 24 cards
+note bottom of waste : empty
+note bottom of foundation1 : empty
+note bottom of foundation2 : empty
+note bottom of foundation3 : empty
+note bottom of foundation4 : empty
+note bottom of card5 : 2 cards
+note bottom of card7 : 3 cards
+note bottom of card9 : 4 cards
+note bottom of card11 : 5 cards
+note bottom of card13 : 6 cards
+
+klondike *--> stock
+klondike *--> waste
+klondike *--> foundation1
+klondike *--> foundation2
+klondike *--> foundation3
+klondike *--> foundation4
+klondike *-->tableau1
+klondike *-->tableau2
+klondike *-->tableau3
+klondike *-->tableau4
+klondike *-->tableau5
+klondike *-->tableau6
+klondike *-->tableau7
+@enduml

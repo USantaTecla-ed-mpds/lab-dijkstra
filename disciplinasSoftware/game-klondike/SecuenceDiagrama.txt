@@ -1,0 +1,137 @@
+@startuml
+start
+:Shuffle;
+:Prepare Stock with 24 cards;
+:Prepare tableaus with 28 cards;
+Note right
+  A total of seven tableau 
+  of cards are placed. From left 
+  to right, each tableau must 
+  contain one more card than 
+  the previous one. 
+  The first (leftmost) tableau 
+  contains a single faceup card, 
+  the second tableau contains 
+  two cards (one facedown, one faceup),
+  the third contains 
+  three (two facedown, one faceup), 
+  and so on. , to the seventh 
+  tableau of seven cards 
+  (six face down and one face up). 
+  The top card of each tableau 
+  must be face up. 
+end Note
+while (Are the four fundations completed? || There are Not more Movements?)
+  switch (Move)
+case (StockToWaste)
+ if (Is stock empty?) then (Yes)
+  if (Is waste empty?) then (Yes)
+   :No move;
+  else (No)
+   :Move all cards from 
+   waste to stock;
+  endif
+ else (No)
+  :Move;
+ endif
+case (WasteToFoundation)
+  if (Is foundation empty?) then (No)
+   if (Is the card consecutive 
+   ascending?) then (Yes)
+    :Move;
+   else (No)
+    :Not Move;
+   endif
+  elseif (Is card "A"?) then (Yes)
+    :Move;
+  else (No)
+  :Not Move;
+  endif
+case (WasteToTableau)
+  if (Is tableau empty?) then (Yes)
+   if (Is card rank K?) then (Yes)
+    :Move;
+   else (No)
+    :No move;
+   endif
+  elseif (Is the card consecutive
+  descending?) then (Yes)
+   if (Is the card 
+different color?) then (Yes)
+    :Move;
+   else (No)
+    :No move;
+   endif
+  else (No)
+   :No move;
+  endif
+case (TableauToFoundation)
+ if (Is foundation empty?) then (Yes)
+  if (Is card "A"?) then (Yes)
+   :Mover;
+   (A)
+  else (No)
+   :No move;
+  endif
+ else (No)
+  if (Is cars consecutive ascending 
+  && Is suit type equals?) then (SI)
+   :Move;
+   (A)
+  else (No)
+   :No move;
+  endif
+ endif
+case (FoundationToTableau)
+  if (Is tableau empty?) then (Yes)
+   if (Is card "K"?) then (Yes)
+    :Move;
+   else (No)
+    :No move;
+   endif
+  elseif (Is card consecutive desending? 
+  && Is card color different?) then (Yes)
+   :Move;
+  else (No)
+   :No move;
+  endif
+case (TableauToTableau)
+  if (Is tableau empty?) then (Yes)
+   if (Is card "K") then (Yes)
+    :Move;
+    (A)
+   else (No)
+    :No move;
+   endif
+  else (No)
+   if (Is card consecutive desending? 
+   && Is card color different?) then (Yes)
+    :Move;
+    (A)
+   else (No)
+    :No move;
+   endif
+  endif
+case (FoundationToFoundation)
+ if (Is the destination Foundation empty?) then (Yes)
+  if (Is card "A") then (Yes)
+   :Move;
+  else (No)
+   :No move;
+  endif
+ else (No)
+  :No move;
+ endif
+endswitch
+endwhile
+stop
+
+start
+(A)
+if (Does the origin tableau contains at least one card facedown?) then (Yes)
+     :show card of origin tableau;
+    else (No)
+     :do Not show;
+    endif
+stop
+@enduml
