@@ -1,0 +1,23 @@
+@startuml
+state State1
+state State2
+state State3
+state State4
+state State5 <<choice>>
+state State6
+state State7
+state State8
+
+[*] --> State1
+State1 --> State2 : Insert red token 
+State2 --> State1 : Insert yellow token 
+
+State2 --> State3 : [Red token < 3]
+State3 --> State4 : Insert red token
+State4 --> State5
+State5 --> State6 :[Are four red tokens lined up?]
+State6 --> State7 :Insert yellow token
+State7 --> State8 :![Are four yellow tokens lined up || Are four red tokens lined up]
+State7 --> State3
+State8 --> [*]
+@enduml

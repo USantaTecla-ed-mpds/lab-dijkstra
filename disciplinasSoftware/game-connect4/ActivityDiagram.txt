@@ -1,0 +1,15 @@
+@startuml
+start
+repeat
+:Insert red token;
+:Insert yellow token;
+repeat while (red token < 3)
+repeat
+:Insert red token;
+if (Are four red tokens lined up?) then (yes)
+else (no)
+  :Insert yellow token;
+endif
+repeat while (!(Are four red yellow lined up || Are four red tokens lined up))
+stop
+@enduml
