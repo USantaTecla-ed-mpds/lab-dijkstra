@@ -1,4 +1,4 @@
-//Para admitir escalas decimales, en el archivo console.js el metodo readnumber usa parseInt y debería usar parseFloat
+//Para admitir escalas decimales, en el archivo console.js del paquete de node, el metodo readnumber usa parseInt y debería usar parseFloat
 
 const { Console } = require("console-mpds");
 const console = new Console();
