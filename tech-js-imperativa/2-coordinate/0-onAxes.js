@@ -7,20 +7,15 @@ const abciseCoordinate = console.readNumber(
 const ordinateCoordinate = console.readNumber(
   `Dame la ordenada de la coordenada: `
 );
-let msg = `La coordenada (${abciseCoordinate}, ${ordinateCoordinate})`;
+
 const msgAbcises = ` está en el eje de abcisas`;
 const msgOrdinates = ` está en el eje de ordenadas`;
-const msgTwoAxes =
-  abciseCoordinate === 0 && ordinateCoordinate === 0
+let msgAxes = abciseCoordinate === 0 && ordinateCoordinate === 0
     ? `${msgAbcises} y de ordenadas`
     : ``;
-const msgOneAxe =
-  msgTwoAxes === ``
-    ? abciseCoordinate === 0
-      ? msgAbcises
-      : ordinateCoordinate === 0
-      ? msgOrdinates
-      : ``
-    : msgTwoAxes;
-msg += msgOneAxe === `` ? ` no está en ningún eje` : msgOneAxe;
+msgAxes =  msgAxes === ``
+    ? abciseCoordinate === 0 ? msgAbcises : ordinateCoordinate === 0 ? msgOrdinates : ``
+    : msgAxes;
+let msg = `La coordenada (${abciseCoordinate}, ${ordinateCoordinate})`;
+msg += msgAxes === `` ? ` no está en ningún eje` : msgAxes;
 console.writeln(msg);
