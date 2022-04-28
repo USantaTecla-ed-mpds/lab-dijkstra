@@ -9,8 +9,4 @@ console.writeln(`Segunda fracción:`);
 let num2 = console.readNumber(`Introduce el numerador de la fracción:`);
 let den2 = console.readNumber(`Introduce el denominador de la fracción:`);
 
-console.writeln(
-  `La división de la fracción ${num1}/${den1} y la fracción ${num2}/${den2} es la fracción ${
-    num1 * den2
-  }/${num2 * den1}`
-);
+console.writeln(`La división de la fracción ${num1}/${den1} y la fracción ${num2}/${den2} es la fracción ${num1 * den2}/${num2 * den1}`);
