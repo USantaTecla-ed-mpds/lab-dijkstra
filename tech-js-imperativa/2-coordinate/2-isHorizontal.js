@@ -2,14 +2,14 @@ const { Console } = require("console-mpds");
 const console = new Console();
 
 console.writeln(`Coordenada origen:`);
-const absOrigin = console.readNumber(`Dame la abcisa de la coordenada:`);
-const ordOrigin = console.readNumber(`Dame la ordenada de la coordenada:`);
+const abcissaOrigin = console.readNumber(`Dame la abcisa de la coordenada:`);
+const ordinateOrigin = console.readNumber(`Dame la ordenada de la coordenada:`);
 console.writeln(`Coordenada destino:`);
-const absDestiny = console.readNumber(`Dame la abcisa de la coordenada:`);
-const ordDestiny = console.readNumber(`Dame la ordenada de la coordenada:`);
+const abcissaDestiny = console.readNumber(`Dame la abcisa de la coordenada:`);
+const ordinateDestiny = console.readNumber(`Dame la ordenada de la coordenada:`);
 
 console.writeln(
-  `La coordenada oringen (${absOrigin}, ${ordOrigin}) y la coordenada destino (${absDestiny}, ${ordDestiny}) ${
-    ordOrigin === ordDestiny ? "si" : "no"
+  `La coordenada oringen (${abcissaOrigin}, ${ordinateOrigin}) y la coordenada destino (${abcissaDestiny}, ${ordinateDestiny}) ${
+    ordinateOrigin === ordinateDestiny ? "si" : "no"
   } es un movimiento horizontal`
 );
