@@ -11,7 +11,7 @@ let ordDestiny = console.readNumber(`Dame la ordenada de la coordenada:`);
 console.writeln(
   `La coordenada oringen (${absOrigin}, ${ordOrigin}) y la coordenada destino (${absDestiny}, ${ordDestiny}) ${
     (absOrigin + 2 === absDestiny || absOrigin - 2 === absDestiny) &&
-    (ordOrigin + 1 == ordDestiny || ordOrigin - 1 === ordDestiny)
+    (ordOrigin + 1 === ordDestiny || ordOrigin - 1 === ordDestiny)
       ? "si"
       : "no"
   } es un movimiento de caballo`
