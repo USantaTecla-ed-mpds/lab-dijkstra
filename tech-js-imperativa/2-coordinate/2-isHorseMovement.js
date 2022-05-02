@@ -1,18 +1,20 @@
 const { Console } = require("console-mpds");
 const console = new Console();
 
+const LONG_MOVE = 2;
+const SHORT_MOVE = 1;
 console.writeln(`Coordenada origen:`);
-let absOrigin = console.readNumber(`Dame la abcisa de la coordenada:`);
-let ordOrigin = console.readNumber(`Dame la ordenada de la coordenada:`);
+const abcissaOrigin = console.readNumber(`Dame la abcisa de la coordenada:`);
+const ordinateOrigin = console.readNumber(`Dame la ordenada de la coordenada:`);
 console.writeln(`Coordenada destino:`);
-let absDestiny = console.readNumber(`Dame la abcisa de la coordenada:`);
-let ordDestiny = console.readNumber(`Dame la ordenada de la coordenada:`);
+const abcissaDestiny = console.readNumber(`Dame la abcisa de la coordenada:`);
+const ordinateDestiny = console.readNumber(`Dame la ordenada de la coordenada:`);
 
 console.writeln(
-  `La coordenada oringen (${absOrigin}, ${ordOrigin}) y la coordenada destino (${absDestiny}, ${ordDestiny}) ${
-    (absOrigin + 2 === absDestiny || absOrigin - 2 === absDestiny) &&
-    (ordOrigin + 1 === ordDestiny || ordOrigin - 1 === ordDestiny)
-      ? "si"
+  `La coordenada oringen (${abcissaOrigin}, ${ordinateOrigin}) y la coordenada destino (${abcissaDestiny}, ${ordinateDestiny}) ${
+    (abcissaOrigin + LONG_MOVE === abcissaDestiny || abcissaOrigin - LONG_MOVE === abcissaDestiny) &&
+    (ordinateOrigin + SHORT_MOVE === ordinateDestiny || ordinateOrigin - SHORT_MOVE === ordinateDestiny)
+      ? "sí"
       : "no"
   } es un movimiento de caballo`
 );
