@@ -6,25 +6,25 @@ let denominator = console.readNumber(`Introduce el denominador de la fracción:`
 let msg = `La fracción ${numerator}/${denominator}`;
 
 if (numerator != 0 && denominator != 0) {
-    let mcd = 1;
+    let greatestCommomDivisor = 1;
     if (numerator === denominator) {
-        mcd = numerator;
+        greatestCommomDivisor = numerator;
     }
     let numeratorSimplified = numerator;
     let denominatorSimplified = denominator;
     while (numeratorSimplified != denominatorSimplified) {
         if (numeratorSimplified > denominatorSimplified) {
             numeratorSimplified -= denominatorSimplified;
-            mcd = numeratorSimplified;
+            greatestCommomDivisor = numeratorSimplified;
         }
         else {
             denominatorSimplified -= numeratorSimplified;
-            mcd = denominatorSimplified;
+            greatestCommomDivisor = denominatorSimplified;
         }
     }
-    if (mcd > 1) {
-        numerator /= mcd;
-        denominator /= mcd;
+    if (greatestCommomDivisor > 1) {
+        numerator /= greatestCommomDivisor;
+        denominator /= greatestCommomDivisor;
         msg += ` = ${numerator}/${denominator}`;
     }
 }
