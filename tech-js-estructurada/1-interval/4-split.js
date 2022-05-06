@@ -3,7 +3,7 @@ const console = new Console();
 
 let minimum = 0;
 let maximum = 0;
-let isOk;
+let isOk = false;
 do {
     minimum = console.readNumber(`Introduce el mínimo del intervalo:`);
     maximum = console.readNumber(`Introduce el máximo del intervalo (superior o igual al mínimo):`);
