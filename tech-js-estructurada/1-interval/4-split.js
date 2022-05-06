@@ -3,7 +3,6 @@ const console = new Console();
 
 let minimum = 0;
 let maximum = 0;
-let numOfIntervals = 0;
 let isOk = true;
 do {
     minimum = console.readNumber(`Introduce el mínimo del intervalo:`);
@@ -14,6 +13,7 @@ do {
     }
 
 } while (!isOk);
+let numOfIntervals = 0;
 do {
     numOfIntervals = console.readNumber(`Introduce una cantidad positiva de intervalos:`);
     isOk = numOfIntervals > 0;
