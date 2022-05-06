@@ -13,24 +13,24 @@ do {
     }
 
 } while (!isOk);
-let numOfIntervals = 0;
+let splits = 0;
 do {
-    numOfIntervals = console.readNumber(`Introduce una cantidad positiva de intervalos:`);
-    isOk = numOfIntervals > 0;
+    splits = console.readNumber(`Introduce una cantidad positiva de intervalos:`);
+    isOk = splits > 0;
     if (!isOk) {
         console.writeln(`Error!!! La cantidad debe ser positiva`);
     }
 
 } while(!isOk);
-let msg = `El intervalo [${minimum}, ${maximum}] dividido en ${numOfIntervals} intervalos son `;
-const lengthNewIntervals = (maximum - minimum) / numOfIntervals;
-for (let i = 0; i < numOfIntervals; i++) {
+let msg = `El intervalo [${minimum}, ${maximum}] dividido en ${splits} intervalos son `;
+const lengthNewIntervals = (maximum - minimum) / splits;
+for (let i = 0; i < splits; i++) {
     msg += `[${minimum + i * lengthNewIntervals}, ${minimum + (i + 1) * lengthNewIntervals}]`;
-    if (i < numOfIntervals - 2) {
+    if (i < splits - 2) {
         msg += `, `;
     }
     else {
-        if (i < numOfIntervals - 1) {
+        if (i < splits - 1) {
             msg += ` y `;
         }
     }
