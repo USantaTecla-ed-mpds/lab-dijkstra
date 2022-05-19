@@ -1,6 +1,5 @@
 const { Console } = require("console-mpds");
 const console = new Console();
-
 const REGIONS = ["Americas", "Americas", "Africa", "Africa", "Americas", "Oceania", "Asia", "Americas", "Americas", "Africa", "Asia", "Asia", "Americas", "Oceania", "Americas", "Africa", "Asia", "Asia", "Asia", "Americas", "Africa", "Oceania",
     "Africa", "Americas", "Asia", "Antarctic", "Americas", "Americas", "Africa", "Europe", "Americas", "Europe", "Africa", "Americas", "Oceania", "Oceania", "Africa", "Europe", "Asia", "Africa", "Europe", "Africa", "Europe", "Asia", "Africa",
     "Americas", "Americas", "Americas", "Americas", "Asia", "Americas", "Americas", "Europe", "Europe", "Americas", "Americas", "Africa", "Americas", "Europe", "Africa", "Americas", "Asia", "Asia", "Europe", "Americas", "Antarctic", "Europe",
@@ -30,7 +29,6 @@ const SUBREGIONS = ["South America", "South America", "Western Africa", "Eastern
     "Western Europe", "Eastern Asia", "Southeast Europe", "Western Asia", "Middle Africa", "South-Eastern Asia", "Australia and New Zealand", "Eastern Asia", "Northern Africa", "Northern Europe", "Southern Africa", "Southern Asia", "South-Eastern Asia",
     "Western Europe", "Middle Africa", "South-Eastern Asia", "Western Europe", "Western Africa", "Northern Africa", "Southern Europe", "South-Eastern Asia", "Eastern Africa", "South-Eastern Asia", "North America", "Western Africa", "Western Africa",
     "Middle Africa", "North America", "South America", "Melanesia", "South America", "Southern Europe", "Western Africa", "Caribbean", "Eastern Africa"];
-
 const INDEX_REGIONS = 0;
 const INDEX_REGIONSINDEX = 1;
 const INDEX_REGIONSNAMES = 2;
