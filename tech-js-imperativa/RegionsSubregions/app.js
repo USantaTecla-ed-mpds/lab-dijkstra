@@ -507,7 +507,7 @@ const SUBREGIONS = [
 ];
 const INDEX_REGIONS = 0;
 const INDEX_REGIONSINDEX = 1;
-const INDEX_NAMEREGIONS = 2;
+const INDEX_REGIONSNAMES = 2;
 let tableRegionsGrouped = [];
 for (let i = 0; i < REGIONS.length; i++) {
     let nameRegion = REGIONS[i];
@@ -528,8 +528,8 @@ for (let i = 0; i < REGIONS.length; i++) {
 }
 for (let regionGroup of tableRegionsGrouped) {
     let tableSubregionsGrouped = [];
-    for (let subregionGroup of regionGroup[INDEX_REGIONSINDEX]) {
-        let subregion = SUBREGIONS[subregionGroup];
+    for (let indexRegions of regionGroup[INDEX_REGIONSINDEX]) {
+        let subregion = SUBREGIONS[indexRegions];
         let foundInTable = false;
         let j = 0;
         while (!foundInTable && subregion != undefined && j < tableSubregionsGrouped.length) {
@@ -542,13 +542,11 @@ for (let regionGroup of tableRegionsGrouped) {
             tableSubregionsGrouped[tableSubregionsGrouped.length] = subregion;
         }
     }
-    regionGroup[INDEX_NAMEREGIONS] = tableSubregionsGrouped;
-}
-for (let regionGroup of tableRegionsGrouped) {
+    regionGroup[INDEX_REGIONSNAMES] = tableSubregionsGrouped;
     let msg = `${regionGroup[INDEX_REGIONS]}:`;
-    for (let nameSubRegion of regionGroup[INDEX_NAMEREGIONS]) {
+    for (let nameSubRegion of regionGroup[INDEX_REGIONSNAMES]) {
         msg += `
-            ${nameSubRegion}`;
+        ${nameSubRegion}`;
     }
     console.writeln(msg);
 }
