@@ -14,7 +14,7 @@ const NAMES = ["Uruguay", "Paraguay", "Gambia", "Djibouti", "Martinique", "Guam"
     "Turks and Caicos Islands", "Micronesia", "Palestine", "Turkmenistan", "Burkina Faso", "Costa Rica", "Vietnam", "Cameroon", "French Guiana", "Eswatini", "Zambia", "Liechtenstein", "Montenegro", "Saint Lucia", "Uzbekistan", "Chad", "Aruba", "Denmark",
     "Japan", "Cape Verde", "Switzerland", "Hong Kong", "Bulgaria", "Jordan", "Republic of the Congo", "Laos", "Norfolk Island", "South Korea", "Tunisia", "Finland", "Zimbabwe", "Maldives", "Singapore", "Monaco", "Angola", "Malaysia", "Luxembourg",
     "Guinea", "Libya", "Spain", "Indonesia", "Seychelles", "Brunei", "Mexico", "Saint Helena", "Ascension and Tristan da Cunha", "Sierra Leone", "Central African Republic", "Greenland", "Colombia", "Papua New Guinea", "Falkland Islands", "Portugal",
-    "Guinea-Bissau", "Saint Martin", "Tanzania",];
+    "Guinea-Bissau", "Saint Martin", "Tanzania"];
 
 
 const LENGTH_NAMES = NAMES.length;
