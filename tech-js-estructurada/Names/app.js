@@ -38,7 +38,7 @@ do {
             console.writeln(`.`);
             break;
         case 2:
-            let country = console.readString(`Introduce país: `);
+            const country = console.readString(`Introduce país: `);
             let isIncluded = false;
             for (let i = 0; !isIncluded && i < LENGTH_NAMES; i++) {
                 isIncluded = NAMES[i] === country;
