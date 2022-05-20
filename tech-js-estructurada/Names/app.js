@@ -15,13 +15,15 @@ const NAMES = ["Uruguay", "Paraguay", "Gambia", "Djibouti", "Martinique", "Guam"
     "Japan", "Cape Verde", "Switzerland", "Hong Kong", "Bulgaria", "Jordan", "Republic of the Congo", "Laos", "Norfolk Island", "South Korea", "Tunisia", "Finland", "Zimbabwe", "Maldives", "Singapore", "Monaco", "Angola", "Malaysia", "Luxembourg",
     "Guinea", "Libya", "Spain", "Indonesia", "Seychelles", "Brunei", "Mexico", "Saint Helena", "Ascension and Tristan da Cunha", "Sierra Leone", "Central African Republic", "Greenland", "Colombia", "Papua New Guinea", "Falkland Islands", "Portugal",
     "Guinea-Bissau", "Saint Martin", "Tanzania",];
-let menuOptions = `1. Ver países
-2. Buscar país
-3. Salir
-Escoge opción? [1-3]: `;
+
+
 const LENGTH_NAMES = NAMES.length;
 const LAST_INDEX = LENGTH_NAMES - 1;
 const PENULTIMATE_INDEX = LENGTH_NAMES - 2;
+const menuOptions = `1. Ver países
+2. Buscar país
+3. Salir
+Escoge opción? [1-3]: `;
 let option;
 do {
     option = console.readNumber(menuOptions);
