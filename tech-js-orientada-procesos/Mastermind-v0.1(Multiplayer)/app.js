@@ -1,9 +1,7 @@
 const { Console } = require("console-mpds");
 const console = new Console();
 
-
 playMasterMind();
-
 
 function playMasterMind() {
     let player = 1;
