@@ -16,7 +16,6 @@ function playMasterMind() {
         let gotWinner = false;
         let msg = ``;
         const secretCombination = getSecretCombination();
-        console.writeln(secretCombination);
 
         console.writeln(`----- MASTERMIND -----`)
 
