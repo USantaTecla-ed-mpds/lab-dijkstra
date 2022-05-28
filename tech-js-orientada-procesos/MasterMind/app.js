@@ -15,14 +15,14 @@ function playMasterMind() {
         const maxAttemps = 10;
         let gotWinner = false;
         let msg = ``;
-        const secretCombination = getSecretCombination();
+        const secretCombination = getSecretCombination(colors, combinationLength);
 
         console.writeln(`----- MASTERMIND -----`)
 
         do {
             let combination;
-            combination = getValidCombination();
-            if (checkCombination(combination)) {
+            combination = getValidCombination(colors, combinationLength);
+            if (checkCombination(combination, secretCombination, combinationLength)) {
                 gotWinner = true;
                 console.writeln(`¡¡¡You've won!!! ;-)!!!`)
             } else if (attemps === maxAttemps)
@@ -34,7 +34,7 @@ function playMasterMind() {
             }
         } while (attemps < maxAttemps && !gotWinner);
 
-        function getSecretCombination() {
+        function getSecretCombination(colors, combinationLength) {
             let isRepeatedColor = true;
             let randomCombination;
             do {
@@ -52,7 +52,7 @@ function playMasterMind() {
             return randomCombination;
         }
 
-        function getValidCombination() {
+        function getValidCombination(colors, combinationLength) {
             let proposedCombination;
             let isValidCombination;
             do {
@@ -92,7 +92,7 @@ function playMasterMind() {
             return proposedCombination;
         }
 
-        function checkCombination(combination) {
+        function checkCombination(combination, secretCombination, combinationLength) {
             if (combination === secretCombination)
                 return true;
             let blacks = 0;
