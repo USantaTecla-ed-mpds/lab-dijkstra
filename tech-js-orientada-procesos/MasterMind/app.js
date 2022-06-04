@@ -1,6 +1,8 @@
 const { Console } = require("console-mpds");
 const console = new Console();
 
+//MasterMind-v0.0
+
 playMasterMind();
 
 function playMasterMind() {
@@ -9,20 +11,20 @@ function playMasterMind() {
     } while (isResumed());
 
     function playGame() {
-        const colors = [`r`, `g`, `y`, `b`, `m`, `c`];
-        const combinationLength = 4;
+        const COLORS = [`r`, `g`, `y`, `b`, `m`, `c`];
+        const COMBINATION_LENGTH = 4;
         let attemps = 0;
         const maxAttemps = 10;
         let gotWinner = false;
         let msg = ``;
-        const secretCombination = getSecretCombination(colors, combinationLength);
+        const secretCombination = generateSecretCombination(COLORS, COMBINATION_LENGTH);
 
         console.writeln(`----- MASTERMIND -----`)
 
         do {
             let combination;
-            combination = getValidCombination(colors, combinationLength);
-            if (checkCombination(combination, secretCombination, combinationLength)) {
+            combination = checkValidProposedCombination(COLORS, COMBINATION_LENGTH);
+            if (showGameResults(combination, secretCombination, COMBINATION_LENGTH)) {
                 gotWinner = true;
                 console.writeln(`¡¡¡You've won!!! ;-)!!!`)
             } else if (attemps === maxAttemps)
@@ -34,30 +36,42 @@ function playMasterMind() {
             }
         } while (attemps < maxAttemps && !gotWinner);
 
-        function getSecretCombination(colors, combinationLength) {
-            let isRepeatedColor = true;
+        function generateSecretCombination(COLORS, COMBINATION_LENGTH) {
             let randomCombination;
+            let isRepeatedColor;
             do {
+                isRepeatedColor = false;
                 randomCombination = ``;
-                for (let k = 0; k < combinationLength; k++) {
-                    randomCombination += colors[parseInt(Math.random() * 6)];
+                for (let k = 0; k <= COMBINATION_LENGTH - 1; k++) {
+                    randomCombination += COLORS[generateRandomColor(COLORS)];
                 }
-                isRepeatedColor = true;
-                for (i = 0; i < combinationLength - 1; i++) {
-                    for (j = i + 1; j < combinationLength; j++) {
-                        isRepeatedColor &= randomCombination[i] != randomCombination[j];
-                    }
+
+                for (let i = 0; !isRepeatedColor && i < COMBINATION_LENGTH - 1; i++) {
+                    if (isRepeated(randomCombination[i], randomCombination, i))
+                        isRepeatedColor = true;
                 }
-            } while (!isRepeatedColor);
+            } while (isRepeatedColor);
             return randomCombination;
         }
 
-        function getValidCombination(colors, combinationLength) {
+        function generateRandomColor(COLORS) {
+            return parseInt(Math.random() * COLORS.length);
+        }
+
+        function isRepeated(proposedColor, proposedCombination, indexColor) {
+            let repeated = false;
+            for (let i = 0; i < proposedCombination.length && !repeated; i++) {
+                repeated = proposedCombination[i] === proposedColor && i !== indexColor;
+            }
+            return repeated;
+        }
+
+        function checkValidProposedCombination(COLORS, COMBINATION_LENGTH) {
             let proposedCombination;
             let isValidCombination;
             do {
                 proposedCombination = console.readString(`Propose a combination:`);
-                if (proposedCombination.length != combinationLength) {
+                if (proposedCombination.length != COMBINATION_LENGTH) {
                     console.writeln(`Wrong proposed combination length`)
                 }
                 else {
@@ -66,18 +80,18 @@ function playMasterMind() {
                         let j;
                         let foundColor = false;
                         for (j = 0; j <= 5; j++) {
-                            if (proposedCombination[i] === colors[j]) {
+                            if (proposedCombination[i] === COLORS[j]) {
                                 foundColor = true;
                             }
                         }
-                        if (!foundColor && j === colors.length) {
+                        if (!foundColor && j === COLORS.length) {
                             isValidCombination = false;
-                            console.writeln(`Wrong colors, they must be: rgybmc`);
+                            console.writeln(`Wrong color, they must be: rgybmc`);
                         }
                     }
                     isRepeatedColor = true;
-                    for (i = 0; i < combinationLength - 1; i++) {
-                        for (j = i + 1; j < combinationLength; j++) {
+                    for (i = 0; i < COMBINATION_LENGTH - 1; i++) {
+                        for (j = i + 1; j < COMBINATION_LENGTH; j++) {
                             isRepeatedColor &= proposedCombination[i] != proposedCombination[j];
                         }
                     }
@@ -92,7 +106,7 @@ function playMasterMind() {
             return proposedCombination;
         }
 
-        function checkCombination(combination, secretCombination, combinationLength) {
+        function showGameResults(combination, secretCombination, COMBINATION_LENGTH) {
             if (combination === secretCombination)
                 return true;
             let blacks = 0;
@@ -105,7 +119,7 @@ function playMasterMind() {
                         whites++;
                 }
             }
-            msg += `${combination} -- > ${blacks / combinationLength} blacks and ${whites} whites\n`;
+            msg += `${combination} -- > ${blacks / COMBINATION_LENGTH} blacks and ${whites} whites\n`;
         }
     }
 }
