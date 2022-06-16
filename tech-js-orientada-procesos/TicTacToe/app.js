@@ -11,24 +11,23 @@ function playTicTacToe() {
 
     function askGameMode() {
         let error = false;
-        let response = console.readNumber(`Dime el modo de juego:
+        let mode;
+        do {
+            let response = console.readNumber(`Dime el modo de juego:
         (0) Demo-Game, (1) Player Vs CPU, (2) Player Vs Player`);
-        let mode = [];
-        switch (response) {
-            case 0:
-                mode = [generateRandomPosition, generateRandomPosition];
-                break;
-            case 1:
-                mode = [askPosition, generateRandomPosition];
-                break;
-            case 2:
-                mode = [askPosition, askPosition];
-                break;
-            default:
-                console.error(`El modo de juego ${response} no existe`);
-                error = true;
-                break;
+
+            switch (response) {
+                case 0:
+                    return [generateRandomPosition, generateRandomPosition];
+                case 1:
+                    return [askPosition, generateRandomPosition];
+                case 2:
+                    return [askPosition, askPosition];
+            }
+            console.writeln(`El modo de juego ${response} no existe`);
+            error = true;
         } while (error);
+        return mode;
 
         function generateRandomPosition() {
             position = parseInt(Math.random() * 3) + 1;
@@ -39,7 +38,6 @@ function playTicTacToe() {
             position = console.readNumber(`${title}: `);
             return position;
         }
-        return mode;
     }
 
     function playGame(gameMode) {
