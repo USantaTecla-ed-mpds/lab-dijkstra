@@ -11,7 +11,6 @@ function playTicTacToe() {
 
     function askGameMode() {
         let error = false;
-        let mode;
         do {
             let response = console.readNumber(`Dime el modo de juego:
         (0) Demo-Game, (1) Player Vs CPU, (2) Player Vs Player`);
@@ -27,7 +26,6 @@ function playTicTacToe() {
             console.writeln(`El modo de juego ${response} no existe`);
             error = true;
         } while (error);
-        return mode;
 
         function generateRandomPosition() {
             position = parseInt(Math.random() * 3) + 1;
