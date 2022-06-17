@@ -16,7 +16,6 @@ function playMasterMind() {
             board: []
         };
         game.secretCombination = generateSecretCombination(game);
-        console.writeln(game.secretCombination);
 
         console.writeln(`----- MASTERMIND -----`);
 
