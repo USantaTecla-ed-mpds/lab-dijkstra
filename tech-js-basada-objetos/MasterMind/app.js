@@ -57,12 +57,12 @@ function playMasterMind() {
             do {
                 combination = console.readString(`Propose a combination:`);
                 isWrongLenght = false;
-                isWrongColorsCombination = false;
-                isRepeatedColor = false;
                 if (combination.length !== COMBINATION_LENGTH) {
                     isWrongLenght = true;
                     console.writeln(`Wrong proposed combination length`)
                 } else {
+                    isWrongColorsCombination = false;
+                    isRepeatedColor = false;
                     for (let i = 0; !isWrongColorsCombination && !isRepeatedColor && i < COMBINATION_LENGTH; i++) {
                         if (isCorrectColor(combination[i], COLORS) == false) {
                             isWrongColorsCombination = true;
@@ -73,7 +73,7 @@ function playMasterMind() {
                         }
                     }
                 }
-            } while (isWrongColorsCombination || isRepeatedColor || isWrongLenght);
+            } while (isWrongLenght || isWrongColorsCombination || isRepeatedColor);
             return combination;
         }
 
