@@ -49,24 +49,23 @@ function playMasterMind() {
         }
 
         function generateSecretCombination(COLORS, COMBINATION_LENGTH) {
-            let randomCombination;
-            let isRepeatedColor;
+            let randomCombination = ``;
             do {
-                isRepeatedColor = false;
-                randomCombination = ``;
-                for (let k = 0; k <= COMBINATION_LENGTH - 1; k++) {
-                    randomCombination += COLORS[generateRandomIndex(COLORS)];
-                }
-                function generateRandomIndex(COLORS) {
-                    return parseInt(Math.random() * COLORS.length);
-                }
-                for (let i = 0; !isRepeatedColor && i < COMBINATION_LENGTH; i++) {
-                    if (isRepeated(randomCombination, i)) {
+                let randomColor = COLORS[generateRandomIndex(COLORS)];
+                let isRepeatedColor = false;
+                for (let i = 0; !isRepeatedColor && i < randomCombination.length; i++) {
+                    if (randomCombination[i] === randomColor) {
                         isRepeatedColor = true;
                     }
                 }
-            } while (isRepeatedColor);
+                if (!isRepeatedColor) {
+                    randomCombination += randomColor;
+                }
+            } while (randomCombination.length != COMBINATION_LENGTH);
             return randomCombination;
+            function generateRandomIndex(COLORS) {
+                return parseInt(Math.random() * COLORS.length);
+            }
         }
 
         function askValidCombination(COLORS, COMBINATION_LENGTH) {
@@ -74,12 +73,12 @@ function playMasterMind() {
             do {
                 combination = console.readString(`Propose a combination:`);
                 isWrongLenght = false;
-                isWrongColorsCombination = false;
-                isRepeatedColor = false;
                 if (combination.length != COMBINATION_LENGTH) {
                     isWrongLenght = true;
                     console.writeln(`Wrong proposed combination length`)
                 } else {
+                    isWrongColorsCombination = false;
+                    isRepeatedColor = false;
                     for (let i = 0; !isWrongColorsCombination && !isRepeatedColor && i < COMBINATION_LENGTH; i++) {
                         if (isCorrectColor(combination[i], COLORS) == false) {
                             isWrongColorsCombination = true;
@@ -90,24 +89,24 @@ function playMasterMind() {
                         }
                     }
                 }
-            } while (isWrongColorsCombination || isRepeatedColor || isWrongLenght);
+            } while (isWrongLenght || isWrongColorsCombination || isRepeatedColor);
             return combination;
-        }
 
-        function isRepeated(combination, indexColor) {
-            let repeated = false;
-            for (let i = 0; !repeated && i < combination.length; i++) {
-                repeated = combination[i] === combination[indexColor] && i !== indexColor;
+            function isRepeated(combination, indexColor) {
+                let repeated = false;
+                for (let i = 0; !repeated && i < combination.length; i++) {
+                    repeated = combination[i] === combination[indexColor] && i !== indexColor;
+                }
+                return repeated;
             }
-            return repeated;
-        }
 
-        function isCorrectColor(color, COLORS) {
-            let correctColor = false;
-            for (let i = 0; !correctColor && i < COLORS.length; i++) {
-                correctColor |= COLORS[i] === color;
+            function isCorrectColor(color, COLORS) {
+                let correctColor = false;
+                for (let i = 0; !correctColor && i < COLORS.length; i++) {
+                    correctColor |= COLORS[i] === color;
+                }
+                return correctColor;
             }
-            return correctColor;
         }
 
         function getResults(proposedCombination, secretCombination) {
