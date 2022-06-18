@@ -16,7 +16,6 @@ function playMasterMind() {
             board: []
         };
         game.secretCombination = generateSecretCombination(game);
-        console.writeln(game.secretCombination);
 
         console.writeln(`----- MASTERMIND -----`);
 
@@ -33,26 +32,24 @@ function playMasterMind() {
         } while (!isWinner(game) && !isMaxAttemps(game));
 
         function generateSecretCombination({ COLORS, COMBINATION_LENGTH }) {
-            let randomCombination;
-            let isRepeatedColor;
+            let randomCombination = ``;
             do {
-                isRepeatedColor = false;
-                randomCombination = ``;
-                for (let i = 0; i < COMBINATION_LENGTH; i++) {
-                    randomCombination += COLORS[generateRandomIndex(COLORS)];
-                }
-
-                function generateRandomIndex(COLORS) {
-                    return parseInt(Math.random() * COLORS.length);
-                }
-
-                for (let j = 0; !isRepeatedColor && j < COMBINATION_LENGTH; j++) {
-                    if (isRepeated(randomCombination, j)) {
+                let randomColor = COLORS[generateRandomIndex(COLORS)];
+                let isRepeatedColor = false;
+                for (let i = 0; !isRepeatedColor && i < randomCombination.length; i++) {
+                    if (randomCombination[i] === randomColor) {
                         isRepeatedColor = true;
                     }
                 }
-            } while (isRepeatedColor);
+                if (!isRepeatedColor) {
+                    randomCombination += randomColor;
+                }
+            } while (randomCombination.length != COMBINATION_LENGTH);
             return randomCombination;
+
+            function generateRandomIndex(COLORS) {
+                return parseInt(Math.random() * COLORS.length);
+            }
         }
 
         function askValidCombination({ COLORS, COMBINATION_LENGTH }) {
