@@ -94,7 +94,6 @@ function playMasterMind() {
         }
 
         function getResults({ proposedCombination, secretCombination }) {
-            let msg = [];
             let blacks = 0;
             let whites = 0;
             for (i = 0; i < proposedCombination.length; i++) {
@@ -106,8 +105,7 @@ function playMasterMind() {
                     }
                 }
             }
-            msg = [proposedCombination, blacks, whites];
-            return msg;
+            return [proposedCombination, blacks, whites];
         }
 
         function updateBoard({ resultsProposedCombination, board }) {
