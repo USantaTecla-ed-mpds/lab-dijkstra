@@ -53,7 +53,6 @@ function initGame() {
                     randomCombination += randomColor;
                 }
             } while (randomCombination.length != this.COMBINATION_LENGTH);
-            console.writeln(randomCombination);
             return randomCombination;
 
             function generateRandomIndex(COLORS) {
@@ -111,7 +110,7 @@ function initCombination() {
         read: function (title, COLORS, COMBINATION_LENGTH) {
             this.combination = read(`${title}`, COLORS, COMBINATION_LENGTH);
         }
-    };
+    }
 
     function read(title, COLORS, COMBINATION_LENGTH) {
         let combination, isWrongLenght, isWrongColorsCombination, isRepeatedColor;
@@ -178,5 +177,5 @@ function initYesNoDialog(question) {
         isNegative: function () {
             return answer === `n`;
         }
-    };
+    }
 }
