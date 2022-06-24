@@ -17,26 +17,25 @@ function initGame() {
         COLORS: [`r`, `g`, `y`, `b`, `m`, `c`],
         COMBINATION_LENGTH: 4,
         MAX_ATTEMPTS: 10,
-        secretCombination: "",
+        secretCombination: ``,
         proposedCombination: {},
-        resultsProposedCombination: [],
         board: [],
 
         play: function () {
-            this.secretCombination = this.generateSecretCombination();
+            this.generateSecretCombination();
             console.writeln(`----- MASTERMIND -----`);
             do {
-                this.proposedCombination = initCombination();
-                this.proposedCombination.read(`Introduce una combinacion`, this.COLORS, this.COMBINATION_LENGTH)
-                this.resultsProposedCombination = this.getResults();
-                this.board = this.updateBoard();
+                this.proposedCombination = initProposedCombination();
+                this.proposedCombination.read(`Introduce una combinacion`, this.COLORS, this.COMBINATION_LENGTH);
+                this.getResultsProposedCombination();
+                this.updateBoard();
                 this.printBoard();
                 if (this.isWinner()) {
                     console.writeln(`¡¡¡You've won!!! ;-)!!!`);
-                } else if (this.isMaxAttemps(game)) {
+                } else if (this.isMaxAttemps()) {
                     console.writeln(`¡¡¡You've lost!!! :-(!!!`);
                 }
-            } while (!this.isWinner(game) && !this.isMaxAttemps(game));
+            } while (!this.isWinner() && !this.isMaxAttemps());
         },
 
         generateSecretCombination: function () {
@@ -53,14 +52,14 @@ function initGame() {
                     randomCombination += randomColor;
                 }
             } while (randomCombination.length != this.COMBINATION_LENGTH);
-            return randomCombination;
+            this.secretCombination = randomCombination;
 
             function generateRandomIndex(COLORS) {
                 return parseInt(Math.random() * COLORS.length);
             }
         },
 
-        getResults: function () {
+        getResultsProposedCombination: function () {
             let blacks = 0;
             let whites = 0;
             for (i = 0; i < this.proposedCombination.combination.length; i++) {
@@ -72,16 +71,12 @@ function initGame() {
                     }
                 }
             }
-            return [this.proposedCombination.combination, blacks, whites];
+            this.proposedCombination.results = [this.proposedCombination.combination, blacks, whites];
         },
 
         updateBoard: function () {
-            let newBoard = [];
-            newBoard = [...this.board,
-            [this.resultsProposedCombination[0],
-            this.resultsProposedCombination[1],
-            this.resultsProposedCombination[2]]];
-            return newBoard;
+            this.board = [...this.board,
+            this.proposedCombination.results];
         },
 
         printBoard: function () {
@@ -93,7 +88,7 @@ function initGame() {
         },
 
         isWinner: function () {
-            return this.resultsProposedCombination[1] === this.COMBINATION_LENGTH;
+            return this.proposedCombination.results[1] === this.COMBINATION_LENGTH;
         },
 
         isMaxAttemps: function () {
@@ -103,9 +98,9 @@ function initGame() {
     return game;
 }
 
-function initCombination() {
+function initProposedCombination() {
     return {
-        combination: undefined,
+        combination: ``,
 
         read: function (title, COLORS, COMBINATION_LENGTH) {
             this.combination = read(`${title}`, COLORS, COMBINATION_LENGTH);
