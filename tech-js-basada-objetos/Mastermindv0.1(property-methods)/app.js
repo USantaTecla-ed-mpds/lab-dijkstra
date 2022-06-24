@@ -26,7 +26,7 @@ function initGame() {
             console.writeln(`----- MASTERMIND -----`);
             do {
                 this.proposedCombination = initProposedCombination();
-                this.proposedCombination.read(`Introduce una combinacion`, this.COLORS, this.COMBINATION_LENGTH);
+                this.proposedCombination.read(`Propose a combination:`, this.COLORS, this.COMBINATION_LENGTH);
                 this.getResultsProposedCombination();
                 this.updateBoard();
                 this.printBoard();
@@ -71,7 +71,11 @@ function initGame() {
                     }
                 }
             }
-            this.proposedCombination.results = [this.proposedCombination.combination, blacks, whites];
+            this.proposedCombination.results = {
+                combination: this.proposedCombination.combination,
+                blacks: blacks,
+                whites: whites
+            };
         },
 
         updateBoard: function () {
@@ -83,7 +87,7 @@ function initGame() {
             console.writeln(`\n${this.board.length} attempt(s): `);
             console.writeln(`****`);
             for (let i = 0; i < this.board.length; i++) {
-                console.write(`${this.board[i][0]} -- > ${this.board[i][1]} blacks and ${this.board[i][2]} whites\n`);;
+                console.write(`${this.board[i].combination} -- > ${this.board[i].blacks} blacks and ${this.board[i].whites} whites\n`);;
             }
         },
 
@@ -110,7 +114,7 @@ function initProposedCombination() {
     function read(title, COLORS, COMBINATION_LENGTH) {
         let combination, isWrongLenght, isWrongColorsCombination, isRepeatedColor;
         do {
-            combination = console.readString(`${title}: `);
+            combination = console.readString(`${title}`);
             isWrongLenght = false;
             if (combination.length !== COMBINATION_LENGTH) {
                 isWrongLenght = true;
