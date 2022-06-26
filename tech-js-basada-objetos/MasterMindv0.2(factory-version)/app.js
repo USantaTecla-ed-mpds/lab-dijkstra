@@ -13,7 +13,7 @@ function playMasterMind() {
 }
 
 function initGame() {
-    let game = {
+    return {
         COLORS: [`r`, `g`, `y`, `b`, `m`, `c`],
         COMBINATION_LENGTH: 4,
         MAX_ATTEMPTS: 10,
@@ -24,7 +24,6 @@ function initGame() {
         play: function () {
             console.writeln(`----- MASTERMIND -----`);
             this.secretCombination.setCombination(this.COLORS, this.COMBINATION_LENGTH);
-            console.writeln(this.secretCombination.combination);
             let gameOver = false;
             do {
                 this.proposedCombination.read(`Propose a combination:`, this.COLORS, this.COMBINATION_LENGTH);
