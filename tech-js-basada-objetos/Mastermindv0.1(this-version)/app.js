@@ -87,7 +87,7 @@ function initGame() {
             console.writeln(`\n${this.board.length} attempt(s): `);
             console.writeln(`****`);
             for (let i = 0; i < this.board.length; i++) {
-                console.write(`${this.board[i].combination} -- > ${this.board[i].blacks} blacks and ${this.board[i].whites} whites\n`);;
+                console.write(`${this.board[i].combination} -- > ${this.board[i].blacks} blacks and ${this.board[i].whites} whites\n`);
             }
         },
 
