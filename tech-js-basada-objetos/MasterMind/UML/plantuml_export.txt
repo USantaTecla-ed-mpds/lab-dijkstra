@@ -1,0 +1,39 @@
+@startuml
+title Mastermind
+object game {
+  COLORS,
+  COMBINATION_LENGTH,
+  MAX_ATTEMPS
+  play(),
+  printResults(),
+  isLooser()
+}
+
+object yesOrNoContinue{
+answer,
+askContinue()
+isAfirmative(),
+isNegative()
+}
+
+object proposedCombination{
+proposedCombinations,
+read()
+isCorrectLenght(),
+isCorrectColor(),
+isRepeatColor()
+}
+
+object secretCombination{
+secretCombination,
+setSecretCombination()
+calculateResult()
+isWinner()
+}
+
+game .left.> yesOrNoContinue
+game *-down-> secretCombination 
+game *-down-> proposedCombination 
+secretCombination -left-> proposedCombination
+
+@enduml

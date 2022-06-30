@@ -19,33 +19,43 @@ function initGame() {
         MAX_ATTEMPTS: 10,
         secretCombination: initSecretCombination(),
         proposedCombination: initCombination(),
-        board: initBoard(),
 
-        play: function () {
+        play() {
             console.writeln(`----- MASTERMIND -----`);
-            this.secretCombination.setCombination(this.COLORS, this.COMBINATION_LENGTH);
-            let gameOver = false;
+            this.secretCombination.setSecretCombination(this.COLORS, this.COMBINATION_LENGTH);
+            let gameFinished = false;
             do {
                 this.proposedCombination.read(`Propose a combination:`, this.COLORS, this.COMBINATION_LENGTH);
-                this.proposedCombination.getResults(this.secretCombination.combination);
-                this.board.print(this.proposedCombination.results);
-                if (this.secretCombination.answerIsWinner(this.proposedCombination.combination)) {
+                this.printResults(this.proposedCombination.proposedCombinations)
+                if (this.secretCombination.isWinner(this.proposedCombination.proposedCombinations[this.proposedCombination.proposedCombinations.length - 1], this.COMBINATION_LENGTH)) {
                     console.writeln(`¡¡¡You've won!!! ;-)!!!`);
-                    gameOver = true;
-                } else if (this.board.isMaxAttemps(this.MAX_ATTEMPTS)) {
+                    gameFinished = true;
+                } else if (this.isLooser()) {
                     console.writeln(`¡¡¡You've lost!!! :-(!!!`);
-                    gameOver = true;
+                    gameFinished = true;
                 }
-            } while (!gameOver);
+            } while (!gameFinished);
+        },
+
+        isLooser() {
+            return this.proposedCombination.proposedCombinations.length === this.MAX_ATTEMPTS;
+        },
+
+        printResults(combination) {
+            console.writeln(`\n${combination.length} attempt(s): `);
+            console.writeln(`****`);
+            for (let i = 0; i < combination.length; i++) {
+                console.write(`${combination[i]} -- > ${this.secretCombination.calculateResults(this.proposedCombination.proposedCombinations[i]).blacks} blacks and ${this.secretCombination.calculateResults(this.proposedCombination.proposedCombinations[i]).whites} whites\n`);;
+            }
         }
     }
-    return game;
 }
 
 function initSecretCombination() {
     return {
-        combination: ``,
-        setCombination: function (COLORS, COMBINATION_LENGTH) {
+        secretCombination: ``,
+
+        setSecretCombination(COLORS, COMBINATION_LENGTH) {
             let randomCombination = ``;
             do {
                 let randomColor = COLORS[this.generateRandomIndex(COLORS)];
@@ -59,96 +69,79 @@ function initSecretCombination() {
                     randomCombination += randomColor;
                 }
             } while (randomCombination.length != COMBINATION_LENGTH);
-            this.combination = randomCombination;
+            this.secretCombination = randomCombination;
         },
 
-        generateRandomIndex: function (COLORS) {
+        calculateResults(proposedCombination) {
+            let blacks = 0;
+            let whites = 0;
+            for (i = 0; i < proposedCombination.length; i++) {
+                for (j = 0; j < proposedCombination.length; j++) {
+                    if (proposedCombination[i] === this.secretCombination[i] && i === j) {
+                        blacks++;
+                    } else if (proposedCombination[i] === this.secretCombination[j]) {
+                        whites++;
+                    }
+                }
+            }
+            return { blacks: blacks, whites: whites };
+        },
+        generateRandomIndex(COLORS) {
             return parseInt(Math.random() * COLORS.length);
         },
 
-        answerIsWinner: function (proposedCombination) {
-            return proposedCombination === this.combination;
+        isWinner(combination, length) {
+            return this.calculateResults(combination).blacks === length;
         },
     }
 }
 
 function initCombination() {
     return {
-        combination: ``,
-        results: [],
+        proposedCombinations: [],
 
-        read: function (title, COLORS, COMBINATION_LENGTH) {
-            let combination, isWrongLenght, isWrongColorsCombination, isRepeatedColor;
+        read(title, COLORS, COMBINATION_LENGTH) {
+            let combination;
+            let validCombination;
             do {
                 combination = console.readString(`${title}`);
-                isWrongLenght = false;
-                if (combination.length !== COMBINATION_LENGTH) {
-                    isWrongLenght = true;
+                validCombination = true;
+                if (!this.isCorrectLenght(combination, COMBINATION_LENGTH)) {
                     console.writeln(`Wrong proposed combination length`)
+                    validCombination = false;
                 } else {
-                    isWrongColorsCombination = false;
-                    isRepeatedColor = false;
-                    for (let i = 0; !isWrongColorsCombination && !isRepeatedColor && i < COMBINATION_LENGTH; i++) {
+                    for (let i = 0; validCombination && i < COMBINATION_LENGTH; i++) {
                         if (this.isCorrectColor(combination[i], COLORS) == false) {
-                            isWrongColorsCombination = true;
                             console.writeln(`Wrong color, they must be: rgybmc`);
+                            validCombination = false;
                         } else if (this.isRepeated(combination, i) == true) {
-                            isRepeatedColor = true;
                             console.writeln(`Repeated color ${combination[i]} try again`);
+                            validCombination = false;
                         }
                     }
                 }
-            } while (isWrongLenght || isWrongColorsCombination || isRepeatedColor);
-            this.combination = combination;
+            } while (!validCombination);
+            this.proposedCombinations.push(combination);
         },
 
-        isCorrectColor: function (color, COLORS) {
+        isCorrectLenght(combination, COMBINATION_LENGTH) {
+            return combination.length === COMBINATION_LENGTH;
+        },
+
+        isCorrectColor(color, COLORS) {
             let correctColor = false;
             for (let i = 0; !correctColor && i < COLORS.length; i++) {
-                correctColor |= COLORS[i] === color;
+                correctColor ||= COLORS[i] === color;
             }
             return correctColor;
         },
 
-        isRepeated: function (combination, indexColor) {
+        isRepeated(combination, indexColor) {
             let repeated = false;
             for (let i = 0; !repeated && i < combination.length; i++) {
                 repeated = combination[i] === combination[indexColor] && i !== indexColor;
             }
             return repeated;
-        },
-
-        getResults: function (secretCombination) {
-            let blacks = 0;
-            let whites = 0;
-            for (i = 0; i < this.combination.length; i++) {
-                for (j = 0; j < this.combination.length; j++) {
-                    if (this.combination[i] === secretCombination[i] && i === j) {
-                        blacks++;
-                    } else if (this.combination[i] === secretCombination[j]) {
-                        whites++;
-                    }
-                }
-            }
-            this.results = [this.combination, blacks, whites];
-        }
-    }
-}
-
-function initBoard() {
-    return {
-        lastedAttemptsResults: [],
-        print: function (results) {
-            this.lastedAttemptsResults.push(results);
-            console.writeln(`\n${this.lastedAttemptsResults.length} attempt(s): `);
-            console.writeln(`****`);
-            for (let i = 0; i < this.lastedAttemptsResults.length; i++) {
-                console.write(`${this.lastedAttemptsResults[i][0]} -- > ${this.lastedAttemptsResults[i][1]} blacks and ${this.lastedAttemptsResults[i][2]} whites\n`);
-            }
-        },
-
-        isMaxAttemps: function (MAX_ATTEMPTS) {
-            return this.lastedAttemptsResults.length === MAX_ATTEMPTS;
         }
     }
 }
@@ -158,7 +151,7 @@ function initYesNoDialog(question) {
         question: question,
         answer: ``,
 
-        read: function () {
+        read() {
             let error = false;
             do {
                 answer = console.readString(this.question);
@@ -169,11 +162,11 @@ function initYesNoDialog(question) {
             } while (error);
         },
 
-        isAffirmative: function () {
+        isAffirmative() {
             return answer === `y`;
         },
 
-        isNegative: function () {
+        isNegative() {
             return answer === `n`;
         }
     }
