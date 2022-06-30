@@ -1,4 +1,4 @@
-<h1> <center>MasterMind (Diagrama UML)</h1></center>
+<h1> MasterMind (Diagrama UML)</h1>
 
 ![Image text](<https://github.com/USantaTecla-ed-mpds/lab-dijkstra/blob/master/tech-js-basada-objetos/MasterMind/UML/MasterMind-UML.png>)
  ```{css, echo=FALSE}
