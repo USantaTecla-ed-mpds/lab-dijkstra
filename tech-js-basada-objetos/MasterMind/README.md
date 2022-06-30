@@ -1,4 +1,4 @@
-<p align="center"><h1>MasterMind (Diagrama UML)</h1></p>
+<p align="center">MasterMind (Diagrama UML)</p>
 
 ![Image text](<https://github.com/USantaTecla-ed-mpds/lab-dijkstra/blob/master/tech-js-basada-objetos/MasterMind/UML/MasterMind-UML.png>)
  
