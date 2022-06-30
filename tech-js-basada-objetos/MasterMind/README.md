@@ -1,10 +1,7 @@
-<h1> MasterMind (Diagrama UML)</h1>
+<center><h1> MasterMind (Diagrama UML)</h1></center>
 
 ![Image text](<https://github.com/USantaTecla-ed-mpds/lab-dijkstra/blob/master/tech-js-basada-objetos/MasterMind/UML/MasterMind-UML.png>)
- ```{css, echo=FALSE}
-   h1, h2, h3 { text-align: center; }
-```
-
+ 
 ```
 @startuml
 title Mastermind
