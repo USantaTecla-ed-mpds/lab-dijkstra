@@ -1,5 +1,6 @@
 <p align="center">
-  MasterMind (Diagrama UML)
+  <h1>MasterMind (Diagrama UML)</h1>
+  
   <img src="https://github.com/USantaTecla-ed-mpds/lab-dijkstra/blob/master/tech-js-basada-objetos/MasterMind/UML/MasterMind-UML.png">
 </p>
 
