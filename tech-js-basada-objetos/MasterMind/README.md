@@ -1,6 +1,9 @@
 <h1> <center>MasterMind (Diagrama UML)</h1></center>
 
-<center>![Image text](<https://github.com/USantaTecla-ed-mpds/lab-dijkstra/blob/master/tech-js-basada-objetos/MasterMind/UML/MasterMind-UML.png>)</center>
+![Image text](<https://github.com/USantaTecla-ed-mpds/lab-dijkstra/blob/master/tech-js-basada-objetos/MasterMind/UML/MasterMind-UML.png>)
+ ```{css, echo=FALSE}
+   h1, h2, h3 { text-align: center; }
+```
 
 ```
 @startuml
