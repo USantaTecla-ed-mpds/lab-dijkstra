@@ -45,6 +45,7 @@ function initGame() {
         totalMovesLeft: this.rowNum * this.colNum,
         adjustCol: undefined,
         adjustRow: undefined,
+        connected: 4,
 
         welcome() {
             console.writeln(`Welcome to Connect 4 \n`)
@@ -181,7 +182,7 @@ function initGame() {
 
             console.writeln(`-----------------------------------------------------`);
             let winner = false;
-            if ((fourCheckVert >= 4) || (fourCheckHor >= 4) || (fourCheckDiagRight >= 4) || (fourCheckDiagLeft >= 4)) {
+            if ((fourCheckVert >= this.connected) || (fourCheckHor >= this.connected) || (fourCheckDiagRight >= this.connected) || (fourCheckDiagLeft >= this.connected)) {
                 winner = true;
             }
             return winner;
