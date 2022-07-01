@@ -26,7 +26,7 @@ function playConnectFour() {
             if (game.totalMovesLeft === 0) {
                 console.writeln("It's a TIE!");
             }
-        } while (game.totalMovesLeft > 0 || isWinner === false);
+        } while (game.totalMovesLeft > 0 || !isWinner);
         continueDialog.read();
     } while (continueDialog.isAffirmative());
 }
