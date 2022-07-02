@@ -25,19 +25,19 @@ function initGame() {
             this.secretCombination.setSecretCombination(this.COLORS, this.COMBINATION_LENGTH);
             let gameFinished = false;
             do {
-                this.proposedCombination.read(`Propose a combination:`, this.COLORS, this.COMBINATION_LENGTH);
+                this.proposedCombination.readCombination(`Propose a combination:`, this.COLORS, this.COMBINATION_LENGTH);
                 this.printResults(this.proposedCombination.proposedCombinations)
-                if (this.secretCombination.isWinner(this.proposedCombination.proposedCombinations[this.proposedCombination.proposedCombinations.length - 1], this.COMBINATION_LENGTH)) {
+                if (this.secretCombination.isWinner(this.proposedCombination.proposedCombinations[this.proposedCombination.proposedCombinations.length - 1])) {
                     console.writeln(`¡¡¡You've won!!! ;-)!!!`);
                     gameFinished = true;
-                } else if (this.isLooser()) {
+                } else if (this.isLoser()) {
                     console.writeln(`¡¡¡You've lost!!! :-(!!!`);
                     gameFinished = true;
                 }
             } while (!gameFinished);
         },
 
-        isLooser() {
+        isLoser() {
             return this.proposedCombination.proposedCombinations.length === this.MAX_ATTEMPTS;
         },
 
@@ -90,8 +90,8 @@ function initSecretCombination() {
             return parseInt(Math.random() * COLORS.length);
         },
 
-        isWinner(combination, length) {
-            return this.calculateResults(combination).blacks === length;
+        isWinner(combination) {
+            return this.calculateResults(combination).blacks === this.secretCombination.length;
         },
     }
 }
@@ -100,7 +100,7 @@ function initCombination() {
     return {
         proposedCombinations: [],
 
-        read(title, COLORS, COMBINATION_LENGTH) {
+        readCombination(title, COLORS, COMBINATION_LENGTH) {
             let combination;
             let validCombination;
             do {
