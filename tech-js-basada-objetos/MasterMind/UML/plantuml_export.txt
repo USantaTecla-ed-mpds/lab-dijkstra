@@ -1,39 +1,40 @@
 @startuml
 title Mastermind
-object game {
+class Game {
   COLORS,
   COMBINATION_LENGTH,
   MAX_ATTEMPS
   play(),
   printResults(),
-  isLooser()
+  isLoser()
 }
 
-object yesOrNoContinue{
+class YesNoDialog{
+question,
 answer,
-askContinue()
+read()
 isAfirmative(),
 isNegative()
 }
 
-object proposedCombination{
+class ProposedCombination{
 proposedCombinations,
-read()
+readCombination()
 isCorrectLenght(),
 isCorrectColor(),
 isRepeatColor()
 }
 
-object secretCombination{
+class SecretCombination{
 secretCombination,
 setSecretCombination()
 calculateResult()
 isWinner()
 }
 
-game .left.> yesOrNoContinue
-game *-down-> secretCombination 
-game *-down-> proposedCombination 
-secretCombination -left-> proposedCombination
+Game .left.> YesNoDialog
+Game *-down-> SecretCombination 
+Game *-down-> ProposedCombination 
+SecretCombination -left-> ProposedCombination
 
 @enduml
