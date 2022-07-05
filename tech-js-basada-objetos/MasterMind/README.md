@@ -1,6 +1,8 @@
 # MasterMind (Diagrama UML)
 
-![Image text](<https://github.com/andresito87/MPDS-EscuelaIT/blob/main/21-js-basadaObjetos/MasterMind/MasterMindv0.3(Dise%C3%B1o-UML)/UML/Mastermind_UML.png>)
+<p align="center">
+  <img src="https://github.com/USantaTecla-ed-mpds/lab-dijkstra/blob/master/tech-js-basada-objetos/MasterMind/UML/Mastermind_UML.png">
+ </p>
 
 ```
 @startuml
@@ -43,10 +45,9 @@ COMBINATION_LENGTH
 }
 
 Game .left.> YesNoDialog
-Game *-down-> SecretCombination
-Game *-down-> ProposedCombination
+Game *-down-> SecretCombination 
+Game *-down-> ProposedCombination 
 SecretCombination -left-> ProposedCombination
 ProposedCombination -down-> Combination
 SecretCombination -down-> Combination
 @enduml
-```
