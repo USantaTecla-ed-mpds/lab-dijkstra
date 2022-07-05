@@ -14,18 +14,16 @@ function playMasterMind() {
 
 function initGame() {
     return {
-        COLORS: [`r`, `g`, `y`, `b`, `m`, `c`],
-        COMBINATION_LENGTH: 4,
         MAX_ATTEMPTS: 10,
-        secretCombination: initSecretCombination(),
-        proposedCombination: initCombination(),
+        secretCombination: initSecretCombination(initCombination),
+        proposedCombination: initProposedCombination(initCombination),
 
         play() {
             console.writeln(`----- MASTERMIND -----`);
-            this.secretCombination.setSecretCombination(this.COLORS, this.COMBINATION_LENGTH);
+            this.secretCombination.setSecretCombination();
             let gameFinished = false;
             do {
-                this.proposedCombination.readCombination(`Propose a combination:`, this.COLORS, this.COMBINATION_LENGTH);
+                this.proposedCombination.readCombination(`Propose a combination:`);
                 this.printResults(this.proposedCombination.proposedCombinations)
                 if (this.secretCombination.isWinner(this.proposedCombination.proposedCombinations[this.proposedCombination.proposedCombinations.length - 1])) {
                     console.writeln(`¡¡¡You've won!!! ;-)!!!`);
@@ -51,14 +49,14 @@ function initGame() {
     }
 }
 
-function initSecretCombination() {
+function initSecretCombination(initCombination) {
     return {
         secretCombination: ``,
-
-        setSecretCombination(COLORS, COMBINATION_LENGTH) {
+        attributesSecretCombination: initCombination(),
+        setSecretCombination() {
             let randomCombination = ``;
             do {
-                let randomColor = COLORS[this.generateRandomIndex(COLORS)];
+                let randomColor = this.attributesSecretCombination.COLORS[this.generateRandomIndex(this.attributesSecretCombination.COLORS)];
                 let isRepeatedColor = false;
                 for (let i = 0; !isRepeatedColor && i < randomCombination.length; i++) {
                     if (randomCombination[i] === randomColor) {
@@ -68,8 +66,12 @@ function initSecretCombination() {
                 if (!isRepeatedColor) {
                     randomCombination += randomColor;
                 }
-            } while (randomCombination.length != COMBINATION_LENGTH);
+            } while (randomCombination.length != this.attributesSecretCombination.COMBINATION_LENGTH);
             this.secretCombination = randomCombination;
+        },
+
+        generateRandomIndex(COLORS) {
+            return parseInt(Math.random() * COLORS.length);
         },
 
         calculateResults(proposedCombination) {
@@ -86,9 +88,6 @@ function initSecretCombination() {
             }
             return { blacks: blacks, whites: whites };
         },
-        generateRandomIndex(COLORS) {
-            return parseInt(Math.random() * COLORS.length);
-        },
 
         isWinner(combination) {
             return this.calculateResults(combination).blacks === this.secretCombination.length;
@@ -98,20 +97,28 @@ function initSecretCombination() {
 
 function initCombination() {
     return {
-        proposedCombinations: [],
+        COLORS: [`r`, `g`, `y`, `b`, `m`, `c`],
+        COMBINATION_LENGTH: 4
+    }
+}
 
-        readCombination(title, COLORS, COMBINATION_LENGTH) {
+function initProposedCombination(initCombination) {
+    return {
+        proposedCombinations: [],
+        attributesProposedCombination: initCombination(),
+
+        readCombination(title) {
             let combination;
             let validCombination;
             do {
                 combination = console.readString(`${title}`);
                 validCombination = true;
-                if (!this.isCorrectLenght(combination, COMBINATION_LENGTH)) {
+                if (!this.isCorrectLenght(combination, this.attributesProposedCombination.COMBINATION_LENGTH)) {
                     console.writeln(`Wrong proposed combination length`)
                     validCombination = false;
                 } else {
-                    for (let i = 0; validCombination && i < COMBINATION_LENGTH; i++) {
-                        if (this.isCorrectColor(combination[i], COLORS) == false) {
+                    for (let i = 0; validCombination && i < this.attributesProposedCombination.COMBINATION_LENGTH; i++) {
+                        if (this.isCorrectColor(combination[i], this.attributesProposedCombination.COLORS) == false) {
                             console.writeln(`Wrong color, they must be: rgybmc`);
                             validCombination = false;
                         } else if (this.isRepeated(combination, i) == true) {
