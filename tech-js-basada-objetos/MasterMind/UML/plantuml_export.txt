@@ -1,8 +1,6 @@
 @startuml
 title Mastermind
 class Game {
-  COLORS,
-  COMBINATION_LENGTH,
   MAX_ATTEMPS
   play(),
   printResults(),
@@ -18,6 +16,7 @@ isNegative()
 }
 
 class ProposedCombination{
+attributesProposedCombination,
 proposedCombinations,
 readCombination()
 isCorrectLenght(),
@@ -26,15 +25,22 @@ isRepeatColor()
 }
 
 class SecretCombination{
+attributesSecretCombination,
 secretCombination,
 setSecretCombination()
 calculateResult()
 isWinner()
 }
 
+class Combination{
+COLORS,
+COMBINATION_LENGTH
+}
+
 Game .left.> YesNoDialog
 Game *-down-> SecretCombination 
 Game *-down-> ProposedCombination 
 SecretCombination -left-> ProposedCombination
-
+ProposedCombination -down-> Combination
+SecretCombination -down-> Combination
 @enduml
