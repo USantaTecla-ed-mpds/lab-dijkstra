@@ -7,23 +7,23 @@
 ```
 @startuml
 title Mastermind
-object game {
-COLORS,
-COMBINATION_LENGTH,
-MAX_ATTEMPS
-play(),
-printResults(),
-isLooser()
+class Game {
+  MAX_ATTEMPS
+  play(),
+  printResults(),
+  isLoser()
 }
 
-object yesOrNoContinue{
+class YesNoDialog{
+question,
 answer,
-askContinue()
+read()
 isAfirmative(),
 isNegative()
 }
 
-object combination{
+class ProposedCombination{
+attributesProposedCombination,
 proposedCombinations,
 readCombination()
 isCorrectLenght(),
@@ -31,22 +31,23 @@ isCorrectColor(),
 isRepeatColor()
 }
 
-object result{
-blacks,
-whites
-}
-
-object secret{
+class SecretCombination{
+attributesSecretCombination,
+secretCombination,
+setSecretCombination()
 calculateResult()
 isWinner()
 }
 
-game .left.> yesOrNoContinue
-game _-down-> result
-game _-down-> secret
-game \*-down-> combination
-secret -right-> result
-secret -left-> combination
+class Combination{
+COLORS,
+COMBINATION_LENGTH
+}
 
+Game .left.> YesNoDialog
+Game *-down-> SecretCombination 
+Game *-down-> ProposedCombination 
+SecretCombination -left-> ProposedCombination
+ProposedCombination -down-> Combination
+SecretCombination -down-> Combination
 @enduml
-```
