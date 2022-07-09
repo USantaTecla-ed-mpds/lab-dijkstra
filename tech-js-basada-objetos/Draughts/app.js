@@ -53,58 +53,122 @@ function initGame() {
         },
 
         placeToken: function () {
-            console.writeln(`Turn for ${this.getToken()}`);
+            console.writeln(`Turn for ${this.getToken()}`); //TODO Turn for NaN en kingTokens
             let error;
             let origin;
             do {
                 origin = initCoordinate();
                 origin.read('origin', this.MAX_ROWS_COLUMNS);
                 error = !this.isOccupied(origin, this.getToken());
-                if (error) {
+                kingToken = this.isOccupied(origin, "X2") || this.isOccupied(origin, "Y2");
+                if (kingToken) {
+                    error = false;
+                }
+                else if (error) {
                     console.writeln(`There isn't token property of ${this.getToken()}`);
                 }
             } while (error);
 
             let target;
             let validMovement;
+            let direcctionAllowedX = true;
+            let direcctionAllowedY = true;
+            let impossibleJump;
+            let kingTokenMoved;
             do {
+                kingTokenMoved = false;
+                impossibleJump = false;
                 target = initCoordinate();
                 target.read('destiny', this.MAX_ROWS_COLUMNS);
-                let jump = !this.isEmpty(target);
+                let outOfLimitsBoard = target.row > 0 && target.row < this.MAX_ROWS_COLUMNS - 1 && target.column > 0 && target.column < this.MAX_ROWS_COLUMNS - 1;
+                let jump = !this.isEmpty(target) && outOfLimitsBoard;
+                direcctionAllowedX = this.isDirecctionAllowedX(origin, target);
+                direcctionAllowedY = this.isDirecctionAllowedY(origin, target);
                 validMovement = this.isMovement(target);
-                if (jump && this.getToken() === this.TOKEN_X) {
+                if (jump && validMovement && this.board[origin.row][origin.column] === "X2") {
+                    console.writeln(`Mueve ficha X2 y come ficha Y`);
+                    this.putEmptyToken(origin);
+                    this.putToken(target, "X2");
+                    this.TOKEN_Y--;
+                    kingTokenMoved = true;
+                } else if (jump && validMovement && this.board[origin.row][origin.column] === "Y2") {
+                    console.writeln(`Mueve ficha Y2 y come ficha X`);
+                    this.putEmptyToken(origin);
+                    this.putToken(target, "Y2");
+                    this.tokens_X--;
+                    kingTokenMoved = true;
+                } else if (!jump && validMovement && this.board[origin.row][origin.column] === "X2") {
+                    console.writeln(`Mueve ficha X2`);
+                    this.putEmptyToken(origin);
+                    this.putToken(target, "X2");
+                    kingTokenMoved = true;
+                } else if (!jump && validMovement && this.board[origin.row][origin.column] === "Y2") {
+                    console.writeln(`Mueve ficha Y2`);
+                    this.putEmptyToken(origin);
+                    this.putToken(target, "Y2");
+                    kingTokenMoved = true;
+                } else if (jump && this.getToken() === this.TOKEN_X) {
                     this.putEmptyToken(origin);
                     this.putEmptyToken(target);
                     this.tokens_Y--;
-                    if (this.directionMovement(origin, target) === 1) {
+                    if (this.directionMovement(origin, target)) {
+                        console.writeln(`Salta y come ficha Y`);
                         target.row = target.row - 1;
                         target.column = target.column + 1;
                         this.putToken(target, this.getToken());
+                        if (target.row === 0 || target.row === this.MAX_ROWS_COLUMNS - 1) {
+                            console.writeln(`Salta,come ficha Y y se convierte en rey`);
+                            this.putToken(target, this.getToken() === this.TOKEN_X ? this.TOKEN_X = "X2" : this.TOKEN_Y = "Y2");
+                        }
                     } else {
+                        console.writeln(`Salta y come ficha Y`)
                         target.row = target.row - 1;
                         target.column = target.column - 1;
                         this.putToken(target, this.getToken());
+                        if (target.row === 0 || target.row === this.MAX_ROWS_COLUMNS - 1) {
+                            console.writeln(`Salta,come ficha Y y se convierte en rey`);
+                            this.putToken(target, this.getToken() === this.TOKEN_X ? this.TOKEN_X = "X2" : this.TOKEN_Y = "Y2");
+                        }
                     }
                 } else if (jump && this.getToken() === this.TOKEN_Y) {
                     this.putEmptyToken(origin);
                     this.putEmptyToken(target);
                     this.tokens_X--;
-                    if (this.directionMovement(origin, target) === 1) {
+                    if (this.directionMovement(origin, target)) {
+                        console.writeln(`Salta y come ficha X`);
                         target.row = target.row + 1;
                         target.column = target.column + 1;
                         this.putToken(target, this.getToken());
+                        if (target.row === 0 || target.row === this.MAX_ROWS_COLUMNS - 1) {
+                            console.writeln(`Salta,come ficha X y se convierte en rey`);
+                            this.putToken(target, this.getToken() === this.TOKEN_X ? this.TOKEN_X = "X2" : this.TOKEN_Y = "Y2");
+                        }
                     } else {
+                        console.writeln(`Salta y come ficha X`)
                         target.row = target.row + 1;
                         target.column = target.column - 1;
                         this.putToken(target, this.getToken());
+                        if (target.row === 0 || target.row === this.MAX_ROWS_COLUMNS - 1) {
+                            console.writeln(`Salta,come ficha X y se convierte en rey`);
+                            this.putToken(target, this.getToken() === this.TOKEN_X ? "X2" : "Y2");
+                        }
                     }
-                } else if (!validMovement) {
+                } else if (!this.isEmpty(target) && !outOfLimitsBoard) {
+                    impossibleJump = true;
                     console.writeln(`Invalid movement`);
-                } else if (!jump && validMovement) {
+                } else if (!jump && validMovement && (this.getToken() === this.TOKEN_X ? direcctionAllowedX : direcctionAllowedY)) {
+                    console.writeln(`Mueve ficha`);
                     this.putEmptyToken(origin);
                     this.putToken(target, this.getToken());
+                    if (target.row === 0 || target.row === this.MAX_ROWS_COLUMNS - 1) {
+                        console.writeln(`Mueve ficha y se convierte en rey`);
+                        this.putToken(target, this.getToken() === this.TOKEN_X ? "X2" : "Y2");
+                    }
                 }
-            } while (!validMovement);
+                else if (!validMovement || (this.getToken() === this.TOKEN_X ? !direcctionAllowedX : !direcctionAllowedY)) {
+                    console.writeln(`Invalid movement`);
+                }
+            } while (!kingTokenMoved && (impossibleJump || !validMovement || (this.getToken() === this.TOKEN_X ? !direcctionAllowedX : !direcctionAllowedY)));
         },
 
         isMovement: function ({ row, column }) {
@@ -116,8 +180,17 @@ function initGame() {
         },
 
         directionMovement: function (origin, target) {
-            return target.column > origin.column ? 1 : -1;
+            return target.column > origin.column ? true : false;
         },
+
+        isDirecctionAllowedX: function (origin, target) {
+            return (this.getToken() === this.TOKEN_X && target.row === origin.row - 1) ? true : false;
+        },
+
+        isDirecctionAllowedY: function (origin, target) {
+            return (this.getToken() === this.TOKEN_Y && target.row - 1 === origin.row) ? true : false;
+        },
+
         putEmptyToken: function (coordinate) {
             this.putToken(coordinate, this.TOKEN_EMPTY);
         },
