@@ -20,7 +20,6 @@ function initGame() {
 
         play() {
             console.writeln(`----- MASTERMIND -----`);
-            this.secretCombination.setSecretCombination();
             let gameFinished = false;
             do {
                 this.proposedCombination.readCombination(`Propose a combination:`);
@@ -40,18 +39,17 @@ function initGame() {
         },
 
         printResults(combination) {
-            console.writeln(`\n${combination.length} attempt(s): `);
+            console.writeln(`${combination.length} attempt(s): `);
             console.writeln(`****`);
             for (let i = 0; i < combination.length; i++) {
-                console.write(`${combination[i]} -- > ${this.secretCombination.calculateResults(this.proposedCombination.proposedCombinations[i]).blacks} blacks and ${this.secretCombination.calculateResults(this.proposedCombination.proposedCombinations[i]).whites} whites\n`);;
+                console.writeln(`${combination[i]} -- > ${this.secretCombination.calculateResults(this.proposedCombination.proposedCombinations[i]).blacks} blacks and ${this.secretCombination.calculateResults(this.proposedCombination.proposedCombinations[i]).whites} whites`);;
             }
         }
     }
 }
 
 function initSecretCombination(initCombination) {
-    return {
-        secretCombination: ``,
+    const secretCombinationTemplate = {
         attributesSecretCombination: initCombination(),
         setSecretCombination() {
             let randomCombination = ``;
@@ -67,7 +65,7 @@ function initSecretCombination(initCombination) {
                     randomCombination += randomColor;
                 }
             } while (randomCombination.length != this.attributesSecretCombination.COMBINATION_LENGTH);
-            this.secretCombination = randomCombination;
+            return randomCombination;
         },
 
         generateRandomIndex(COLORS) {
@@ -79,9 +77,9 @@ function initSecretCombination(initCombination) {
             let whites = 0;
             for (i = 0; i < proposedCombination.length; i++) {
                 for (j = 0; j < proposedCombination.length; j++) {
-                    if (proposedCombination[i] === this.secretCombination[i] && i === j) {
+                    if (proposedCombination[i] === secretCombination[i] && i === j) {
                         blacks++;
-                    } else if (proposedCombination[i] === this.secretCombination[j]) {
+                    } else if (proposedCombination[i] === secretCombination[j]) {
                         whites++;
                     }
                 }
@@ -90,9 +88,11 @@ function initSecretCombination(initCombination) {
         },
 
         isWinner(combination) {
-            return this.calculateResults(combination).blacks === this.secretCombination.length;
+            return combination === secretCombination;
         },
     }
+    const secretCombination = secretCombinationTemplate.setSecretCombination();
+    return secretCombinationTemplate;
 }
 
 function initCombination() {
