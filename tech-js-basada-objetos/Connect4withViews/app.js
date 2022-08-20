@@ -50,34 +50,66 @@ function initGameView() {
                 coordinate = initBoardView().readColumn(player.getTurn(), boardView.board.grid);
                 coordinate.owner = player.getTurn();
                 boardView.board.grid = game.updateGrid(coordinate, boardView.board.grid);
-                gameFinished = initGame().isEndGame(coordinate, boardView.board.grid, player.turn);
+                gameFinished = initGame().isWinner(coordinate, boardView.board.grid) || initGame().isTied(player.turn);
                 if (gameFinished) {
                     this.showBoard();
-                    this.showFinalMsg(player.getTurn(), game.MAX_MOVEMENTS, player.turn);
-                } else {
-                    player.changeTurn();
+                    this.showFinalMsg(player.turn, coordinate.owner);
                 }
+                player.changeTurn();
             } while (!gameFinished);
         },
         showBoard() {
             initBoardView().showBoard(boardView.board.grid);
         },
-        showFinalMsg(lastActivePlayer, MAX_MOVEMENTS, turn) {
-            turn === MAX_MOVEMENTS ? console.writeln(`Tied Game`) : console.writeln(`The winner is the player ${lastActivePlayer}`);
+        showFinalMsg(turn, lastActivePlayer) {
+            initGame().isTied(turn) ? console.writeln(`Tied Game`) : console.writeln(`The winner is the player ${lastActivePlayer}`);
         }
     }
 }
 
-function initPlayer() {
+function initGame() {
     return {
-        turn: 0,
-        player1: "X",
-        player2: "O",
-        getTurn() {
-            return this.turn % 2 === 0 ? this.player1 : this.player2;
+        MAX_TOKENS: 42,
+        updateGrid(coordinate, grid) {
+            grid[coordinate.row][coordinate.col] = coordinate.owner;
+            return grid;
         },
-        changeTurn() {
-            this.turn++;
+        isWinner(coordinate, grid) {
+            return initBoardView().board.isConnectedInHorizontal(coordinate, grid)
+                || initBoardView().board.isConnectedInVertical(coordinate, grid)
+                || initBoardView().board.isConnectedInDiagonal(coordinate, grid)
+        },
+        isTied(turn) {
+            return turn === this.MAX_TOKENS - 1; //Turn starts at 0
+        }
+    }
+}
+
+function initBoardView() {
+    return {
+        board: initBoard(),
+        showBoard(grid) {
+            for (let row = 0; row < grid.length; row++) {
+                console.writeln(grid[row]);
+            }
+        },
+        readColumn(player, grid) {
+            let correctColumn;
+            let coordinate = initCoordinate();
+            do {
+                console.writeln(`--------------------------`);
+                correctColumn = true;
+                coordinate.col = console.readNumber(`Player ${player} Select column between (1 - 7)`);
+                coordinate.row = this.board.calculateRow(grid, coordinate.col);
+                if (1 > coordinate.col || coordinate.col > 7) {
+                    console.writeln("Remember columns between 1 and 7");
+                    correctColumn = false;
+                } else if (coordinate.row === undefined) {
+                    console.writeln("This column is full");
+                    correctColumn = false;
+                }
+            } while (!correctColumn);
+            return coordinate;
         }
     }
 }
@@ -88,7 +120,7 @@ function initBoard() {
         MIN_COLUMNS: 1,
         MAX_ROWS: 6,
         MAX_COLUMNS: 7,
-        NUMBER_CONNECTIONS: 4,
+        TOKENS_CONNECTED_FOR_WIN: 4,
         grid: [["*", "1", "2", "3", "4", "5", "6", "7"],
         ["1", "_", "_", "_", "_", "_", "_", "_"],
         ["2", "_", "_", "_", "_", "_", "_", "_"],
@@ -97,6 +129,13 @@ function initBoard() {
         ["5", "_", "_", "_", "_", "_", "_", "_"],
         ["6", "_", "_", "_", "_", "_", "_", "_"]],
 
+        calculateRow(grid, col) {
+            for (let row = grid.length - 1; row >= 0; row--) {
+                if (grid[row][col] === "_") {
+                    return row;
+                }
+            }
+        },
         isConnectedInVertical(coordinate, grid) {
             let countVertical = 0;
             for (let row = coordinate.row; row <= this.MAX_ROWS; row++) {
@@ -106,7 +145,7 @@ function initBoard() {
                     countVertical = 0;
                 }
             }
-            return countVertical === this.NUMBER_CONNECTIONS;
+            return countVertical === this.TOKENS_CONNECTED_FOR_WIN;
         },
         isConnectedInHorizontal(coordinate, grid) {
             let countHorizontal = 0;
@@ -117,7 +156,7 @@ function initBoard() {
                     countHorizontal = 0;
                 }
             }
-            return countHorizontal === this.NUMBER_CONNECTIONS;
+            return countHorizontal === this.TOKENS_CONNECTED_FOR_WIN;
         },
         isConnectedInDiagonal(coordinate, grid) {
             let countDiagonalRight = 0;
@@ -136,42 +175,7 @@ function initBoard() {
                     countDiagonalLeft = 0;
                 }
             }
-            return countDiagonalLeft === this.NUMBER_CONNECTIONS || countDiagonalRight === this.NUMBER_CONNECTIONS;
-        }
-    }
-}
-
-function initBoardView() {
-    let board = initBoard();
-    return {
-        board,
-        showBoard(grid) {
-            for (let row = 0; row < grid.length; row++) {
-                console.writeln(grid[row]);
-            }
-        },
-        readColumn(player, grid) { //separate readColumn() and getCoordinate()
-            let correctColumn;
-            let coordinate = initCoordinate();
-            do {
-                correctColumn = true;
-                console.writeln(`--------------------------`);
-                coordinate.col = console.readNumber(`Player ${player} Select column between (1 - 7)`);
-                for (let row = grid.length - 1; row >= 0; row--) {
-                    if (grid[row][coordinate.col] === "_") {
-                        coordinate.row = row;
-                        break;
-                    }
-                }
-                if (1 > coordinate.col || coordinate.col > 7) {
-                    console.writeln("Remember columns between 1 and 7");
-                    correctColumn = false;
-                } else if (coordinate.row === undefined) {
-                    console.writeln("This column is full");
-                    correctColumn = false;
-                }
-            } while (!correctColumn);
-            return coordinate;
+            return countDiagonalLeft === this.TOKENS_CONNECTED_FOR_WIN || countDiagonalRight === this.TOKENS_CONNECTED_FOR_WIN;
         }
     }
 }
@@ -184,23 +188,16 @@ function initCoordinate() {
     }
 }
 
-function initGame() {
+function initPlayer() {
     return {
-        MAX_MOVEMENTS: 42,
-        updateGrid(coordinate, grid) {
-            grid[coordinate.row][coordinate.col] = coordinate.owner;
-            return grid;
+        turn: 0,
+        player1: "X",
+        player2: "O",
+        getTurn() {
+            return this.turn % 2 === 0 ? this.player1 : this.player2;
         },
-        isEndGame(coordinate, grid, turn) {
-            return this.isWinner(coordinate, grid) || this.isTied(turn);
-        },
-        isWinner(coordinate, grid) {
-            return initBoardView().board.isConnectedInHorizontal(coordinate, grid)
-                || initBoardView().board.isConnectedInVertical(coordinate, grid)
-                || initBoardView().board.isConnectedInDiagonal(coordinate, grid)
-        },
-        isTied(turn) {
-            return this.MAX_MOVEMENTS === turn;
+        changeTurn() {
+            this.turn++;
         }
     }
 }
