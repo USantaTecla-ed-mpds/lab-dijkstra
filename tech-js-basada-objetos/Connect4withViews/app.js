@@ -141,28 +141,35 @@ function initBoard() {
             for (let row = coordinate.row; row <= this.MAX_ROWS; row++) {
                 if (grid[row][coordinate.col] === coordinate.owner) {
                     countVertical++;
+                    if (countVertical === this.TOKENS_CONNECTED_FOR_WIN) {
+                        return true;
+                    }
                 } else {
                     countVertical = 0;
                 }
             }
-            return countVertical === this.TOKENS_CONNECTED_FOR_WIN;
         },
         isConnectedInHorizontal(coordinate, grid) {
             let countHorizontal = 0;
             for (let col = this.MIN_COLUMNS; col <= this.MAX_COLUMNS; col++) {
                 if (grid[coordinate.row][col - 1] === coordinate.owner) {
                     countHorizontal++;
+                    if (countHorizontal === this.TOKENS_CONNECTED_FOR_WIN) {
+                        return true;
+                    }
                 } else {
                     countHorizontal = 0;
                 }
             }
-            return countHorizontal === this.TOKENS_CONNECTED_FOR_WIN;
         },
         isConnectedInDiagonal(coordinate, grid) {
             let countDiagonalRight = 0;
             for (let row = coordinate.row, col = coordinate.col; row <= this.MAX_ROWS & col >= this.MIN_COLUMNS; row++, col--) {
                 if (grid[row][col] === coordinate.owner) {
                     countDiagonalRight++;
+                    if (countDiagonalRight === this.TOKENS_CONNECTED_FOR_WIN) {
+                        return true;
+                    }
                 } else {
                     countDiagonalRight = 0;
                 }
@@ -171,11 +178,13 @@ function initBoard() {
             for (let row = coordinate.row, col = coordinate.col; row <= this.MAX_ROWS && col <= this.MAX_COLUMNS; row++, col++) {
                 if (grid[row][col] === coordinate.owner) {
                     countDiagonalLeft++;
+                    if (countDiagonalLeft === this.TOKENS_CONNECTED_FOR_WIN) {
+                        return true;
+                    }
                 } else {
                     countDiagonalLeft = 0;
                 }
             }
-            return countDiagonalLeft === this.TOKENS_CONNECTED_FOR_WIN || countDiagonalRight === this.TOKENS_CONNECTED_FOR_WIN;
         }
     }
 }
