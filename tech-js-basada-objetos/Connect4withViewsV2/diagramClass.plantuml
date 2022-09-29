@@ -1,12 +1,7 @@
 @startuml
 Connect4 ..> YesNoDialogView
 Connect4 ..> GameView
-Connect4 ..> GameModeView
 Connect4 : + play()
-
-GameModeView ..> PlayerView
-GameModeView ..> CPU
-GameModeView : + ask()
 
 YesNoDialogView : - question
 YesNoDialogView : - answer
@@ -14,22 +9,19 @@ YesNoDialogView : + read()
 YesNoDialogView : + isAffirmative()
 YesNoDialogView : + isNegative()
 
-CPU : + readToken()
-PlayerView : + readToken()
-
-GameView : - players
-GameView *--> Game
 GameView : + play()
-GameView : - showFinalMsg()
+GameView *--> Game
+GameView *--> PlayerView
 GameView *--> BoardView
 
-BoardView : + showBoar()
+PlayerView : + putToken()
+
+BoardView : + showBoard()
 
 Game *--> Board
 Game *--> Turn
 Game *--> Checker
 Game : + getBoard()
-Game : + getTurn()
 Game : + getPlayer()
 Game : + changeTurn() {
 Game : + addToken(token)
@@ -49,21 +41,17 @@ Board : + addToken(token)
 
 Turn : - numberOfRounds
 Turn : + MAX_TURNS
-Turn : - PLAYER_1
-Turn : - PLAYER_2
+Turn : - PLAYERS
+Turn : - getTurn()
 Turn : + getPlayer()
-Turn : + getTurns()
-Turn : + getTurn()
 Turn : + changeTurn()
+Turn : + isFinished()
 
 Checker : - currentToken
 Checker : - TOKENS_CONNECTED_FOR_WIN
 Checker : + setCurrentToken(token)
 Checker : - isConnect4(direction, board)
-Checker : + isConnectedInVertical(board)
-Checker : + isConnectedInHorizontal(board)
-Checker : + isConnectedInDiagonalPrincipal(board)
-Checker : + isConnectedInDiagonalSecond(board)
+Checker : + isWinner(board)
 Checker ..> Direcition
 
 Direcition *--> Coordinate
@@ -72,12 +60,6 @@ Direcition : + getOppocite
 
 Coordinate : - x
 Coordinate : - y
-Coordinate : + getNorth() 
-Coordinate : + getSouth() 
-Coordinate : + getEast() 
-Coordinate : + getWest() 
-Coordinate : + getNorthEast() 
-Coordinate : + getSouthEast() 
-Coordinate : + getSouthWest() 
+Coordinate : + shift()
 
 @enduml

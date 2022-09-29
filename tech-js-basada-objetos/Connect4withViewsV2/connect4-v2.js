@@ -8,73 +8,9 @@ function initConnect4View() {
     play() {
       const continueDialogView = initYesNoDialogView(`Do you want to continue? (yes/no)`);
       do {
-        const gameMode = initGameMode().ask();
-        initGameView(gameMode).play();
+        initGameView().play();
         continueDialogView.read();
       } while (continueDialogView.isAffirmative());
-    }
-  }
-}
-
-function initGameMode() {
-  return {
-    ask() {
-      const gameModes = [[initCPU(), initCPU()],[initPlayerView(), initCPU()],[initPlayerView(), initPlayerView()]];
-      let error = false;
-      do {
-        let response = console.readNumber(`Tell me the game mode:
-                  (0) Demo-Game, (1) Player Vs CPU, (2) Player Vs Player`);
-        if (response === 0 || response === 1 || response === 2) {
-          return gameModes[response];
-        } else {
-          console.writeln(`This game mode ${response} doesn´t exist`);
-          error = true;
-        }
-      } while (error);
-    }
-  }
-}
-
-function initCPU() {
-  return {
-    readToken(game) {
-      let token = {player: game.getPlayer()};
-      let correctColumn = true;
-      do {
-        console.writeln(`--------------------------`);
-        token.col = parseInt(Math.random() * 7) + 1;
-        token.row = game.calculateRow(token.col);
-        if (1 > token.col || token.col > 7) {
-          correctColumn = false;
-        } else if (token.row === undefined) {
-          correctColumn = false;
-        }
-      } while (!correctColumn);
-
-      game.addToken(token);
-    }
-  }
-}
-
-function initPlayerView() {
-  return {
-    readToken(game) {
-      let token = {player: game.getPlayer()};
-      let correctColumn = true;
-      do {
-        console.writeln(`--------------------------`);
-        token.col = console.readNumber(`Player ${game.getPlayer()} Select column between (1 - 7)`);
-        token.row = game.calculateRow(token.col);
-        if (1 > token.col || token.col > 7) {
-          console.writeln("Remember columns between 1 and 7");
-          correctColumn = false;
-        } else if (token.row === undefined) {
-          console.writeln("This column is full");
-          correctColumn = false;
-        }
-      } while (!correctColumn);
-
-      game.addToken(token);
     }
   }
 }
@@ -101,8 +37,9 @@ function initYesNoDialogView(question) {
   };
 }
 
-function initGameView(players) {
+function initGameView() {
   let game = initGame();
+  let playerView = initPlayerView(game);
   let boardView = initBoardView(game.getBoard());
   return {
     play() {
@@ -110,17 +47,36 @@ function initGameView(players) {
       boardView.showBoard();
       let gameFinished;
       do {
-        players[game.getTurn()].readToken(game);
+        playerView.putToken();
         gameFinished = game.isWinner() || game.isTied();
         if (!gameFinished) {
           game.changeTurn();
         }
         boardView.showBoard();
       } while (!gameFinished);
-      this.showFinalMsg();
-    },
-    showFinalMsg() {
-      game.isTied() ? console.writeln(`Tied Game`) : console.writeln(`The winner is the player ${game.getPlayer()}`);
+      console.writeln(game.isTied() ? `Tied Game` : `The winner is the player ${game.getPlayer()}`);
+    }
+  }
+}
+
+function initPlayerView(game) {
+  return {
+    putToken() {
+      let correctColumn = true;
+      do {
+        console.writeln(`--------------------------`);
+        var col = console.readNumber(`Player ${game.getPlayer()} Select column between (1 - 7)`);
+        var row = game.calculateRow(col - 1);
+        if (1 > col || col > 7) {
+          console.writeln("Remember columns between 1 and 7");
+          correctColumn = false;
+        } else if (row === undefined) {
+          console.writeln("This column is full");
+          correctColumn = false;
+        }
+      } while (!correctColumn);
+
+      game.addToken({player: game.getPlayer(), col: col - 1, row});
     }
   }
 }
@@ -128,8 +84,9 @@ function initGameView(players) {
 function initBoardView(board) {
   return {
     showBoard() {
-      console.writeln(board.getRow(0));
-      for (let row = board.MAX_ROWS; row > 0; row--) {
+      console.writeln(`* 1 2 3 4 5 6 7`);;
+      for (let row = board.MAX_ROWS - 1; row >= 0; row--) {
+        console.write(`${row + 1} `);
         console.writeln(board.getRow(row));
       }
     }
@@ -145,9 +102,6 @@ function initGame() {
     getBoard() {
       return board;
     },
-    getTurn() {
-      return turn.getTurn();
-    },
     getPlayer() {
       return turn.getPlayer();
     },
@@ -162,13 +116,10 @@ function initGame() {
       return board.calculateRow(col);
     },
     isWinner() {
-      return checker.isConnectedInHorizontal(board)
-        || checker.isConnectedInVertical(board)
-        || checker.isConnectedInDiagonalPrincipal(board)
-        || checker.isConnectedInDiagonalSecond(board);
+      return checker.isWinner(board);
     },
     isTied() {
-      return turn.getTurns() === turn.MAX_TURNS - 1;
+      return turn.isFinished();
     }
   }
 }
@@ -178,24 +129,26 @@ function initBoard() {
   const MIN_COLUMNS = 1;
   const MAX_ROWS = 6;
   const MAX_COLUMNS = 7;
-  let grid = [["*", "1", "2", "3", "4", "5", "6", "7"],
-              ["1", "_", "_", "_", "_", "_", "_", "_"],
-              ["2", "_", "_", "_", "_", "_", "_", "_"],
-              ["3", "_", "_", "_", "_", "_", "_", "_"],
-              ["4", "_", "_", "_", "_", "_", "_", "_"],
-              ["5", "_", "_", "_", "_", "_", "_", "_"],
-              ["6", "_", "_", "_", "_", "_", "_", "_"]];
+  let grid = [["_", "_", "_", "_", "_", "_", "_"],
+              ["_", "_", "_", "_", "_", "_", "_"],
+              ["_", "_", "_", "_", "_", "_", "_"],
+              ["_", "_", "_", "_", "_", "_", "_"],
+              ["_", "_", "_", "_", "_", "_", "_"],
+              ["_", "_", "_", "_", "_", "_", "_"]];
 
   return {
     MAX_ROWS,
     getCell(coordinate) {
-      return coordinate.y <= MAX_ROWS ? grid[coordinate.y][coordinate.x] : undefined;
+      if (0 > coordinate.y || coordinate.y >= MAX_ROWS) {
+        return undefined;
+      }
+      return grid[coordinate.y][coordinate.x];
     },
     getRow(number) {
       return grid[number];
     },
     calculateRow(col) {
-      for (let row = 1; row < grid.length - 1; row++) {
+      for (let row = 0; row < grid.length - 1; row++) {
         if (grid[row][col] === "_") {
           return row;
         }
@@ -211,22 +164,21 @@ function initTurn() {
 
   let numberOfTurns = 0;
   const MAX_TURNS = 42;
-  const PLAYER_1 = "X";
-  const PLAYER_2 = "O";
+  const PLAYERS = ["X", "O"];
+
+  function getTurn() {
+    return numberOfTurns % 2;
+  }
 
   return {
-    MAX_TURNS,
     getPlayer() {
-      return numberOfTurns % 2 === 0 ? PLAYER_1 : PLAYER_2;
-    },
-    getTurns() {
-      return numberOfTurns;
-    },
-    getTurn() {
-      return numberOfTurns % 2 === 0 ? 0 : 1;
+      return getTurn() === 0 ? PLAYERS[0] : PLAYERS[1];
     },
     changeTurn() {
       numberOfTurns++;
+    },
+    isFinished() {
+      return numberOfTurns === MAX_TURNS - 1;
     }
   }
 }
@@ -238,6 +190,7 @@ function initChecker() {
   
   function isConnect4(direction, board) {
     for (let i = 1; i < TOKENS_CONNECTED_FOR_WIN; i++) {
+      console.writeln(JSON.stringify(direction[i]))
       if (board.getCell(direction[i]) !== currentToken.player) {
         return false;
       }
@@ -249,61 +202,41 @@ function initChecker() {
     setCurrentToken(token) {
       currentToken = token;
     },
-    isConnectedInVertical(board) {
-      let vertical = initDirection(`DOWN`, currentToken);
-      return isConnect4(vertical.getDirection(), board);
-    },
-    isConnectedInHorizontal(board) {
-      let horizontal = initDirection(`RIGHT`, currentToken);
-      return isConnect4(horizontal.getDirection(), board) 
-        || isConnect4(horizontal.getOppocite(), board);
-    },
-    isConnectedInDiagonalPrincipal(board) {
-      let diagonalPrincial = initDirection(`DIAGONAL_PRINCIPAL`, currentToken);
-      return isConnect4(diagonalPrincial.getDirection(), board) 
-        || isConnect4(diagonalPrincial.getOppocite(), board);
-    },
-    isConnectedInDiagonalSecond(board) {
-      let diagonalSecond = initDirection(`DIAGONAL_SECOND`, currentToken);
-      return isConnect4(diagonalSecond.getDirection(), board) 
-        || isConnect4(diagonalSecond.getOppocite(), board);
+    isWinner(board) {
+      const SOUTH = initCoordinate(0, -1);
+      const WEST = initCoordinate(-1, 0);
+      const SOUTH_WEST = initCoordinate(-1, -1);
+      const NORTH_WEST = initCoordinate(1, -1);
+      const DIRECTIONS = [SOUTH, WEST, SOUTH_WEST, NORTH_WEST];
+      let isWinner = false;
+      for (let i = 0; !isWinner && i < DIRECTIONS.length; i++) {
+        let direction = initDirection(currentToken, DIRECTIONS[i]);
+        isWinner = isConnect4(direction.getDirection(), board)
+          || isConnect4(direction.getOppocite(DIRECTIONS[i]), board);;
+      }
+      return isWinner;
     }
   }
 }
 
-function initDirection(type, token) {
-
-  const LENGTH = 4;
-  let direction = geCoordinates();
-
-  function geCoordinates(isOpposite) {
-    let coordinates = [initCoordinate(token.col, token.row)];
-    for (let i = 0; i < LENGTH; i++) {
-      if (type === `DOWN`) {
-        coordinates.push(coordinates[i].getSouth());
-      } else if (type === `RIGHT` && isOpposite) {
-        coordinates.push(coordinates[i].getWest());
-      } else if (type === `RIGHT`) {
-        coordinates.push(coordinates[i].getEast());
-      } else if (type === `DIAGONAL_PRINCIPAL` && isOpposite) {
-        coordinates.push(coordinates[i].getSouthWest());
-      } else if (type === `DIAGONAL_PRINCIPAL`) {
-        coordinates.push(coordinates[i].getNorthEast());
-      } else if (type === `DIAGONAL_SECOND` && isOpposite) {
-        coordinates.push(coordinates[i].getNorthWest());
-      } else if (type === `DIAGONAL_SECOND`) {
-        coordinates.push(coordinates[i].getSouthEast());
-      }
-    }
-    return coordinates;
+function initDirection(initial, coordinateShift) {
+    
+  let coordenates = [initCoordinate(initial.col, initial.row)];
+  for (let i = 0; i < 3; i++) {
+    coordenates.push(coordenates[i].shift(coordinateShift));
   }
 
   return {
     getDirection() {
-      return direction;
+      return coordenates;
     },
-    getOppocite() {
-      return geCoordinates(true);
+    getOppocite(coordinateShift) {
+      const OPPOCITE = {x: coordinateShift.x * -1, y: coordinateShift.y * -1};
+      let direction = [coordenates[0]];
+      for (let i = 0; i < 3; i++) {
+        direction.push(direction[i].shift(OPPOCITE));
+      }
+      return direction;
     }
   }
 }
@@ -313,29 +246,8 @@ function initCoordinate(x, y) {
   return {
     x,
     y,
-    getNorth() {
-      return new initCoordinate(x, y + 1);
-    },
-    getSouth() {
-      return new initCoordinate(x, y - 1);
-    },
-    getEast() {
-      return new initCoordinate(x + 1, y);
-    },
-    getWest() {
-      return new initCoordinate(x - 1, y);
-    },
-    getNorthEast() {
-      return new initCoordinate(x + 1, y + 1);
-    },
-    getSouthEast() {
-      return new initCoordinate(x + 1, y - 1);
-    },
-    getSouthWest() {
-      return new initCoordinate(x - 1, y - 1);
-    },
-    getNorthWest() {
-      return new initCoordinate(x - 1, y + 1);
+    shift(coordinate) {
+      return initCoordinate(this.x + coordinate.x, this.y + coordinate.y);
     }
   }
 }
