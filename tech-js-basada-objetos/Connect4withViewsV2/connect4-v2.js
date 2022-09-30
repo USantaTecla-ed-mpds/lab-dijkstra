@@ -190,7 +190,6 @@ function initChecker() {
   
   function isConnect4(direction, board) {
     for (let i = 1; i < TOKENS_CONNECTED_FOR_WIN; i++) {
-      console.writeln(JSON.stringify(direction[i]))
       if (board.getCell(direction[i]) !== currentToken.player) {
         return false;
       }
@@ -221,8 +220,9 @@ function initChecker() {
 
 function initDirection(initial, coordinateShift) {
     
+  const LENGTH = 4;
   let coordenates = [initCoordinate(initial.col, initial.row)];
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < LENGTH - 1; i++) {
     coordenates.push(coordenates[i].shift(coordinateShift));
   }
 
