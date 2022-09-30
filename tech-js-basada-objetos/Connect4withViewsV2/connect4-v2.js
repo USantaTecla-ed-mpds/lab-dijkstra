@@ -62,11 +62,12 @@ function initGameView() {
 function initPlayerView(game) {
   return {
     putToken() {
+      let col, row;
       let correctColumn = true;
       do {
         console.writeln(`--------------------------`);
-        var col = console.readNumber(`Player ${game.getPlayer()} Select column between (1 - 7)`);
-        var row = game.calculateRow(col - 1);
+        col = console.readNumber(`Player ${game.getPlayer()} Select column between (1 - 7)`);
+        row = game.calculateRow(col - 1);
         if (1 > col || col > 7) {
           console.writeln("Remember columns between 1 and 7");
           correctColumn = false;
@@ -76,7 +77,7 @@ function initPlayerView(game) {
         }
       } while (!correctColumn);
 
-      game.addToken({player: game.getPlayer(), col: col - 1, row});
+      game.addToken({x: col - 1, y: row});
     }
   }
 }
@@ -108,9 +109,9 @@ function initGame() {
     changeTurn() {
       turn.changeTurn();
     },
-    addToken(token) {
-      checker.setCurrentToken(token);
-      board.addToken(token);
+    addToken(coordinate) {
+      checker.setCurrentCoordinate(coordinate);
+      board.addToken(coordinate, turn.getPlayer());
     },
     calculateRow(col) {
       return board.calculateRow(col);
@@ -154,8 +155,8 @@ function initBoard() {
         }
       }
     },
-    addToken(token) {
-      grid[token.row][token.col] = token.player;
+    addToken(coordinate, player) {
+      grid[coordinate.y][coordinate.x] = player;
     }
   }
 }
@@ -185,12 +186,13 @@ function initTurn() {
 
 function initChecker() {
 
-  let currentToken;
+  let currentCoordinate;
   const TOKENS_CONNECTED_FOR_WIN = 4;
   
   function isConnect4(direction, board) {
+    const TOKEN = board.getCell(direction[0]);
     for (let i = 1; i < TOKENS_CONNECTED_FOR_WIN; i++) {
-      if (board.getCell(direction[i]) !== currentToken.player) {
+      if (board.getCell(direction[i]) !== TOKEN) {
         return false;
       }
     }
@@ -198,8 +200,8 @@ function initChecker() {
   }
 
   return {
-    setCurrentToken(token) {
-      currentToken = token;
+    setCurrentCoordinate(coordinate) {
+      currentCoordinate = coordinate;
     },
     isWinner(board) {
       const SOUTH = initCoordinate(0, -1);
@@ -209,7 +211,7 @@ function initChecker() {
       const DIRECTIONS = [SOUTH, WEST, SOUTH_WEST, NORTH_WEST];
       let isWinner = false;
       for (let i = 0; !isWinner && i < DIRECTIONS.length; i++) {
-        let direction = initDirection(currentToken, DIRECTIONS[i]);
+        let direction = initDirection(currentCoordinate, DIRECTIONS[i]);
         isWinner = isConnect4(direction.getDirection(), board)
           || isConnect4(direction.getOppocite(DIRECTIONS[i]), board);;
       }
@@ -221,7 +223,7 @@ function initChecker() {
 function initDirection(initial, coordinateShift) {
     
   const LENGTH = 4;
-  let coordenates = [initCoordinate(initial.col, initial.row)];
+  let coordenates = [initCoordinate(initial.x, initial.y)];
   for (let i = 0; i < LENGTH - 1; i++) {
     coordenates.push(coordenates[i].shift(coordinateShift));
   }
@@ -233,7 +235,7 @@ function initDirection(initial, coordinateShift) {
     getOppocite(coordinateShift) {
       const OPPOCITE = {x: coordinateShift.x * -1, y: coordinateShift.y * -1};
       let direction = [coordenates[0]];
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < LENGTH - 1; i++) {
         direction.push(direction[i].shift(OPPOCITE));
       }
       return direction;
