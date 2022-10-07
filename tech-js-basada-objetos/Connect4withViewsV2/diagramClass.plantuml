@@ -1,7 +1,8 @@
 @startuml
-Connect4 ..> YesNoDialogView
-Connect4 ..> GameView
-Connect4 : + play()
+Connect4View ..> YesNoDialogView
+Connect4View ..> Game
+Connect4View ..> GameView
+Connect4View : + play()
 
 YesNoDialogView : - question
 YesNoDialogView : - answer
@@ -10,56 +11,61 @@ YesNoDialogView : + isAffirmative()
 YesNoDialogView : + isNegative()
 
 GameView : + play()
-GameView *--> Game
 GameView *--> PlayerView
 GameView *--> BoardView
 
-PlayerView : + putToken()
+PlayerView : + putColor()
+PlayerView ..> Coordinate
 
 BoardView : + showBoard()
+BoardView ..> Coordinate
 
+Game : - currentCoordinate
 Game *--> Board
 Game *--> Turn
-Game *--> Checker
 Game : + getBoard()
-Game : + getPlayer()
+Game : + getCurrentColor()
 Game : + changeTurn() {
-Game : + addToken(token)
+Game : + addColor(coordinate)
+Game : + isFullColumn(col)
 Game : + calculateRow(col)
 Game : + isWinner()
 Game : + isTied()
+Game ..> Coordinate
 
-Board : - MIN_ROWS
-Board : - MIN_COLUMNS
-Board : + MAX_ROWS
-Board : - MAX_COLUMNS
-Board : - grid    
+Board ..> Line
+Board ..> Coordinate
+Board : - cells
+Board : - EMPTY_CELL
+Board : - TOKENS_CONNECTED_FOR_WIN
 Board : + getCell(coordinate)
-Board : + getRow(number)
+Board : - isConnect4(direction)
+Board : + isFullColumn(col)
 Board : + calculateRow(col)
-Board : + addToken(token)
+Board : + addColor(coordinate, color)
+Board : + isWinner(currentCoordinate)
 
 Turn : - numberOfRounds
 Turn : + MAX_TURNS
-Turn : - PLAYERS
+Turn : - COLORS
 Turn : - getTurn()
-Turn : + getPlayer()
+Turn : + getCurrentColor()
 Turn : + changeTurn()
 Turn : + isFinished()
 
-Checker : - currentToken
-Checker : - TOKENS_CONNECTED_FOR_WIN
-Checker : + setCurrentToken(token)
-Checker : - isConnect4(direction, board)
-Checker : + isWinner(board)
-Checker ..> Direcition
+Line *--> Coordinate
+Line : - LENGTH
+Line : - coordenates
+Line : - oppocite
+Line : - getCoordenates(initial, coordinateShift)
+Line : + getLine()
+Line : + getOppocite()
 
-Direcition *--> Coordinate
-Direcition : + getDirection
-Direcition : + getOppocite
-
-Coordinate : - x
-Coordinate : - y
-Coordinate : + shift()
+Coordinate : - col
+Coordinate : - row
+Coordinate : + shift(coordinate)
+Coordinate : + {static} MAX_ROWS
+Coordinate : + {static} MIN_COLUMS
+Coordinate : + {static} MAX_COLUMNS
 
 @enduml
