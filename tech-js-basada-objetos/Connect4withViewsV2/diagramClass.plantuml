@@ -10,6 +10,7 @@ YesNoDialogView : + read()
 YesNoDialogView : + isAffirmative()
 YesNoDialogView : + isNegative()
 
+GameView : - showResult()
 GameView : + play()
 GameView *--> PlayerView
 GameView *--> BoardView
@@ -17,33 +18,31 @@ GameView *--> BoardView
 PlayerView : + putColor()
 PlayerView ..> Coordinate
 
-BoardView : + showBoard()
+BoardView : + show()
 BoardView ..> Coordinate
 
-Game : - currentCoordinate
+Game : + {static} TOKENS_CONNECTED_FOR_WIN
 Game *--> Board
 Game *--> Turn
 Game : + getBoard()
 Game : + getCurrentColor()
 Game : + changeTurn() {
-Game : + addColor(coordinate)
+Game : + addColor(col)
 Game : + isFullColumn(col)
-Game : + calculateRow(col)
 Game : + isWinner()
 Game : + isTied()
-Game ..> Coordinate
 
 Board ..> Line
 Board ..> Coordinate
 Board : - cells
 Board : - EMPTY_CELL
-Board : - TOKENS_CONNECTED_FOR_WIN
-Board : + getCell(coordinate)
+Board : - currentCoordinate
+Board : - calculateRow(col)
 Board : - isConnect4(direction)
+Board : + getCell(coordinate)
 Board : + isFullColumn(col)
-Board : + calculateRow(col)
-Board : + addColor(coordinate, color)
-Board : + isWinner(currentCoordinate)
+Board : + addColor(col, color)
+Board : + isWinner()
 
 Turn : - numberOfRounds
 Turn : + MAX_TURNS
@@ -54,16 +53,14 @@ Turn : + changeTurn()
 Turn : + isFinished()
 
 Line *--> Coordinate
-Line : - LENGTH
 Line : - coordenates
-Line : - oppocite
-Line : - getCoordenates(initial, coordinateShift)
-Line : + getLine()
-Line : + getOppocite()
+Line : + getCoordenates()
+Line : + displaceOne()
 
 Coordinate : - col
 Coordinate : - row
 Coordinate : + shift(coordinate)
+Coordinate : + getOppocite()
 Coordinate : + {static} MAX_ROWS
 Coordinate : + {static} MIN_COLUMS
 Coordinate : + {static} MAX_COLUMNS
