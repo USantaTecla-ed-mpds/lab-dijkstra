@@ -1,281 +1,438 @@
+
 const { Console } = require("console-mpds");
 const console = new Console();
 
-let  initClosedInterval = function(min, max) {
-  return {
-    isIncluded(value) {
-      return min <= value && value <= max;
+class ClosedInterval {
+
+  constructor(min, max) {
+    this.min = min;
+    this.max = max;
+  }
+
+  isIncluded(value) {
+    return this.min <= value && value <= this.max;
+  }
+}
+
+class Coordinate {
+
+  static NUMBER_ROWS = 6;
+  static ROWS = new ClosedInterval(0, Coordinate.NUMBER_ROWS - 1);
+  static NUMBER_COLUMNS = 7;
+  static COLUMNS = new ClosedInterval(0, Coordinate.NUMBER_COLUMNS - 1);
+
+  constructor(row, column) {
+    this.row = row;
+    this.column = column;
+  }
+
+  getRow() {
+    return this.row;
+  }
+
+  getColumn() {
+    return this.column;
+  }
+
+  getShifted(direction) {
+    return new Coordinate(this.row + direction.getRow(), this.column + direction.getColumn());
+  }
+
+  static isColumnValid(column) {
+    return Coordinate.COLUMNS.isIncluded(column);
+  }
+  static isRowValid(row) {
+    return Coordinate.ROWS.isIncluded(row);
+  }
+}
+
+class Direction {
+
+  static SOUTH = new Direction(-1, 0);
+  static WEST = new Direction(0, -1);
+  static SOUTH_WEST = new Direction(-1, -1);
+  static NORTH_WEST = new Direction(1, -1);
+
+  constructor(row, column) {
+    this.row = row;
+    this.column = column;
+  }
+
+  getRow() {
+    return this.row;
+  }
+
+  getColumn() {
+    return this.column;
+  }
+
+  getOppocite() {
+    return new Direction(this.row * -1, this.column * -1);
+  }
+
+  static values() {
+    return [Direction.SOUTH, Direction.WEST, Direction.SOUTH_WEST, Direction.NORTH_WEST];
+  }
+}
+
+class Line {
+
+  static LENGTH = 4;
+  #coordinates;
+
+  constructor(initialCoordinate, direction) {
+    this.#coordinates = [initialCoordinate];
+    for (let i = 0; i < Line.LENGTH - 1; i++) {
+      this.#coordinates.push(this.#coordinates[i].getShifted(direction));
     }
   }
-}
 
-let initCoordinate = function(row, column) {
-  return {
-    getRow() {
-      return row;
-    },
-    getColumn() {
-      return column;
-    },
-    getShifted(direction) {
-      return initCoordinate(row + direction.getRow(), column + direction.getColumn());
-    },
-  }
-}
-initCoordinate.NUMBER_ROWS = 6;
-initCoordinate.ROWS = initClosedInterval(0, initCoordinate.NUMBER_ROWS - 1);
-initCoordinate.NUMBER_COLUMNS = 7;
-initCoordinate.COLUMNS = initClosedInterval(0, initCoordinate.NUMBER_COLUMNS - 1);
-initCoordinate.isColumnValid = function(column) {
-  return initCoordinate.COLUMNS.isIncluded(column);
-}
-initCoordinate.isRowValid = function(row) {
-  return initCoordinate.ROWS.isIncluded(row);
-}
-
-let initDirection = function(row, column) {
-  return Object.create(
-    initCoordinate(row, column), 
-    {
-      getOppocite: {
-        value: function() {
-          return initDirection(row * -1, column * -1);
-        }
-      }
-    }
-  );
-}
-initDirection.SOUTH = initDirection(-1, 0);
-initDirection.WEST = initDirection(0, -1);
-initDirection.SOUTH_WEST = initDirection(-1, -1);
-initDirection.NORTH_WEST = initDirection(1, -1);
-initDirection.VALUES = [initDirection.SOUTH,initDirection.WEST,initDirection.SOUTH_WEST,initDirection.NORTH_WEST];
-
-let initLine = function(initialCoordinate, direction) {
-  let coordinates = [initialCoordinate];
-  for (let i = 0; i < initLine.LENGTH - 1; i++) {
-    coordinates.push(coordinates[i].getShifted(direction));
+  get(ordinal) {
+    return this.#coordinates[ordinal];
   }
 
-  return {
-    get(ordinal) {
-      return coordinates[ordinal];
-    },
-    displaceOne(direction) {
-      coordinates = coordinates.map(coordinate => coordinate.getShifted(direction));
-      return this;
-    }
+  displaceOne(direction) {
+    this.#coordinates = this.#coordinates.map(coordinate => coordinate.getShifted(direction));
+    return this;
   }
 }
-initLine.LENGTH = 4;
 
-let initTurn = function() {
-  let currentTurn = 0;
-  const COLORS = ["R", "Y"];
+class Board {
 
-  return {
-    getCurrentColor() {
-      return COLORS[currentTurn];
-    },
-    changeTurn() {
-      currentTurn = (currentTurn + 1) %  initTurn.NUMBER_PLAYERS;
-    }
+  currentCoordinate;
+
+  constructor() {
+    this.cells = Array.from(Array(Coordinate.NUMBER_ROWS), () => Array(Coordinate.NUMBER_COLUMNS));
+    this.EMPTY_CELL = undefined;
   }
-}
-initTurn.NUMBER_PLAYERS = 2;
 
-let initBoard = function() {
-  let cells = Array.from(Array(initCoordinate.NUMBER_ROWS), () => Array(initCoordinate.NUMBER_COLUMNS));
-  const EMPTY_CELL = undefined;
-  let currentCoordinate;
-  
-  function calculateRow(column) {
-    for (let row = 0; row < cells.length; row++) {
-      if (cells[row][column] === EMPTY_CELL) {
+  #calculateRow(column) {
+    for (let row = 0; row < this.cells.length; row++) {
+      if (this.cells[row][column] === this.EMPTY_CELL) {
         return row;
       }
     }
   }
 
-  function isConnect4(line) {
-    const COLOR = getColor(line.get(0));
-    for (let i = 1; i < initLine.LENGTH; i++) {
-      if (getColor(line.get(i)) !== COLOR) {
+  #isConnect4(line) {
+    const COLOR = this.getColor(line.get(0));
+    for (let i = 1; i < Line.LENGTH; i++) {
+      if (this.getColor(line.get(i)) !== COLOR) {
         return false;
       }
     }
     return true;
   }
-  
-  function getColor(coordinate) {
-    if (initCoordinate.isRowValid(coordinate.getRow())) {
-      return cells[coordinate.getRow()][coordinate.getColumn()];;
+
+  getColor(coordinate) {
+    if (Coordinate.isRowValid(coordinate.getRow())) {
+      return this.cells[coordinate.getRow()][coordinate.getColumn()];
     }
   }
 
-  return {
-    getColor,
-    addColor(column, color) {
-      const row = calculateRow(column);
-      cells[row][column] = color;
-      currentCoordinate = initCoordinate(row, column);
-    },
-    isComplete(column) {
-      if (column !== undefined) {
-        return cells[initCoordinate.NUMBER_ROWS - 1][column] !== EMPTY_CELL;
+  dropToken(column, color) {
+    const row = this.#calculateRow(column);
+    this.cells[row][column] = color;
+    this.currentCoordinate = new Coordinate(row, column);
+  }
+
+  isComplete(column) {
+    if (column !== undefined) {
+      return this.cells[Coordinate.NUMBER_ROWS - 1][column] !== this.EMPTY_CELL;
+    }
+    for (let i = 0; i < Coordinate.NUMBER_COLUMNS; i++) {
+      if (!this.isComplete(i)) {
+        return false;
       }
-      for (let i = 0; i < initCoordinate.NUMBER_COLUMNS; i++) {
-          if (!this.isComplete(i)) {
-              return false;
-          }
+    }
+    return true;
+  }
+
+  isWinner() {
+    const DIRECTIONS = Direction.values();
+    let isWinner = false;
+    for (let i = 0; !isWinner && i < DIRECTIONS.length; i++) {
+      let line = new Line(this.currentCoordinate, DIRECTIONS[i]);
+      isWinner = this.#isConnect4(line);
+      for (let j = 0; !isWinner && j < Line.LENGTH - 1; j++) {
+        line = line.displaceOne(DIRECTIONS[i].getOppocite());
+        isWinner = this.#isConnect4(line);
       }
-      return true;
-    },
-    isWinner() {
-      const DIRECTIONS = initDirection.VALUES;
-      let isWinner = false;
-      for (let i = 0; !isWinner && i < DIRECTIONS.length; i++) {
-        let line = initLine(currentCoordinate, DIRECTIONS[i]);
-        isWinner = isConnect4(line);
-          for (let j = 0; !isWinner && j < initLine.LENGTH - 1; j++) {
-            line = line.displaceOne(DIRECTIONS[i].getOppocite());
-            isWinner = isConnect4(line);
-          } 
-            
+    }
+    return isWinner;
+  }
+}
+
+class Color {
+
+  static RED = new Color(`RED`);
+  static YELLOW = new Color(`YELLOW`);
+  #string;
+
+  constructor(string) {
+    this.#string = string;
+  }
+
+  static get(ordinal) {
+    return Color.#values()[ordinal];
+  }
+
+  static #values() {
+    return [Color.RED, Color.YELLOW];
+  }
+
+  toString() {
+    return this.#string;
+  }
+}
+
+class Player {
+
+  #color;
+  #board;
+
+  constructor(color, board) {
+    this.#color = color;
+    this.#board = board
+  }
+
+  getColor() {
+    return this.#color.toString();
+  }
+
+  isComplete(column) {
+      return this.#board.isComplete(column);
+  }
+
+  dropToken(column) {
+    this.#board.dropToken(column, this.#color.toString().charAt());
+  }
+}
+
+class Turn {
+
+  static NUMBER_PLAYERS = 2;
+  #currentTurn;
+  #players = [];
+
+  constructor(board) {
+    this.#currentTurn = 0;
+    for (let i = 0; i < Turn.NUMBER_PLAYERS; i++) {
+      this.#players[i] = new Player(Color.get(i), board);
+    }
+  }
+
+  getCurrentPlayer() {
+    return this.#players[this.#currentTurn];
+  }
+
+  changeTurn() {
+    this.#currentTurn = (this.#currentTurn + 1) % Turn.NUMBER_PLAYERS;
+  }
+
+  getCurrentTurn() {
+    return this.#currentTurn;
+  }
+}
+
+class Game {
+
+  constructor() {
+    this.board = new Board();
+    this.turn = new Turn(this.board);
+  }
+
+  getBoard() {
+    return this.board;
+  }
+
+  getTurn() {
+    return this.turn;
+  }
+
+  getCurrentPlayer() {
+    return this.turn.getCurrentPlayer();
+  }
+
+  changeTurn() {
+    this.turn.changeTurn();
+  }
+
+  isWinner() {
+    return this.board.isWinner();
+  }
+
+  isFinished() {
+    return this.board.isWinner() || this.board.isComplete();
+  }
+}
+
+class BoardView {
+
+  constructor(board) {
+    this.board = board;
+  }
+
+  show() {
+    console.writeln(`* 1 2 3 4 5 6 7`);
+    for (let row = Coordinate.NUMBER_ROWS - 1; row >= 0; row--) {
+      console.write(`${row + 1} `);
+      for (let column = 0; column < Coordinate.NUMBER_COLUMNS; column++) {
+        console.write(`${this.board.getColor(new Coordinate(row, column)) || "_"},`);
       }
-      return isWinner;
+      console.writeln();
     }
   }
 }
 
-let initGame = function() {
-  let turn = initTurn();
-  let board = initBoard();
+class PlayerView {
 
-  return {
-    getBoard() {
-      return board;
-    },
-    getCurrentColor() {
-      return turn.getCurrentColor();
-    },
-    changeTurn() {
-      turn.changeTurn();
-    },
-    addColor(column) {
-      board.addColor(column, turn.getCurrentColor());
-    },
-    isComplete(column) {
-      return board.isComplete(column);
-    },
-    isWinner() {
-      return board.isWinner();
-    },
-    isFinished() {
-      return board.isWinner() || board.isComplete();
-    }
+  constructor(player) {
+    this.player = player;
   }
-}
 
-let initPlayerView = function(game) {
-  return {
-    putColor() {
-      let column;
-      let valid;
-      do {
-        console.writeln(`--------------------------`);
-        column = console.readNumber(`Player ${game.getCurrentColor()} Select column between (1 - 7)`) - 1;
-        valid = initCoordinate.isColumnValid(column);
+  putToken() {
+    let column;
+    let valid;
+    do {
+      console.writeln(`--------------------------`);
+      column = console.readNumber(`Player ${this.player.getColor()} Select column between (1 - 7)`) - 1;
+      valid = Coordinate.isColumnValid(column);
+      if (!valid) {
+        console.writeln(`Remember columns between 1 and 7`);
+      } else {
+        valid = !this.player.isComplete(column)
         if (!valid) {
-          console.writeln(`Remember columns between 1 and 7`);
-        } else {
-          valid = !game.isComplete(column)
-          if (!valid) {
-            console.writeln(`This column is full`);
-          }
+          console.writeln(`This column is full`);
         }
-      } while (!valid);
-      game.addColor(column);
-    }
-  }
-}
-
-let initBoardView = function(board) {
-  return {
-    show() {
-      console.writeln(`* 1 2 3 4 5 6 7`);
-      for (let row = initCoordinate.NUMBER_ROWS - 1; row >= 0; row--) {
-        console.write(`${row + 1} `);
-        for (let column = 0; column < initCoordinate.NUMBER_COLUMNS; column++) {
-          console.write(`${board.getColor(initCoordinate(row, column)) || "_"},`);
-        }
-        console.writeln();
       }
-    }
+    } while (!valid);
+    this.player.dropToken(column);
   }
 }
 
-let initGameView = function(game) {
-  let playerView = initPlayerView(game);
-  let boardView = initBoardView(game.getBoard());
+class CPUView {
 
-  function showResult() {
-    console.writeln(game.isWinner() ? `The winner is the player ${game.getCurrentColor()}` : `Tied Game`);
+  constructor(player) {
+    this.player = player;
   }
 
-  return {
-    play() {
-      console.writeln(`----- CONNECT4 -----`);
-      boardView.show();
-      let gameFinished;
-      do {
-        playerView.putColor();
-        boardView.show();
-        gameFinished = game.isFinished();
-        if (!gameFinished) {
-          game.changeTurn();
-        }
-      } while (!gameFinished);
-        showResult();
-    }
+  putToken() {
+    let column;
+    do {
+      console.writeln(`--------------------------`);
+      column = parseInt(Math.random() * 7);
+    } while (!Coordinate.isColumnValid(column) || this.player.isComplete(column));
+    this.player.dropToken(column);
   }
 }
 
-let initYesNoDialogView = function(question) {
-  let answer = ``;
-  return {
-    read() {
-      let error;
-      do {
-        answer = console.readString(question);
-        error = !this.isAffirmative() && !this.isNegative();
-        if (error) {
-          console.writeln(`Please answer "yes" or "no"`);
-        }
-      } while (error);
-    },
-    isAffirmative() {
-      return answer === `yes`;
-    },
-    isNegative() {
-      return answer === `no`;
-    }
-  };
-}
+class TurnView {
 
-let initConnect4View = function() {
-  return {
-    play() {
-      const continueDialogView = initYesNoDialogView(`Do you want to continue? (yes/no)`);
-      do {
-        let game = initGame();
-        initGameView(game).play();
-        continueDialogView.read();
-      } while (continueDialogView.isAffirmative());
+  #turn;
+  #playersView;
+
+  constructor(turn) {
+    this.#turn = turn;
+    this.#playersView = [];
+  }
+
+  config() {
+    let response;
+    let error = false;
+    do {
+      response = console.readNumber(`Tell me the game mode:
+                  (0) Demo-Game, (1) Player Vs CPU, (2) Player Vs Player`);
+      error = !this.#isModeGameValid(response)
+      if (error) {
+        console.writeln(`This game mode ${response} doesn´t exist`);
+      }
+    } while (error);
+    for (let i = 0; i < Turn.NUMBER_PLAYERS; i++) {
+      this.#playersView[i] = (i < response) ? PlayerView : CPUView;
     }
+  }
+
+  play() {
+    let playerView = this.#playersView[this.#turn.getCurrentTurn()];
+    new playerView(this.#turn.getCurrentPlayer()).putToken();
+  }
+
+  #isModeGameValid(option) {
+    return 0 <= option && option <= 2;
   }
 }
 
-initConnect4View().play();
+class GameView {
 
-exports.initGame = initGame;
+  constructor() {
+    this.game = new Game();;
+    this.turnView = new TurnView(this.game.getTurn());
+    this.boardView = new BoardView(this.game.getBoard());
+  }
+
+  play() {
+    console.writeln(`----- CONNECT4 -----`);
+    this.turnView.config();
+    let gameFinished;
+    do {
+      this.boardView.show();
+      this.turnView.play();
+      gameFinished = this.game.isFinished();
+      if (!gameFinished) {
+        this.game.changeTurn();
+      }
+    } while (!gameFinished);
+    this.#showResult();
+  }
+
+  #showResult() {
+    this.boardView.show();
+    console.writeln(this.game.isWinner() ? `The winner is the player ${this.game.getCurrentPlayer().getColor()}` : `Tied Game`);
+  }
+}
+
+class YesNoDialogView {
+
+  question;
+  answer;
+
+  constructor(question) {
+    this.question = question;
+  }
+
+  read() {
+    let error;
+    do {
+      this.answer = console.readString(this.question);
+      error = !this.isAffirmative() && !this.isNegative();
+      if (error) {
+        console.writeln(`Please answer "yes" or "no"`);
+      }
+    } while (error);
+  }
+
+  isAffirmative() {
+    return this.answer === `yes`;
+  }
+
+  isNegative() {
+    return this.answer === `no`;
+  }
+}
+
+class Connect4 {
+
+  play() {
+    const continueDialogView = new YesNoDialogView(`Do you want to continue? (yes/no)`);
+    do {
+      new GameView().play();
+      continueDialogView.read();
+    } while (continueDialogView.isAffirmative());
+  }
+}
+
+new Connect4().play();
+
+module.exports.Game = Game;
+module.exports.Coordinate = Coordinate;
