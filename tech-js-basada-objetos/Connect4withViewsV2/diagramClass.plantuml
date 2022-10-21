@@ -1,0 +1,124 @@
+@startuml
+Connect4View ..> YesNoDialogView
+Connect4View ..> GameView
+Connect4View : + play()
+
+YesNoDialogView : - question
+YesNoDialogView : - answer
+YesNoDialogView : + read()
+YesNoDialogView : + isAffirmative()
+YesNoDialogView : + isNegative()
+
+GameView : - showResult()
+GameView : + play()
+GameView *--> Game
+GameView *--> TurnView
+GameView *--> BoardView
+
+TurnView : - playersView
+TurnView *--> Turn
+TurnView ..> PlayerView
+TurnView : + config()
+TurnView : + play()
+
+PlayerView *--> Player
+PlayerView : + writeTitle()
+PlayerView <|-- RandomView
+PlayerView <|-- HumanView
+
+RandomView : dropToken()
+
+HumanView : dropToken()
+
+BoardView : + show()
+BoardView *--> Board
+BoardView ..> Coordinate
+
+Game *--> Board
+Game *--> Turn
+Game : + getBoard()
+Game : + getTurn()
+Game : + getCurrentPlayer()
+Game : + changeTurn()
+Game : + isWinner()
+Game : + isFinished()
+
+Turn : + MAX_PLAYERS
+Turn : + NUMBER_PLAYER
+Turn : - currentTurn
+Turn : - players
+Turn : - board
+Turn : + setPlayers(players)
+Turn : + getCurrentPlayer()
+Turn : + changeTurn()
+Turn : + getCurrentTurn()
+Turn : + {static} isNumberPlayerValid(number)
+Turn ..> Player
+Turn ..>  ClosedInterval
+
+Player *--> Color
+Player *--> Board
+Player : + getColor()
+Player : + isComplete(column)
+Player : + dropToken(column)
+Player <|-- Human
+Player <|-- Random
+
+Human : + dropToken(column)
+
+Random : + dropToken()
+
+Color : + {static} RED
+Color : + {static} YELLOW
+Color : - string
+Color : + {static} get(ordinal)
+Color : - {static} values()
+Color : + toString()
+
+Board : - EMPTY_CELL
+Board : - cells
+Board : - currentCoordinate
+Board ..> Line
+Board ..> Direction
+Board ..> Coordinate
+Board : - calculateRow(column)
+Board : - isConnect4(line)
+Board : + getColor(coordinate)
+Board : + dropToken(column, color)
+Board : + isComplete(column)
+Board : + isWinner()
+
+Line : + {static} LENGTH
+Line *--> Coordinate
+Line ..> Direction
+Line : - coordenates
+Line : + getCoordinate(ordinal)
+Line : + shiftOne(direction)
+
+Direction : + {static} SOUTH
+Direction : + {static} WEST
+Direction : + {static} SOUTH_WEST
+Direction : + {static} NORTH_WEST
+Direction *--> Coordinate
+Direction : + getCoordinate() 
+Direction : + getOppocite()
+Direction : + {static} values()
+
+Coordinate : + {static} MAX_ROWS
+Coordinate : + {static} NUMBER_ROWS
+Coordinate : + {static} MAX_COLUMNS
+Coordinate : + {static} NUMBER_COLUMNS
+Coordinate : - row
+Coordinate : - column
+Coordinate : + getRow()
+Coordinate : + getColumn()
+Coordinate : + getShifted(coordinate)
+Coordinate : + {static} isRowValid(row)
+Coordinate : + {static} isColumnValid(column)
+Coordinate ..>  ClosedInterval
+
+ClosedInterval : - min
+ClosedInterval : - max
+ClosedInterval : + isIncluded()
+
+@enduml
