@@ -38,7 +38,7 @@ export class GameView {
             if (gameFinished) {
                 this.#writeResult();
             }
-        } while(!gameFinished && turnResponse === 'automaticOperation');
+        } while(!gameFinished && turnResponse !== 'manualOperation');
     }
 
     dropToken(column) {

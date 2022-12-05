@@ -23,7 +23,6 @@ export class TurnView {
         this.#removeTurn()
         this.#turn.next();
         this.#updateTurn();
-        return 'automaticOperation';
     }
 
     visitHuman(human) {
