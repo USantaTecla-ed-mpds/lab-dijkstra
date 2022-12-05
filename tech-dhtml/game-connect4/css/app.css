@@ -302,6 +302,10 @@ button {
   cursor: pointer;
 }
 
+.button:hover{
+  background-color: var(--gray-5);
+}
+
 .board__wrapper {
   position: absolute;
   display: flex;
