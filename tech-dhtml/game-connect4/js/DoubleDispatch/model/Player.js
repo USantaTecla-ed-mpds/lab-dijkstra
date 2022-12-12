@@ -1,7 +1,7 @@
-import { Color } from './Color.js'
-import { Coordinate } from "./Coordinate.js";
+import { assert } from '../utils/assert.js';
+import { Coordinate } from './Coordinate.js';
 
-class Player {
+export class Player {
 
   #color;
   #board;
@@ -16,48 +16,12 @@ class Player {
   }
 
   isComplete(column) {
+      assert(Coordinate.NUMBER_COLUMNS.isIncluded(column));
       return this.#board.isComplete(column);
   }
 
   dropToken(column) {
-    this.#board.dropToken(column, this.#color.toString().charAt());
-  }
-}
-
-export class Human extends Player {
-
-  constructor(playerNumber, board) {
-    super(Color.get(playerNumber), board);
-  }
-
-  dropToken(column) {
-    if (!Coordinate.isColumnValid(column)) 
-      return `Remember columns between 1 and ${Coordinate.MAX_COLUMNS}`;
-    if (this.isComplete(column)) 
-      return `This column is full`;
-    super.dropToken(column);
-  }
-
-  accept(turnView) {
-    return turnView.visitHuman(this)
-  }
-}
-
-export class Random extends Player {
-
-  constructor(playerNumber, board) {
-    super(Color.get(playerNumber), board);
-  }
-
-  dropToken() {
-    let column;
-    do {
-      column = parseInt(Math.random() * Coordinate.MAX_COLUMNS);
-    } while (this.isComplete(column));
-    super.dropToken(column);
-  }
-
-  accept(turnView) {
-    return turnView.visitRandom(this)
+    assert(Coordinate.NUMBER_COLUMNS.isIncluded(column));
+    this.#board.dropToken(column, this.#color.toString());
   }
 }

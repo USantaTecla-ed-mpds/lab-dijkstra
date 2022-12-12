@@ -1,15 +1,27 @@
+import { assert } from '../utils/assert.js';
+import { Color } from './Color.js';
 import { Coordinate } from './Coordinate.js'
 import { Direction } from './Direction.js'
 
 export class Board {
 
   static LINE_LENGTH = 4;
-  #EMPTY_CELL = undefined;
-  #cells;
+  #EMPTY_CELL = null;
+  #colors;
   #currentCoordinate;
 
   constructor() {
-    this.#cells = Array.from(Array(Coordinate.MAX_ROWS), () => Array(Coordinate.MAX_COLUMNS));
+    this.#colors = Array.from(Array(Coordinate.MAX_ROWS), () => 
+      Array.from(Array(Coordinate.MAX_COLUMNS), () => 
+        this.#EMPTY_CELL
+      ));
+  }
+
+  reset(colors) {
+    assert(Coordinate.NUMBER_ROWS.isIncluded(colors.length - 1));
+    assert(Coordinate.NUMBER_COLUMNS.isIncluded(colors[0].length - 1));
+    this.#colors = colors;
+    this.#currentCoordinate = null;
   }
 
   getCurrentCoordinate() {
@@ -17,20 +29,26 @@ export class Board {
   }
 
   getColor(coordinate) {
-    if (Coordinate.isRowValid(coordinate.row)) {
-      return this.#cells[coordinate.row][coordinate.column];
-    }
+    assert(coordinate.isValid());
+    return this.#colors[coordinate.row][coordinate.column];
+  }
+
+  getColors() {
+    return this.#colors;
   }
 
   dropToken(column, color) {
+    assert(Coordinate.NUMBER_COLUMNS.isIncluded(column));
+    assert(Color.isColorValid(color));
     const row = this.#calculateRow(column);
-    this.#cells[row][column] = color;
+    this.#colors[row][column] = color;
     this.#currentCoordinate = new Coordinate(row, column);
   }
 
   isComplete(column) {
     if (column !== undefined) {
-      return this.#cells[Coordinate.MAX_ROWS - 1][column] !== this.#EMPTY_CELL;
+      assert(Coordinate.NUMBER_COLUMNS.isIncluded(column));
+      return this.#colors[Coordinate.MAX_ROWS - 1][column] !== this.#EMPTY_CELL;
     }
     for (let i = 0; i < Coordinate.MAX_COLUMNS; i++) {
       if (!this.isComplete(i)) {
@@ -61,14 +79,16 @@ export class Board {
 }
 
   #calculateRow(column) {
-    for (let row = 0; row < this.#cells.length; row++) {
-      if (this.#cells[row][column] === this.#EMPTY_CELL) {
+    assert(Coordinate.NUMBER_COLUMNS.isIncluded(column));
+    for (let row = 0; row < this.#colors.length; row++) {
+      if (this.#colors[row][column] === this.#EMPTY_CELL) {
         return row;
       }
     }
   }
 
   #getLine(initialCoordinate, direction) {
+    assert(initialCoordinate.isValid());
     let coordinates = [initialCoordinate];
     for (let i = 0; i < Board.LINE_LENGTH - 1; i++) {
       coordinates.push(coordinates[i].getShifted(direction.getCoordinate()));
@@ -77,9 +97,12 @@ export class Board {
   }
 
   #isConnect4(line) {
-    const COLOR = this.getColor(line[0]);
-    for (let i = 1; i < Board.LINE_LENGTH; i++) {
-      if (this.getColor(line[i]) !== COLOR) {
+    assert(line.length === Board.LINE_LENGTH)
+    for (let i = 0; i < Board.LINE_LENGTH; i++) {
+      if (!line[i].isValid()) {
+        return false;
+      }
+      if (i > 0 && this.getColor(line[i - 1]) !== this.getColor(line[i])) {
         return false;
       }
     }

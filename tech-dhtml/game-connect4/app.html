@@ -21,7 +21,7 @@
         <nav class="nav col-3">
             <ul class="nav__list">
                 <li class="nav__item">
-                    <button id="new-game" class="button" onclick="newGame()">
+                    <button id="new-game" class="button">
                         <svg class="button__icon button__icon--mr" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4C7.57999 4 4.00999 7.58 4.00999 12C4.00999 16.42 7.57999 20 12 20C15.73 20 18.84 17.45 19.73 14H17.65C16.83 16.33 14.61 18 12 18C8.68999 18 5.99999 15.31 5.99999 12C5.99999 8.69 8.68999 6 12 6C13.66 6 15.14 6.69 16.22 7.78L13 11H20V4L17.65 6.35Z" fill="#57C3FF"/>
                         </svg>
@@ -29,16 +29,23 @@
                     </button>
                 </li>
                 <li class="nav__item">
-                    <button id="options-game" class="button">
+                    <button id="save-game" class="button">
                         <svg class="button__icon button__icon--mr" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path opacity="0.3" d="M18.5978 8.6L17.9367 7.39L16.7372 7.9L15.7361 8.33L14.8767 7.63C14.5083 7.33 14.1211 7.09 13.715 6.92L12.7139 6.49L12.5628 5.36L12.3833 4H11.0611L10.8817 5.35L10.7306 6.48L9.72944 6.92C9.34222 7.09 8.955 7.33 8.54889 7.65L7.69889 8.33L6.70722 7.91L5.50778 7.39L4.84666 8.6L5.86666 9.44L6.70722 10.14L6.575 11.27C6.54666 11.57 6.52778 11.8 6.52778 12C6.52778 12.2 6.54666 12.43 6.575 12.73L6.70722 13.86L5.86666 14.56L4.84666 15.4L5.50778 16.61L6.70722 16.1L7.70833 15.67L8.56778 16.37C8.93611 16.67 9.32333 16.91 9.72944 17.08L10.7306 17.51L10.8817 18.64L11.0611 20H12.3739L12.5533 18.65L12.7044 17.52L13.7056 17.09C14.0928 16.92 14.48 16.68 14.8861 16.36L15.7361 15.68L16.7183 16.1L17.9178 16.61L18.5789 15.4L17.5589 14.56L16.7183 13.86L16.8506 12.73C16.8883 12.42 16.8978 12.21 16.8978 12C16.8978 11.79 16.8789 11.57 16.8506 11.27L16.7183 10.14L17.5589 9.44L18.5978 8.6V8.6ZM11.7222 16C9.635 16 7.94444 14.21 7.94444 12C7.94444 9.79 9.635 8 11.7222 8C13.8094 8 15.5 9.79 15.5 12C15.5 14.21 13.8094 16 11.7222 16Z" fill="#2D363C"/>
-                            <path d="M18.7394 12.98C18.7772 12.66 18.8055 12.34 18.8055 12C18.8055 11.66 18.7772 11.34 18.7394 11.02L20.7322 9.37C20.9117 9.22 20.9589 8.95 20.8455 8.73L18.9567 5.27C18.8717 5.11 18.7111 5.02 18.5411 5.02C18.4844 5.02 18.4278 5.03 18.3805 5.05L16.0289 6.05C15.5378 5.65 15.0089 5.32 14.4328 5.07L14.0739 2.42C14.0455 2.18 13.8472 2 13.6111 2H9.83333C9.59721 2 9.39888 2.18 9.37055 2.42L9.01166 5.07C8.43555 5.32 7.90666 5.66 7.41555 6.05L5.06388 5.05C5.00721 5.03 4.95055 5.02 4.89388 5.02C4.73333 5.02 4.57277 5.11 4.48777 5.27L2.59888 8.73C2.4761 8.95 2.53277 9.22 2.71221 9.37L4.70499 11.02C4.66721 11.34 4.63888 11.67 4.63888 12C4.63888 12.33 4.66721 12.66 4.70499 12.98L2.71221 14.63C2.53277 14.78 2.48555 15.05 2.59888 15.27L4.48777 18.73C4.57277 18.89 4.73333 18.98 4.90333 18.98C4.95999 18.98 5.01666 18.97 5.06388 18.95L7.41555 17.95C7.90666 18.35 8.43555 18.68 9.01166 18.93L9.37055 21.58C9.39888 21.82 9.59721 22 9.83333 22H13.6111C13.8472 22 14.0455 21.82 14.0739 21.58L14.4328 18.93C15.0089 18.68 15.5378 18.34 16.0289 17.95L18.3805 18.95C18.4372 18.97 18.4939 18.98 18.5505 18.98C18.7111 18.98 18.8717 18.89 18.9567 18.73L20.8455 15.27C20.9589 15.05 20.9117 14.78 20.7322 14.63L18.7394 12.98V12.98ZM16.8694 11.27C16.9072 11.58 16.9167 11.79 16.9167 12C16.9167 12.21 16.8978 12.43 16.8694 12.73L16.7372 13.86L17.5778 14.56L18.5978 15.4L17.9367 16.61L16.7372 16.1L15.755 15.68L14.905 16.36C14.4989 16.68 14.1117 16.92 13.7244 17.09L12.7233 17.52L12.5722 18.65L12.3833 20H11.0611L10.8817 18.65L10.7305 17.52L9.72944 17.09C9.32333 16.91 8.94555 16.68 8.56777 16.38L7.70833 15.68L6.70721 16.11L5.50777 16.62L4.84666 15.41L5.86666 14.57L6.70721 13.87L6.57499 12.74C6.54666 12.43 6.52777 12.2 6.52777 12C6.52777 11.8 6.54666 11.57 6.57499 11.27L6.70721 10.14L5.86666 9.44L4.84666 8.6L5.50777 7.39L6.70721 7.9L7.68944 8.32L8.53944 7.64C8.94555 7.32 9.33277 7.08 9.71999 6.91L10.7211 6.48L10.8722 5.35L11.0611 4H12.3739L12.5533 5.35L12.7044 6.48L13.7055 6.91C14.1117 7.09 14.4894 7.32 14.8672 7.62L15.7267 8.32L16.7278 7.89L17.9272 7.38L18.5883 8.59L17.5778 9.44L16.7372 10.14L16.8694 11.27ZM11.7222 8C9.63499 8 7.94444 9.79 7.94444 12C7.94444 14.21 9.63499 16 11.7222 16C13.8094 16 15.5 14.21 15.5 12C15.5 9.79 13.8094 8 11.7222 8ZM11.7222 14C10.6833 14 9.83333 13.1 9.83333 12C9.83333 10.9 10.6833 10 11.7222 10C12.7611 10 13.6111 10.9 13.6111 12C13.6111 13.1 12.7611 14 11.7222 14Z" fill="#57C3FF"/>
+                            <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="#57C3FF"/>
                         </svg>
-                        <span class="button__txt">Options</span>
+                        <span class="button__txt">Save Game</span>
                     </button>
                 </li>
                 <li class="nav__item">
-                    <button id="exit-game" class="button" onclick="window.close();">
+                    <button id="recover-game" class="button">
+                        <svg class="button__icon button__icon--mr" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="#57C3FF"/>
+                        </svg>
+                        <span class="button__txt">Recover Game</span>
+                    </button>
+                </li>
+                <li class="nav__item">
+                    <button id="exit-game" class="button">
                         <svg class="button__icon button__icon--mr" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="#57C3FF"/>
                         </svg>
@@ -50,187 +57,173 @@
     
         <main class="board__wrapper">
             <div class="board">
-                <div id="column-0" class="board__column" onclick="dropToken(0)">
-                    <div id="cell-05" class="board__cell">
-                        <input id="checker-05" type="checkbox" class="board__input" name="checker-05" disabled>
-                        <label for="checker-05" class="board__checker"></label>
-                    </div>
-                    <div id="cell-04" class="board__cell">
-                        <input id="checker-04" type="checkbox" class="board__input" name="checker-04" disabled>
-                        <label for="checker-04" class="board__checker"></label>
-                    </div>
-                    <div id="cell-03" class="board__cell">
-                        <input id="checker-03" type="checkbox" class="board__input" name="checker-03" disabled>
-                        <label for="checker-03" class="board__checker"></label>
-                    </div>
-                    <div id="cell-02" class="board__cell">
-                        <input id="checker-02" type="checkbox" class="board__input" name="checker-02" disabled>
-                        <label for="checker-02" class="board__checker"></label>
-                    </div>
-                    <div id="cell-01" class="board__cell">
-                        <input id="checker-01" type="checkbox" class="board__input" name="checker-01" disabled>
-                        <label for="checker-01" class="board__checker"></label>
-                    </div>
-                    <div id="cell-00" class="board__cell">
-                        <input id="checker-00" type="checkbox" class="board__input" name="checker-00" disabled>
-                        <label for="checker-00" class="board__checker"></label>
-                    </div>
+                <div id="cell-50" class="board__header board__cell">
+                    <input id="checker-50" type="checkbox" class="board__input" name="checker-50" disabled>
+                    <label for="checker-50" class="board__checker"></label>
                 </div>
-                <div id="column-1" class="board__column" onclick="dropToken(1)">
-                    <div id="cell-15" class="board__cell">
-                        <input id="checker-15" type="checkbox" class="board__input" name="checker-15" disabled>
-                        <label for="checker-15" class="board__checker"></label>
-                    </div>
-                    <div id="cell-14" class="board__cell">
-                        <input id="checker-14" type="checkbox" class="board__input" name="checker-14" disabled>
-                        <label for="checker-14" class="board__checker"></label>
-                    </div>
-                    <div id="cell-13" class="board__cell">
-                        <input id="checker-13" type="checkbox" class="board__input" name="checker-13" disabled>
-                        <label for="checker-13" class="board__checker"></label>
-                    </div>
-                    <div id="cell-12" class="board__cell">
-                        <input id="checker-12" type="checkbox" class="board__input" name="checker-12" disabled>
-                        <label for="checker-12" class="board__checker"></label>
-                    </div>
-                    <div id="cell-11" class="board__cell">
-                        <input id="checker-11" type="checkbox" class="board__input" name="checker-11" disabled>
-                        <label for="checker-11" class="board__checker"></label>
-                    </div>
-                    <div id="cell-10" class="board__cell">
-                        <input id="checker-10" type="checkbox" class="board__input" name="checker-10" disabled>
-                        <label for="checker-10" class="board__checker"></label>
-                    </div>
+                <div id="cell-51" class="board__header board__cell">
+                    <input id="checker-51" type="checkbox" class="board__input" name="checker-51" disabled>
+                    <label for="checker-51" class="board__checker"></label>
                 </div>
-                <div id="column-2" class="board__column" onclick="dropToken(2)">
-                    <div id="cell-25" class="board__cell">
-                        <input id="checker-25" type="checkbox" class="board__input" name="checker-25" disabled>
-                        <label for="checker-25" class="board__checker"></label>
-                    </div>
-                    <div id="cell-24" class="board__cell">
-                        <input id="checker-24" type="checkbox" class="board__input" name="checker-24" disabled>
-                        <label for="checker-24" class="board__checker"></label>
-                    </div>
-                    <div id="cell-23" class="board__cell">
-                        <input id="checker-23" type="checkbox" class="board__input" name="checker-23" disabled>
-                        <label for="checker-23" class="board__checker"></label>
-                    </div>
-                    <div id="cell-22" class="board__cell">
-                        <input id="checker-22" type="checkbox" class="board__input" name="checker-22" disabled>
-                        <label for="checker-22" class="board__checker"></label>
-                    </div>
-                    <div id="cell-21" class="board__cell">
-                        <input id="checker-21" type="checkbox" class="board__input" name="checker-21" disabled>
-                        <label for="checker-21" class="board__checker"></label>
-                    </div>
-                    <div id="cell-20" class="board__cell">
-                        <input id="checker-20" type="checkbox" class="board__input" name="checker-20" disabled>
-                        <label for="checker-20" class="board__checker"></label>
-                    </div>
+                <div id="cell-52" class="board__header board__cell">
+                    <input id="checker-52" type="checkbox" class="board__input" name="checker-52" disabled>
+                    <label for="checker-52" class="board__checker"></label>
                 </div>
-                <div id="column-3" class="board__column" onclick="dropToken(3)">
-                    <div id="cell-35" class="board__cell">
-                        <input id="checker-35" type="checkbox" class="board__input" name="checker-35" disabled>
-                        <label for="checker-35" class="board__checker"></label>
-                    </div>
-                    <div id="cell-34" class="board__cell">
-                        <input id="checker-34" type="checkbox" class="board__input" name="checker-34" disabled>
-                        <label for="checker-34" class="board__checker"></label>
-                    </div>
-                    <div id="cell-33" class="board__cell">
-                        <input id="checker-33" type="checkbox" class="board__input" name="checker-33" disabled>
-                        <label for="checker-33" class="board__checker"></label>
-                    </div>
-                    <div id="cell-32" class="board__cell">
-                        <input id="checker-32" type="checkbox" class="board__input" name="checker-32" disabled>
-                        <label for="checker-32" class="board__checker"></label>
-                    </div>
-                    <div id="cell-31" class="board__cell">
-                        <input id="checker-31" type="checkbox" class="board__input" name="checker-31" disabled>
-                        <label for="checker-31" class="board__checker"></label>
-                    </div>
-                    <div id="cell-30" class="board__cell">
-                        <input id="checker-30" type="checkbox" class="board__input" name="checker-30" disabled>
-                        <label for="checker-30" class="board__checker"></label>
-                    </div>
+                <div id="cell-53" class="board__header board__cell">
+                    <input id="checker-53" type="checkbox" class="board__input" name="checker-53" disabled>
+                    <label for="checker-53" class="board__checker"></label>
                 </div>
-                <div id="column-4" class="board__column" onclick="dropToken(4)">
-                    <div id="cell-45" class="board__cell">
-                        <input id="checker-45" type="checkbox" class="board__input" name="checker-45" disabled>
-                        <label for="checker-45" class="board__checker"></label>
-                    </div>
-                    <div id="cell-44" class="board__cell">
-                        <input id="checker-44" type="checkbox" class="board__input" name="checker-44" disabled>
-                        <label for="checker-44" class="board__checker"></label>
-                    </div>
-                    <div id="cell-43" class="board__cell">
-                        <input id="checker-43" type="checkbox" class="board__input" name="checker-43" disabled>
-                        <label for="checker-43" class="board__checker"></label>
-                    </div>
-                    <div id="cell-42" class="board__cell">
-                        <input id="checker-42" type="checkbox" class="board__input" name="checker-42" disabled>
-                        <label for="checker-42" class="board__checker"></label>
-                    </div>
-                    <div id="cell-41" class="board__cell">
-                        <input id="checker-41" type="checkbox" class="board__input" name="checker-41" disabled>
-                        <label for="checker-41" class="board__checker"></label>
-                    </div>
-                    <div id="cell-40" class="board__cell">
-                        <input id="checker-40" type="checkbox" class="board__input" name="checker-40" disabled>
-                        <label for="checker-40" class="board__checker"></label>
-                    </div>
+                <div id="cell-54" class="board__header board__cell">
+                    <input id="checker-54" type="checkbox" class="board__input" name="checker-54" disabled>
+                    <label for="checker-54" class="board__checker"></label>
                 </div>
-                <div id="column-5" class="board__column" onclick="dropToken(5)">
-                    <div id="cell-55" class="board__cell">
-                        <input id="checker-55" type="checkbox" class="board__input" name="checker-55" disabled>
-                        <label for="checker-55" class="board__checker"></label>
-                    </div>
-                    <div id="cell-54" class="board__cell">
-                        <input id="checker-54" type="checkbox" class="board__input" name="checker-54" disabled>
-                        <label for="checker-54" class="board__checker"></label>
-                    </div>
-                    <div id="cell-53" class="board__cell">
-                        <input id="checker-53" type="checkbox" class="board__input" name="checker-53" disabled>
-                        <label for="checker-53" class="board__checker"></label>
-                    </div>
-                    <div id="cell-52" class="board__cell">
-                        <input id="checker-52" type="checkbox" class="board__input" name="checker-52" disabled>
-                        <label for="checker-52" class="board__checker"></label>
-                    </div>
-                    <div id="cell-51" class="board__cell">
-                        <input id="checker-51" type="checkbox" class="board__input" name="checker-51" disabled>
-                        <label for="checker-51" class="board__checker"></label>
-                    </div>
-                    <div id="cell-50" class="board__cell">
-                        <input id="checker-50" type="checkbox" class="board__input" name="checker-50" disabled>
-                        <label for="checker-50" class="board__checker"></label>
-                    </div>
+                <div id="cell-55" class="board__header board__cell">
+                    <input id="checker-55" type="checkbox" class="board__input" name="checker-55" disabled>
+                    <label for="checker-55" class="board__checker"></label>
                 </div>
-                <div id="column-6" class="board__column" onclick="dropToken(6)">
-                    <div id="cell-65" class="board__cell">
-                        <input id="checker-65" type="checkbox" class="board__input" name="checker-65" disabled>
-                        <label for="checker-65" class="board__checker"></label>
-                    </div>
-                    <div id="cell-64" class="board__cell">
-                        <input id="checker-64" type="checkbox" class="board__input" name="checker-64" disabled>
-                        <label for="checker-64" class="board__checker"></label>
-                    </div>
-                    <div id="cell-63" class="board__cell">
-                        <input id="checker-63" type="checkbox" class="board__input" name="checker-63" disabled>
-                        <label for="checker-63" class="board__checker"></label>
-                    </div>
-                    <div id="cell-62" class="board__cell">
-                        <input id="checker-62" type="checkbox" class="board__input" name="checker-62" disabled>
-                        <label for="checker-62" class="board__checker"></label>
-                    </div>
-                    <div id="cell-61" class="board__cell">
-                        <input id="checker-61" type="checkbox" class="board__input" name="checker-61" disabled>
-                        <label for="checker-61" class="board__checker"></label>
-                    </div>
-                    <div id="cell-60" class="board__cell">
-                        <input id="checker-60" type="checkbox" class="board__input" name="checker-60" disabled>
-                        <label for="checker-60" class="board__checker"></label>
-                    </div>
+                <div id="cell-56" class="board__header board__cell">
+                    <input id="checker-56" type="checkbox" class="board__input" name="checker-56" disabled>
+                    <label for="checker-56" class="board__checker"></label>
+                </div>
+                <div id="cell-40" class="board__cell">
+                    <input id="checker-40" type="checkbox" class="board__input" name="checker-40" disabled>
+                    <label for="checker-40" class="board__checker"></label>
+                </div>
+                <div id="cell-41" class="board__cell">
+                    <input id="checker-41" type="checkbox" class="board__input" name="checker-41" disabled>
+                    <label for="checker-41" class="board__checker"></label>
+                </div>
+                <div id="cell-42" class="board__cell">
+                    <input id="checker-42" type="checkbox" class="board__input" name="checker-42" disabled>
+                    <label for="checker-42" class="board__checker"></label>
+                </div>
+                <div id="cell-43" class="board__cell">
+                    <input id="checker-43" type="checkbox" class="board__input" name="checker-43" disabled>
+                    <label for="checker-43" class="board__checker"></label>
+                </div>
+                <div id="cell-44" class="board__cell">
+                    <input id="checker-44" type="checkbox" class="board__input" name="checker-44" disabled>
+                    <label for="checker-44" class="board__checker"></label>
+                </div>
+                <div id="cell-45" class="board__cell">
+                    <input id="checker-45" type="checkbox" class="board__input" name="checker-45" disabled>
+                    <label for="checker-45" class="board__checker"></label>
+                </div>
+                <div id="cell-46" class="board__cell">
+                    <input id="checker-46" type="checkbox" class="board__input" name="checker-46" disabled>
+                    <label for="checker-46" class="board__checker"></label>
+                </div>
+                <div id="cell-30" class="board__cell">
+                    <input id="checker-30" type="checkbox" class="board__input" name="checker-30" disabled>
+                    <label for="checker-30" class="board__checker"></label>
+                </div>
+                <div id="cell-31" class="board__cell">
+                    <input id="checker-31" type="checkbox" class="board__input" name="checker-31" disabled>
+                    <label for="checker-31" class="board__checker"></label>
+                </div>
+                <div id="cell-32" class="board__cell">
+                    <input id="checker-32" type="checkbox" class="board__input" name="checker-32" disabled>
+                    <label for="checker-32" class="board__checker"></label>
+                </div>
+                <div id="cell-33" class="board__cell">
+                    <input id="checker-33" type="checkbox" class="board__input" name="checker-33" disabled>
+                    <label for="checker-33" class="board__checker"></label>
+                </div>
+                <div id="cell-34" class="board__cell">
+                    <input id="checker-34" type="checkbox" class="board__input" name="checker-34" disabled>
+                    <label for="checker-34" class="board__checker"></label>
+                </div>
+                <div id="cell-35" class="board__cell">
+                    <input id="checker-35" type="checkbox" class="board__input" name="checker-35" disabled>
+                    <label for="checker-35" class="board__checker"></label>
+                </div>
+                <div id="cell-36" class="board__cell">
+                    <input id="checker-36" type="checkbox" class="board__input" name="checker-36" disabled>
+                    <label for="checker-36" class="board__checker"></label>
+                </div>
+                <div id="cell-20" class="board__cell">
+                    <input id="checker-20" type="checkbox" class="board__input" name="checker-20" disabled>
+                    <label for="checker-20" class="board__checker"></label>
+                </div>
+                <div id="cell-21" class="board__cell">
+                    <input id="checker-21" type="checkbox" class="board__input" name="checker-21" disabled>
+                    <label for="checker-21" class="board__checker"></label>
+                </div>
+                <div id="cell-22" class="board__cell">
+                    <input id="checker-22" type="checkbox" class="board__input" name="checker-22" disabled>
+                    <label for="checker-22" class="board__checker"></label>
+                </div>
+                <div id="cell-23" class="board__cell">
+                    <input id="checker-23" type="checkbox" class="board__input" name="checker-23" disabled>
+                    <label for="checker-23" class="board__checker"></label>
+                </div>
+                <div id="cell-24" class="board__cell">
+                    <input id="checker-24" type="checkbox" class="board__input" name="checker-24" disabled>
+                    <label for="checker-24" class="board__checker"></label>
+                </div>
+                <div id="cell-25" class="board__cell">
+                    <input id="checker-25" type="checkbox" class="board__input" name="checker-25" disabled>
+                    <label for="checker-25" class="board__checker"></label>
+                </div>
+                <div id="cell-26" class="board__cell">
+                    <input id="checker-26" type="checkbox" class="board__input" name="checker-26" disabled>
+                    <label for="checker-26" class="board__checker"></label>
+                </div>
+                <div id="cell-10" class="board__cell">
+                    <input id="checker-10" type="checkbox" class="board__input" name="checker-10" disabled>
+                    <label for="checker-10" class="board__checker"></label>
+                </div>
+                <div id="cell-11" class="board__cell">
+                    <input id="checker-11" type="checkbox" class="board__input" name="checker-11" disabled>
+                    <label for="checker-11" class="board__checker"></label>
+                </div>
+                <div id="cell-12" class="board__cell">
+                    <input id="checker-12" type="checkbox" class="board__input" name="checker-12" disabled>
+                    <label for="checker-12" class="board__checker"></label>
+                </div>
+                <div id="cell-13" class="board__cell">
+                    <input id="checker-13" type="checkbox" class="board__input" name="checker-13" disabled>
+                    <label for="checker-13" class="board__checker"></label>
+                </div>
+                <div id="cell-14" class="board__cell">
+                    <input id="checker-14" type="checkbox" class="board__input" name="checker-14" disabled>
+                    <label for="checker-14" class="board__checker"></label>
+                </div>
+                <div id="cell-15" class="board__cell">
+                    <input id="checker-15" type="checkbox" class="board__input" name="checker-15" disabled>
+                    <label for="checker-15" class="board__checker"></label>
+                </div>
+                <div id="cell-16" class="board__cell">
+                    <input id="checker-16" type="checkbox" class="board__input" name="checker-16" disabled>
+                    <label for="checker-16" class="board__checker"></label>
+                </div>
+                <div id="cell-00" class="board__cell">
+                    <input id="checker-00" type="checkbox" class="board__input" name="checker-00" disabled>
+                    <label for="checker-00" class="board__checker"></label>
+                </div>
+                <div id="cell-01" class="board__cell">
+                    <input id="checker-01" type="checkbox" class="board__input" name="checker-01" disabled>
+                    <label for="checker-01" class="board__checker"></label>
+                </div>
+                <div id="cell-02" class="board__cell">
+                    <input id="checker-02" type="checkbox" class="board__input" name="checker-02" disabled>
+                    <label for="checker-02" class="board__checker"></label>
+                </div>
+                <div id="cell-03" class="board__cell">
+                    <input id="checker-03" type="checkbox" class="board__input" name="checker-03" disabled>
+                    <label for="checker-03" class="board__checker"></label>
+                </div>
+                <div id="cell-04" class="board__cell">
+                    <input id="checker-04" type="checkbox" class="board__input" name="checker-04" disabled>
+                    <label for="checker-04" class="board__checker"></label>
+                </div>
+                <div id="cell-05" class="board__cell">
+                    <input id="checker-05" type="checkbox" class="board__input" name="checker-05" disabled>
+                    <label for="checker-05" class="board__checker"></label>
+                </div>
+                <div id="cell-06" class="board__cell">
+                    <input id="checker-06" type="checkbox" class="board__input" name="checker-06" disabled>
+                    <label for="checker-06" class="board__checker"></label>
                 </div>
             </div>
     
@@ -279,10 +272,10 @@
                 <button type="submit" value="0">Machine<br>VS<br>Machine</button>
             </form>
         </dialog>
-        <dialog class="dialog__finished">
+        <dialog id="dialog-yes-no">
             <form method="dialog">
-                <h1 class="dialog__finished-title"></h1>
-                <p>Do you want to continue?</p>
+                <h1 id="dialog-yes-no__title"></h1>
+                <p>Do you want to play another game?</p>
                 <button type="submit" value="yes">Yes</button>
                 <button type="submit" value="no">No</button>
             </form>

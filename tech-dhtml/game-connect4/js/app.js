@@ -1,27 +1,30 @@
 import { GameView } from "./DoubleDispatch/view/GameView.js";
 
-const dialogPlayers = document.getElementsByClassName('dialog__players')[0];
-dialogPlayers.addEventListener('close', () => {
-    const humanPlayers  = dialogPlayers.returnValue;
-    gameView.reset(humanPlayers);
-});
+class Connect4 {
 
-const dialogFinished = document.getElementsByClassName('dialog__finished')[0];
-dialogFinished.addEventListener('close', () => {
-    const response = dialogFinished.returnValue;
-    if (response === 'yes') {
-        gameView.newGame();
-    }
-});
+  #gameView = new GameView();
+  #newGame = document.querySelector('#new-game');
+  #exitGame = document.querySelector('#exit-game');
 
-const gameView = new GameView(dialogPlayers, dialogFinished);
+  constructor() {
+    this.#addEnventNewGame();
+    this.#addEnventExitGame();
+    this.#gameView.newGame();
+  }
 
-gameView.newGame();
+  #addEnventNewGame() {
+    this.#newGame.addEventListener('click', this.#gameView.newGame.bind(this.#gameView));
+  }
 
-window.dropToken = function(column) {
-    gameView.dropToken(column);
+  #addEnventExitGame() {
+    this.#exitGame.addEventListener('click', () => {
+      if (confirm(`Do you want to exit`)) {
+        window.close();
+      }
+    });
+  }
 }
 
-window.newGame = function() {
-    gameView.newGame();
-}
+window.onload = () => {
+  new Connect4();
+};

@@ -26,7 +26,12 @@ export class Coordinate {
     return new Coordinate(this.#row + coordinate.row, this.#column + coordinate.column);
   }
 
-  static isRowValid(row) {
+  isValid() {
+    return Coordinate.#isRowValid(this.row)
+        && Coordinate.isColumnValid(this.column);
+}
+
+  static #isRowValid(row) {
     return Coordinate.NUMBER_ROWS.isIncluded(row);
   }
   
