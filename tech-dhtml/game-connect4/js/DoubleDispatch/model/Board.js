@@ -10,12 +10,7 @@ export class Board {
   #colors;
   #currentCoordinate;
 
-  constructor() {
-    // this.#colors = Array.from(Array(Coordinate.MAX_ROWS), () => 
-    //   Array.from(Array(Coordinate.MAX_COLUMNS), () => 
-    //     this.#EMPTY_CELL
-    //   ));
-  }
+  constructor() {}
 
   reset(colors) {
     if (colors !== null) {
