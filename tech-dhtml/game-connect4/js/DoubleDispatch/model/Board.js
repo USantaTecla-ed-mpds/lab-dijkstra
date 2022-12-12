@@ -11,22 +11,26 @@ export class Board {
   #currentCoordinate;
 
   constructor() {
-    this.#colors = Array.from(Array(Coordinate.MAX_ROWS), () => 
-      Array.from(Array(Coordinate.MAX_COLUMNS), () => 
-        this.#EMPTY_CELL
-      ));
+    // this.#colors = Array.from(Array(Coordinate.MAX_ROWS), () => 
+    //   Array.from(Array(Coordinate.MAX_COLUMNS), () => 
+    //     this.#EMPTY_CELL
+    //   ));
   }
 
   reset(colors) {
     if (colors !== null) {
       this.#colors = colors;
     } else {
-      this.#colors = Array.from(Array(Coordinate.MAX_ROWS), () => 
+      this.#colors = this.#inicialBoard();
+    }
+    this.#currentCoordinate = null;
+  }
+
+  #inicialBoard() {
+    return Array.from(Array(Coordinate.MAX_ROWS), () => 
       Array.from(Array(Coordinate.MAX_COLUMNS), () => 
         this.#EMPTY_CELL
       ));
-    }
-    this.#currentCoordinate = null;
   }
 
   getCurrentCoordinate() {
