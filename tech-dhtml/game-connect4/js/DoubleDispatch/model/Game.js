@@ -15,8 +15,6 @@ export class Game {
 
   reset(humanPlayers, colors, currentTurn) {
     assert(Turn.isNumberPlayerValid(humanPlayers));
-    assert(Coordinate.NUMBER_ROWS.isIncluded(colors.length - 1));
-    assert(Coordinate.NUMBER_COLUMNS.isIncluded(colors[0].length - 1));
     assert(Turn.isNumberTurnValid(currentTurn));
     this.#board.reset(colors);
     this.#turn.reset(humanPlayers, currentTurn);

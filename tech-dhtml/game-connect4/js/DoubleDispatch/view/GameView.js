@@ -30,10 +30,8 @@ export class GameView {
     this.#dialogPlayers.showModal();
   }
 
-  reset(humanPlayers, colors, currentTurn = 0) {
+  reset(humanPlayers, colors = null, currentTurn = 0) {
     assert(Turn.isNumberPlayerValid(humanPlayers));
-    assert(Coordinate.NUMBER_ROWS.isIncluded(colors.length - 1));
-    assert(Coordinate.NUMBER_COLUMNS.isIncluded(colors[0].length - 1));
     assert(Turn.isNumberTurnValid(currentTurn));
     this.#game.reset(humanPlayers, colors, currentTurn);
     const currentColor = this.#game.getCurrentPlayer().getColor();
@@ -88,8 +86,7 @@ export class GameView {
   #addEventDialogPlayers() {
     this.#dialogPlayers.addEventListener('close', () => {
       const humanPlayers = this.#dialogPlayers.returnValue;
-      const colors = Array.from(Array(Coordinate.MAX_ROWS), () => Array.from(Array(Coordinate.MAX_COLUMNS), () => null));
-      this.reset(humanPlayers, colors);
+      this.reset(humanPlayers);
       sessionStorage.setItem('humanPlayers', humanPlayers);
     });
   }

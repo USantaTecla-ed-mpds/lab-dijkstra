@@ -18,9 +18,14 @@ export class Board {
   }
 
   reset(colors) {
-    assert(Coordinate.NUMBER_ROWS.isIncluded(colors.length - 1));
-    assert(Coordinate.NUMBER_COLUMNS.isIncluded(colors[0].length - 1));
-    this.#colors = colors;
+    if (colors !== null) {
+      this.#colors = colors;
+    } else {
+      this.#colors = Array.from(Array(Coordinate.MAX_ROWS), () => 
+      Array.from(Array(Coordinate.MAX_COLUMNS), () => 
+        this.#EMPTY_CELL
+      ));
+    }
     this.#currentCoordinate = null;
   }
 
