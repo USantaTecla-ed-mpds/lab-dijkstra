@@ -26,7 +26,7 @@ export class BoardView {
         document.querySelector(`#checker-${row}${column}`).checked = Boolean(color);
       }
     }
-    this.changeBoardTurn(currentColor);
+    this.changeTurn(currentColor);
   }
 
   #addEventClick(callback) {
@@ -45,7 +45,7 @@ export class BoardView {
     document.getElementById(`checker-${currentCoordinate.row}${currentCoordinate.column}`).checked = true;
   }
 
-  changeBoardTurn(currentColor) {
+  changeTurn(currentColor) {
     assert(Color.isColorValid(currentColor));
     const header = document.querySelectorAll(`.board__header`);
     header.forEach((element, idx) => {

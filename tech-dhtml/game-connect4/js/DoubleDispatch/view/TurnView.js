@@ -12,13 +12,11 @@ export class TurnView {
     }
 
     reset() {
-        const players = document.querySelectorAll(`.player`);
-        players.forEach(player => player.classList.remove(`player__has-turn`));
-        this.#updateTurn()
+        this.#update()
     }
 
-    play() {
-        return this.#turn.getCurrentPlayer().accept(this);
+    play(column) {
+        return this.#turn.getCurrentPlayer().accept(this, column);
     }
 
     visitRandom(random) {
@@ -26,32 +24,21 @@ export class TurnView {
         random.dropToken();
     }
 
-    visitHuman(human) {
+    visitHuman(human, column) {
         assert(human instanceof Human)
-        return 'manualOperation';
-      }
-
-    dropToken(column) {
         assert(Coordinate.isColumnValid(column));
-        const currentPlayer = this.#turn.getCurrentPlayer();
-        const error = currentPlayer.dropToken(column);
+        human.dropToken(column);
     }
 
-    next() {
-        this.#removeTurn()
-        this.#turn.next();
-        this.#updateTurn();
-    }
-    
-    #updateTurn() {
-        const currentPlayer = this.#turn.getCurrentPlayer();
-        const player = document.getElementById(`player-${currentPlayer.getColor()}`);
-        player.classList.add(`player__has-turn`); 
+    changeTurn() {
+        this.#turn.changeTurn();
+        this.#update();
     }
 
-    #removeTurn() {
+    #update() {
+        const players = document.querySelectorAll(`.player`);
+        players.forEach(player => player.classList.remove(`player__has-turn`));
         const currentPlayer = this.#turn.getCurrentPlayer();
-        const player = document.getElementById(`player-${currentPlayer.getColor()}`);
-        player.classList.remove(`player__has-turn`); 
+        document.getElementById(`player-${currentPlayer.getColor()}`).classList.add(`player__has-turn`); 
     }
 }

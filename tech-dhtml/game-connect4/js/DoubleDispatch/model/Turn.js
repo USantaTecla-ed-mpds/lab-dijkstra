@@ -36,7 +36,7 @@ export class Turn {
     return this.#currentTurn;
   }
 
-  next() {
+  changeTurn() {
     if (!this.#board.isFinished()) {
       this.#currentTurn = (this.#currentTurn + 1) % Turn.MAX_PLAYERS;
     }

@@ -384,7 +384,7 @@ button {
   opacity: 1;
 }
 
-.dialog__players {
+#dialog__players {
   background: #3a445e;
     width: 300px;
     margin-right: auto;
@@ -395,20 +395,20 @@ button {
     border-radius: 10px;
 }
 
-.dialog__players::backdrop {
+#dialog__players::backdrop {
   background-color: rgba(61,53,53,0.8);
 }
 
-.dialog__players p {
+#dialog__players p {
   padding: 1rem;
     color: white;
 }
 
-.dialog__players form {
+#dialog__players form {
   padding: 1rem;
 }
 
-.dialog__players button {
+#dialog__players button {
   padding: .6rem;
   margin: .6rem;
   background: #0c1621;

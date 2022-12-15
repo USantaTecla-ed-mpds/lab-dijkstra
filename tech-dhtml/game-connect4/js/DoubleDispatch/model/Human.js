@@ -17,7 +17,7 @@ export class Human extends Player {
     super.dropToken(column);
   }
 
-  accept(turnView) {
-    return turnView.visitHuman(this)
+  accept(turnView, column) {
+    return turnView.visitHuman(this, column)
   }
 }

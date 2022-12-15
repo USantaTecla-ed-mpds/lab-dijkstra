@@ -14,12 +14,15 @@ export class Board {
 
   reset(colors) {
     if (colors !== null) {
+      assert(Coordinate.NUMBER_ROWS.isIncluded(colors.length - 1));
+      assert(Coordinate.NUMBER_COLUMNS.isIncluded(colors[0].length - 1));
       this.#colors = colors;
     } else {
       this.#colors = this.#inicialBoard();
     }
     this.#currentCoordinate = null;
   }
+
 
   #inicialBoard() {
     return Array.from(Array(Coordinate.MAX_ROWS), () => 
@@ -63,7 +66,7 @@ export class Board {
   }
 
   isWinner() {
-    if (this.#currentCoordinate === undefined) {
+    if (this.#currentCoordinate === null) {
       return false;
     }
     for (let direction of Direction.values()) {
