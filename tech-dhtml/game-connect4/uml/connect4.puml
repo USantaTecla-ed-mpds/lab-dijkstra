@@ -1,0 +1,178 @@
+@startuml
+
+package models {
+class Game
+class Board
+class Turn
+abstract class Player
+class Random
+class Human
+}
+
+GameView : - game
+GameView : - turnView
+GameView : - boarView
+GameView : - dialogPlayers
+GameView : - dialogFinished
+GameView : - newGame
+GameView : - saveGame
+GameView : - recoverGame
+GameView : - constructor()
+GameView : - init()
+GameView : - reset(humanPlayers, colors, currentTur)
+GameView : - play()
+GameView : + visitHuman()
+GameView : + visitRandom()
+GameView : - dropToken(column)
+GameView : - writeResult()
+GameView : - addEnventButtonNewGame()
+GameView : - addEventDialogPlayers()
+GameView : - addEventDialogFinished()
+GameView : - addEventButtonSaveGame()
+GameView : - addEventButtonRecoverGame()
+GameView *--> Game
+GameView *--> BoardView
+GameView *--> TurnView
+GameView ..> Turn
+
+TurnView : - turn
+TurnView : - constructor()
+TurnView : + reset()
+TurnView : + play(column)
+TurnView : + visitRandom(random)
+TurnView : + visitHuman(human, column)
+TurnView : + changeTurn()
+TurnView : - update()
+TurnView *--> Turn
+TurnView ..> Coordinate
+TurnView ..> Human
+TurnView ..> Random
+
+BoardView : - board
+BoardView : - callback
+BoardView : - existEventClick
+BoardView : - constructor(board, callback)
+BoardView : + reset(currentColor, existEventClick)
+BoardView : - addEventClick(callback)
+BoardView : - removeEventClick(callback)
+BoardView : + writeToken(currentColor, currentTurn)
+BoardView : - changeTurn(currentColor)
+BoardView *--> Board
+BoardView ..> Coordinate
+BoardView ..> Color
+BoardView ..> Turn
+
+Game : - board;
+Game : - turn;
+Game : - constructor()
+Game : + reset(humanPlayers, colors, currentTurn)
+Game : + getBoard()
+Game : + getTurn()
+Game : + getCurrentPlayer()
+Game : + getCurrentTurn()
+Game : + isWinner()
+Game : + isFinished()
+Game *--> Board
+Game *--> Turn
+
+Turn : + {static} MAX_PLAYERS
+Turn : + {static} NUMBER_PLAYER
+Turn : + {static} NUMBER_TURN
+Turn : - currentTurn
+Turn : - players
+Turn : - board
+Turn : - constructor(board)
+Turn : + reset(humanPlayers, currentTurn)
+Turn : + getCurrentPlayer()
+Turn : + changeTurn()
+Turn : + getCurrentTurn()
+Turn : + {static} isNumberPlayerValid(number)
+Turn : + {static} isNumberTurnValid(number)
+Turn *--> Board
+Turn --> "2" Player
+Turn ..>  ClosedInterval
+
+Player : - color;
+Player : - board;
+Player : - constructor(color, board)
+Player : + getColor()
+Player : + isComplete(column)
+Player : + dropToken(column)
+Player *--> Color
+Player *--> Board
+Player ..> Coordinate
+Player <|-- Human
+Player <|-- Random
+
+Human : - constructor(playerNumber, board)
+Human : + dropToken(column)
+Human : + accept(turnView, column)
+Human ..> Color 
+Human ..> Coordinate
+
+Random : - constructor(playerNumber, board)
+Random : + dropToken()
+Random : + accept(turnView, column)
+Random ..> Color 
+Random ..> Coordinate
+
+Color : + {static} RED
+Color : + {static} YELLOW
+Color : - string
+Color : + toString()
+Color : + {static} get(ordinal)
+Color : - {static} values()
+Color : + {static} isColorValid(color) 
+
+Board : - {static} LINE_LENGTH
+Board : - EMPTY_CELL
+Board : - colors
+Board : - currentCoordinate
+Board : - constructor()
+Board : - reset(colors)
+Board : - inicialBoard()
+
+Board : + getCurrentCoordinate()
+Board : + getColor(coordinate)
+Board : + getColors()
+Board : + dropToken(column, color)
+Board : + isComplete(column)
+Board : + isWinner()
+Board : + isFinished()
+Board : - calculateRow(column)
+Board : - getLine(initialCoordinate, direction)
+Board : - isConnect4(line)
+Board ..> Color
+Board ..> Coordinate
+Board ..> Direction
+
+Direction : + {static} SOUTH
+Direction : + {static} WEST
+Direction : + {static} SOUTH_WEST
+Direction : + {static} NORTH_WEST
+Direction : - coordinate
+Direction : - constructor(row, column)
+Direction : + getCoordinate() 
+Direction : + getOppocite()
+Direction : + {static} values()
+Direction *--> Coordinate
+
+Coordinate : + {static} MAX_ROWS
+Coordinate : + {static} NUMBER_ROWS
+Coordinate : + {static} MAX_COLUMNS
+Coordinate : + {static} NUMBER_COLUMNS
+Coordinate : + row
+Coordinate : + column
+Coordinate : - constructor(row, column)
+Coordinate : + getShifted(coordinate)
+Coordinate : + isValid()
+Coordinate : + {static} isRowValid(row)
+Coordinate : + {static} isColumnValid(column)
+Coordinate ..>  ClosedInterval
+
+ClosedInterval : - min
+ClosedInterval : - max
+ClosedInterval : - constructor(min, max)
+ClosedInterval : + isIncluded()
+
+@enduml

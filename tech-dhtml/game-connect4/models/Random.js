@@ -1,4 +1,3 @@
-import { assert } from '../utils/assert.js';
 import { Color } from './Color.js'
 import { Coordinate } from './Coordinate.js';
 import { Player } from './Player.js';

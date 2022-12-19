@@ -1,7 +1,7 @@
-import { assert } from "../utils/assert.js";
-import { Coordinate } from "../model/Coordinate.js";
-import { Human } from "../model/Human.js";
-import { Random } from "../model/Random.js";
+import { assert } from "../../utils/assert.js";
+import { Coordinate } from "../../models/Coordinate.js";
+import { Human } from "../../models/Human.js";
+import { Random } from "../../models/Random.js";
 
 export class TurnView {
 
@@ -39,6 +39,6 @@ export class TurnView {
         const players = document.querySelectorAll(`.player`);
         players.forEach(player => player.classList.remove(`player__has-turn`));
         const currentPlayer = this.#turn.getCurrentPlayer();
-        document.getElementById(`player-${currentPlayer.getColor()}`).classList.add(`player__has-turn`); 
+        document.getElementById(`player-${currentPlayer.getColor().toString()}`).classList.add(`player__has-turn`); 
     }
 }

@@ -1,7 +1,6 @@
 import { assert } from '../utils/assert.js'
 import { Board } from './Board.js'
 import { Turn } from './Turn.js'
-import { Coordinate } from './Coordinate.js'
 
 export class Game {
 
@@ -32,8 +31,8 @@ export class Game {
     return this.#turn.getCurrentPlayer();
   }
 
-  getCurrentCoordinate() {
-    return this.#board.getCurrentCoordinate();
+  getCurrentTurn() {
+    return this.#turn.getCurrentTurn();
   }
 
   isWinner() {

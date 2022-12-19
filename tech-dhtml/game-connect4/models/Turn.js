@@ -6,8 +6,8 @@ import { Random } from './Random.js'
 export class Turn {
 
   static MAX_PLAYERS = 2;
-  static NUMBER_PLAYER = new ClosedInterval(0, Turn.MAX_PLAYERS);
-  static NUMBER_TURN = new ClosedInterval(0, 1);
+  static #NUMBER_PLAYER = new ClosedInterval(0, Turn.MAX_PLAYERS);
+  static #NUMBER_TURN = new ClosedInterval(0, 1);
   #currentTurn;
   #players;
   #board;
@@ -43,10 +43,10 @@ export class Turn {
   }
 
   static isNumberPlayerValid(number) {
-    return Turn.NUMBER_PLAYER.isIncluded(number);
+    return Turn.#NUMBER_PLAYER.isIncluded(number);
   }
 
   static isNumberTurnValid(number) {
-    return Turn.NUMBER_TURN.isIncluded(number);
+    return Turn.#NUMBER_TURN.isIncluded(number);
   }
 }

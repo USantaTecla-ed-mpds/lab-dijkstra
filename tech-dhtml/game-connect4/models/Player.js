@@ -12,7 +12,7 @@ export class Player {
   }
 
   getColor() {
-    return this.#color.toString();
+    return this.#color;
   }
 
   isComplete(column) {

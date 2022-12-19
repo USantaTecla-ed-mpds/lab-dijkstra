@@ -29,7 +29,7 @@ export class Coordinate {
   isValid() {
     return Coordinate.#isRowValid(this.row)
         && Coordinate.isColumnValid(this.column);
-}
+  }
 
   static #isRowValid(row) {
     return Coordinate.NUMBER_ROWS.isIncluded(row);

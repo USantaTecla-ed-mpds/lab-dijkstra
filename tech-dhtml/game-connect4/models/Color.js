@@ -13,15 +13,14 @@ export class Color {
   }
 
   static get(ordinal) {
-    return Color.#values()[ordinal];
+    return Color.values()[ordinal];
   }
 
-  static #values() {
+  static values() {
     return [Color.YELLOW, Color.RED];
   }
 
   static isColorValid(color) {
-    return color === this.YELLOW.toString() || color === this.RED.toString();
+    return color.toString() === this.YELLOW.toString() || color.toString() === this.RED.toString();
   }
-
 }
