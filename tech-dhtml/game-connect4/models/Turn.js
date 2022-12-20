@@ -5,8 +5,8 @@ import { Random } from './Random.js'
 
 export class Turn {
 
-  static MAX_PLAYERS = 2;
-  static #NUMBER_PLAYER = new ClosedInterval(0, Turn.MAX_PLAYERS);
+  static #MAX_PLAYERS = 2;
+  static #NUMBER_PLAYER = new ClosedInterval(0, Turn.#MAX_PLAYERS);
   static #NUMBER_TURN = new ClosedInterval(0, 1);
   #currentTurn;
   #players;
@@ -21,7 +21,7 @@ export class Turn {
     assert(Turn.isNumberPlayerValid(humanPlayers));
     assert(Turn.isNumberTurnValid(currentTurn));
     this.#players = [];
-    for (let i = 0; i < Turn.MAX_PLAYERS; i++) {
+    for (let i = 0; i < Turn.#MAX_PLAYERS; i++) {
       const player = (i < humanPlayers) ? new Human(i, this.#board) : new Random(i, this.#board);
       this.#players.push(player);
     }
@@ -38,7 +38,7 @@ export class Turn {
 
   changeTurn() {
     if (!this.#board.isFinished()) {
-      this.#currentTurn = (this.#currentTurn + 1) % Turn.MAX_PLAYERS;
+      this.#currentTurn = (this.#currentTurn + 1) % Turn.#MAX_PLAYERS;
     }
   }
 

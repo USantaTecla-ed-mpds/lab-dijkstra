@@ -12,9 +12,6 @@ export class GameView {
 
   #dialogPlayers = document.querySelector('#dialog__players');
   #dialogFinished = document.querySelector('#dialog-yes-no');
-  #newGame = document.querySelector('#new-game');
-  #saveGame = document.querySelector('#save-game');
-  #recoverGame = document.querySelector('#recover-game');
 
   constructor() {
     this.#game = new Game();
@@ -28,6 +25,47 @@ export class GameView {
     this.#init();
   }
 
+  #addEnventButtonNewGame() {
+    document.querySelector('#new-game').addEventListener('click', this.#init.bind(this));
+  }
+
+  #addEventDialogPlayers() {
+    this.#dialogPlayers.addEventListener('close', () => {
+      const humanPlayers = this.#dialogPlayers.returnValue;
+      this.#reset(humanPlayers);
+      sessionStorage.setItem('humanPlayers', humanPlayers);
+    });
+  }
+
+  #addEventDialogFinished() {
+    this.#dialogFinished.addEventListener('close', () => {
+      const response = this.#dialogFinished.returnValue;
+      if (response === 'yes') {
+        this.#init();
+      }
+    });
+  }
+
+  #addEventButtonSaveGame() {
+    document.querySelector('#save-game').addEventListener('click', () => {
+      let humanPlayers = sessionStorage.getItem('humanPlayers');
+      const game = {
+        humanPlayers,
+        turn: this.#game.getCurrentTurn(),
+        colors: this.#game.getBoard().getColors()
+      }
+      localStorage.setItem('game', JSON.stringify(game));
+      alert("Game saved");
+    });
+  }
+
+  #addEventButtonRecoverGame() {
+    document.querySelector('#recover-game').addEventListener('click', () => {
+      const game = JSON.parse(localStorage.getItem('game'));
+      this.#reset(game.humanPlayers, game.colors, game.turn);
+    });
+  }
+
   #init() {
     this.#dialogPlayers.showModal();
   }
@@ -37,7 +75,7 @@ export class GameView {
     assert(Turn.isNumberTurnValid(currentTurn));
     this.#game.reset(humanPlayers, colors, currentTurn);
     const currentColor = this.#game.getCurrentPlayer().getColor();
-    this.#boardView.reset(currentColor, humanPlayers > 0 ? true : false);
+    this.#boardView.reset(currentColor);
     this.#turnView.reset();
     this.#play();
   }
@@ -47,9 +85,13 @@ export class GameView {
   }
 
   visitHuman() {
+    this.#boardView.addEventClick();
+    this.#boardView.changeTurn(this.#game.getCurrentPlayer().getColor())
   }
 
   visitRandom() {
+    this.#boardView.removeEventClick();
+    this.#boardView.removeHeaderTurn();
     setTimeout(() => {
       this.#dropToken()
     }, 300)
@@ -77,50 +119,9 @@ export class GameView {
       msg = `Tied Game`;
     }
     this.#boardView.removeEventClick();
-    this.#boardView.removeTurnHeader();
+    this.#boardView.removeHeader();
     document.querySelector('#dialog-yes-no__title').innerHTML = msg;
     this.#dialogFinished.showModal();
-  }
-
-  #addEnventButtonNewGame() {
-    this.#newGame.addEventListener('click', this.#init.bind(this));
-  }
-
-  #addEventDialogPlayers() {
-    this.#dialogPlayers.addEventListener('close', () => {
-      const humanPlayers = this.#dialogPlayers.returnValue;
-      this.#reset(humanPlayers);
-      sessionStorage.setItem('humanPlayers', humanPlayers);
-    });
-  }
-
-  #addEventDialogFinished() {
-    this.#dialogFinished.addEventListener('close', () => {
-      const response = this.#dialogFinished.returnValue;
-      if (response === 'yes') {
-        this.#init();
-      }
-    });
-  }
-
-  #addEventButtonSaveGame() {
-    this.#saveGame.addEventListener('click', () => {
-      let humanPlayers = sessionStorage.getItem('humanPlayers');
-      const game = {
-        humanPlayers,
-        turn: this.#game.getCurrentTurn(),
-        colors: this.#game.getBoard().getColors()
-      }
-      localStorage.setItem('game', JSON.stringify(game));
-      alert("Game saved");
-    });
-  }
-
-  #addEventButtonRecoverGame() {
-    this.#recoverGame.addEventListener('click', () => {
-      const game = JSON.parse(localStorage.getItem('game'));
-      this.#reset(game.humanPlayers, game.colors, game.turn);
-    });
   }
 }
 
