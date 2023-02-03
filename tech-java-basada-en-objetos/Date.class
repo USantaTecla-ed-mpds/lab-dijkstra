@@ -7,9 +7,10 @@ public class Date {
     private String template;
     private double unixTime;
 
+    public Date() {}
     public Date(int day,int month,int year) {} 
     public Date(double unixTime) {} 
-    public Date() {}
+    
 
     public String getDate() {}
     public double getUnixTime() {}
