@@ -1,6 +1,6 @@
 package es.usantatecla.date;
 
-class Date {
+public class Date {
     private int day;
     private int month;
     private int year;
@@ -18,10 +18,11 @@ class Date {
     public int getYear() {}
 
     public void setDate(int day,int month,int year) {}
+    public void setDate(Date date)
     public void setFormatDate(String template)
     public void setUnixTime(double unixtime) {}
 
-    public bool checkDate() {}
+    private bool checkDate(Date date) {}
     
 
      
