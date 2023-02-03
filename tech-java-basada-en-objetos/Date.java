@@ -21,7 +21,7 @@ public class Date {
     public bool isLapYear() {}
 
    
-    public void setFormatDate(String template)
+    public void setFormatDate(String template) {}
     public void setUnixTime(double unixtime) {}
 
     public bool equals(Date date) {}
