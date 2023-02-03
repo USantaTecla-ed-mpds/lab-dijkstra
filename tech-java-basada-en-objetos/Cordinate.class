@@ -16,7 +16,7 @@ public class Coordinate {
     public Coordinate getCoordinate() {}
     public float getX() {}
     public float getY() {}
-    public Polar getCoordinatePolar() {}
+    public Polar Polar() {}
 
 }
 
