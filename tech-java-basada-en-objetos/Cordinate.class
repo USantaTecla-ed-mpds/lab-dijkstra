@@ -1,0 +1,31 @@
+package es.usantatecla.coordinate;
+
+public class Coordinate {   
+    private float x;
+    private float y;
+    private Polar polar;
+
+    public Coordinate() {}
+    public Coordinate(float x,float y) {}
+    public Coordinate(Polar polar) {}
+
+    public void setCoordinate(float x,float y) {}
+    public void setX(float x) {}
+    public void setY(float y) {}
+
+    public Coordinate getCoordinate() {}
+    public float getX() {}
+    public float getY() {}
+    public Polar getCoordinatePolar() {}
+
+}
+
+public class Polar {
+    private float unit;
+    private float angle;
+    
+    public void Polar() {}
+    public void Polar(float unitPolar,float angle)
+    public Polar getPolar() {}
+
+}

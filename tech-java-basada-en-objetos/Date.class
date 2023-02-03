@@ -1,0 +1,26 @@
+package es.usantatecla.date;
+
+class Date {
+    private int day;
+    private int month;
+    private int year;
+    private String template;
+    private double unixTime;
+
+    public Date(int day,int month,int year) {} 
+    public Date(double unixTime) {} 
+    public Date() {}
+
+    public String getDate() {}
+    public double getUnixTime() {}
+
+    public void setDate(int day,int month,int year) {}
+    public void setFormatDate(String template)
+    public void setUnixTime(double unixtime) {}
+
+    public bool checkDate() {}
+    
+
+     
+
+    }
