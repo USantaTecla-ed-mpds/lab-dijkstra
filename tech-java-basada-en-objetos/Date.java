@@ -16,15 +16,15 @@ public class Date {
     public String toString() {
         return template;}
     public double getUnixTime() {
-        return day;}
+        return null;}
     public int getDay() {
-        return day;}
+        return null;}
     public int getMonth() {
-        return day;}
+        return null;}
     public int getYear() {
-        return day;}
+        return null;}
     public int getWeek() {
-        return day;}
+        return 0;}
     public bool isLapYear() {}
 
    
