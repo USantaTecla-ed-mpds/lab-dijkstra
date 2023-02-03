@@ -10,9 +10,9 @@ public class Date {
     public Date() {}
     public Date(int day,int month,int year) {} 
     public Date(double unixTime) {} 
-    
 
-    public String getDate() {}
+    public Date clone() {}
+    public String toString() {}
     public double getUnixTime() {}
     public int getDay() {}
     public int getMonth() {}
@@ -20,11 +20,10 @@ public class Date {
     public int getWeek() {}
     public bool isLapYear() {}
 
-    public void setDate(int day,int month,int year) {}
-    public void setDate(Date date)
+   
     public void setFormatDate(String template)
     public void setUnixTime(double unixtime) {}
 
-    public bool isEqual(Date date) {}
+    public bool equals(Date date) {}
     private bool checkDate(Date date) {}
     }

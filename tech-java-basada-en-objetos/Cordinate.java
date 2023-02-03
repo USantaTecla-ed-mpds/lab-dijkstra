@@ -9,16 +9,13 @@ public class Coordinate {
     public Coordinate(float x,float y) {}
     public Coordinate(Polar polar) {}
 
-    public void setCoordinate(float x,float y) {}
-    public void setX(float x) {}
-    public void setY(float y) {}
 
-    public Coordinate getCoordinate() {}
+    public Coordinate clone() {}
     public float getX() {}
     public float getY() {}
     public Polar getPolar() {}
 
-    public bool isEqual(Coordinate cordinate) {}
+    public bool equals(Coordinate cordinate) {}
 
 }
 
