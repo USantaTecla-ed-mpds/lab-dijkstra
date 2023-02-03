@@ -18,6 +18,8 @@ public class Coordinate {
     public float getY() {}
     public Polar getPolar() {}
 
+    public bool isEqual(Coordinate cordinate) {}
+
 }
 
 public class Polar {
@@ -30,5 +32,6 @@ public class Polar {
     public Polar getPolar() {}
 
     private Polar cartesianToPolar(Coordinate coordinate) {}
+    public bool isEqual(Polar polar) {}
 
 }

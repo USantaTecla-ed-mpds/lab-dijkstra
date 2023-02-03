@@ -17,11 +17,17 @@ public class Date {
     public int getDay() {}
     public int getMonth() {}
     public int getYear() {}
+    public int getWeek() {}
+    public bool isLapYear() {}
 
     public void setDate(int day,int month,int year) {}
     public void setDate(Date date)
     public void setFormatDate(String template)
     public void setUnixTime(double unixtime) {}
+
+    public bool isEqual(Date date) {}
+    
+
 
     private bool checkDate(Date date) {}
     }
