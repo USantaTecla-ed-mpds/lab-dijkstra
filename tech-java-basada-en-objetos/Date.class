@@ -13,6 +13,9 @@ class Date {
 
     public String getDate() {}
     public double getUnixTime() {}
+    public int getDay() {}
+    public int getMonth() {}
+    public int getYear() {}
 
     public void setDate(int day,int month,int year) {}
     public void setFormatDate(String template)

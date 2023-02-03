@@ -24,8 +24,11 @@ public class Polar {
     private float unit;
     private float angle;
     
-    public void Polar() {}
-    public void Polar(float unitPolar,float angle)
+    public Polar() {}
+    public Polar(float unitPolar,float angle)
+    public Polar(Coordinate cordinate)
     public Polar getPolar() {}
+
+    private Polar cartesianToPolar(Coordinate coordinate) {}
 
 }
