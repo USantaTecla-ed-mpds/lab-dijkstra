@@ -26,8 +26,5 @@ public class Date {
     public void setUnixTime(double unixtime) {}
 
     public bool isEqual(Date date) {}
-    
-
-
     private bool checkDate(Date date) {}
     }

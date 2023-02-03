@@ -33,5 +33,4 @@ public class Polar {
 
     private Polar cartesianToPolar(Coordinate coordinate) {}
     public bool isEqual(Polar polar) {}
-
 }
