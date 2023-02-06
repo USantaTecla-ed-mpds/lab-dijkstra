@@ -1,4 +1,4 @@
-package es.usantatecla.date;
+package es.usantatecla.java;
 
 public class Date {
     private int day;
@@ -14,19 +14,24 @@ public class Date {
     public Date clone() {
         return null;}
     public String toString() {
-        return template;}
+        return template;
+    }
     public double getUnixTime() {
-        return null;}
+        return unixTime;
+    }
     public int getDay() {
-        return null;}
+        return day;
+    }
     public int getMonth() {
-        return null;}
+        return month;
+    }
     public int getYear() {
-        return null;}
+        return year;
+    }
     public int getWeek() {
-        return 0;}
-    public bool isLapYear() {}
-
+        return 0;
+    }
+  
    
     public void setFormatDate(String template) {}
     public void setUnixTime(double unixtime) {}
