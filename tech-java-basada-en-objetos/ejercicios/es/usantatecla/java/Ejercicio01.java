@@ -11,11 +11,6 @@ public class Ejercicio01 {
         System.out.println("Total de coordenadas "+line.lenght());
         for(int i=0;i<line.lenght();i++) {
             System.out.println("Coordenada "+String.valueOf(i)+" "+line.getCoordinate(i));
-        } 
-     
-             
-
+        }     
     }
-    
-    
 }
