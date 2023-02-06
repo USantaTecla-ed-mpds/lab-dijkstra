@@ -27,6 +27,7 @@ public class Line {
                 
     }
 
+
     private Node getLastNode() {
         Node node = this.node;
         while (node.getNext() != null) {
@@ -37,7 +38,7 @@ public class Line {
 
     public int lenght() { 
         int lenght=0;       
-        if(this.node!=null) {    
+        if(this.node != null) {    
             lenght = 1;        
             Node node = this.node;
             do {
@@ -50,8 +51,33 @@ public class Line {
 
     public Coordinate getCoordinate(int position) {
         Node node = this.node;
-       for(int i=0;i==position;i++)            
+       for(int i=0;i == position;i++)            
             node = node.getNext();                                      
         return node.getCoordinate();
     }
+
+    // Otra aproximación, en lugar de tener los dos ciclos de los metodos 
+    // length y lastNode
+    // Un solo metodo 'refresh' que recorra el arreeglo ya actualize valores el objeto
+    // ¿Sería buena práctica?  o se hace demasiado complejo
+    
+    /* 
+    private void refreshValues() { 
+        int lenght=0;  
+        Node node = null;    
+        if(this.node != null) {    
+            node = this.node;
+            lenght = 1;                   
+            do {
+                node = node.getNext();   
+                lenght++;  
+            } while (node.getNext() != null);            
+        }       
+        this.lenght=lenght; <-----
+        this.lastNode=node; <----- posibles miembros de la clase line
+        
+    }
+    */
+
+
 }
