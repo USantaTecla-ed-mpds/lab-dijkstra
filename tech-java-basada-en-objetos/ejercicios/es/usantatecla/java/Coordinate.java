@@ -5,8 +5,8 @@ public class Coordinate {
     private float y;
 
     public Coordinate() {
-        this.x = 0;
-        this.y = 0;
+        this(0,0);
+        
     }
     public Coordinate(float x,float y) {
         this.x = x;
