@@ -4,7 +4,6 @@ public class Node {
     private Coordinate coordinate;    
     private Node next;
 
-
     public Node(Coordinate coordinate) {
         this.coordinate = coordinate;    
         this.next = null;       

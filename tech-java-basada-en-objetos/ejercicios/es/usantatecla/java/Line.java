@@ -17,8 +17,7 @@ public class Line {
             getLastNode().setNext(nextNode); 
         }  else {
             this.node=nextNode;
-        }
-               
+        }               
     }
 
     public void push(Coordinate coordinate) {        
@@ -49,17 +48,10 @@ public class Line {
         return lenght;
     }
 
-
     public Coordinate getCoordinate(int position) {
         Node node = this.node;
        for(int i=0;i==position;i++)            
-            node = node.getNext();                   
-             
-              
+            node = node.getNext();                                      
         return node.getCoordinate();
     }
-
- 
-   
-    
 }

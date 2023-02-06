@@ -29,10 +29,10 @@ public class Coordinate {
         .concat(",")
         .concat(String.valueOf(getY()))
         .concat(")");
-    }
-  
+    } 
 
     public boolean equals(Coordinate coordinate) {
-        return this.x == coordinate.x && this.y == coordinate.y;}
+        return this.x == coordinate.x && this.y == coordinate.y;
+    }
 
 }
