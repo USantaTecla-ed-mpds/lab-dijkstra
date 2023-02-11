@@ -8,7 +8,7 @@ public class Node {
         this.coordinate = coordinate;    
         this.next = null;       
     }
-
+git 
     public Coordinate getCoordinate() {
         return this.coordinate;
     }

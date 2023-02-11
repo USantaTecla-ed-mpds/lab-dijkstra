@@ -1,5 +1,4 @@
 
-
 public class Coordinate {   
     private float x;
     private float y;
