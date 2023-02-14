@@ -30,7 +30,7 @@ public class Test {
                 new Coordinate("1,1"),
                 new Coordinate(1,10))));
                 
-        System.out.println(Coordinate.toPolar(list.getValue(3)));
+        
 
     }
 }
