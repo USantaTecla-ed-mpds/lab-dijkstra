@@ -39,19 +39,12 @@ public class Coordinate {
         return this.x == coordinate.x && this.y == coordinate.y;
     }
 
-    static public double distanceBetween(Coordinate begin,Coordinate end) {
-        double a = Math.pow(end.getX()-begin.getX(), 2);
-        double b = Math.pow(end.getY()-begin.getY(), 2);
-        return Math.sqrt(a+b);
+    static public double distanceBetween(Coordinate begin,Coordinate end) {   
+        return Math.sqrt(
+            Math.pow(end.getX()-begin.getX(), 2)+
+             Math.pow(end.getY()-begin.getY(), 2));
     }
 
-    static public String toPolar(Coordinate coordinate) {
-        double x = coordinate.getX();
-        double y = coordinate.getY();
-        double r     = Math.sqrt(x*x + y*y);
-        double theta = Math.atan2(y, x);
-        return ("r     = " + String.valueOf(r)+"\ntheta = " + theta);        
-
-    }
+   
 
 }
