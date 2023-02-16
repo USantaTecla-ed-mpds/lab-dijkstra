@@ -33,17 +33,17 @@ class TicTacToe {
 		Console console = Console.getInstance();
 		boolean ok;
 		String answer;
-		do {
-			
+
+		do {			
 			console.write(Message.RESUME.toString());
 			answer = console.readString(Message.YES_NO_SUFFIX.toString());			
-			ok = answer.contains(String.valueOf(Message.AFFIRMATIVE)) || answer.contains(String.valueOf(Message.NEGATIVE));			 
+			ok = answer.equals(String.valueOf(Message.AFFIRMATIVE)) || answer.equals(String.valueOf(Message.NEGATIVE));			 
 			if (!ok) {
 				console.writeln(Message.YES_NO_ERROR.toString());
 			}
 		} while (!ok);
 		
-		if (answer.contains(String.valueOf(Message.AFFIRMATIVE))) {
+		if (answer.contains(String.valueOf(Message.AFFIRMATIVE))) { // Codigo duplicado :(
 			this.board.reset();
 			this.turn.reset();
 		}
