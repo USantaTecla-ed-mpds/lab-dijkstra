@@ -26,13 +26,13 @@ class TicTacToe {
 		this.turn.writeWinner();
 	}
 
-	private boolean isResumedGame() {
-
-		// Sin usar la clase YesNoDialog
+	private boolean isResumedGame() {	
 		
 		Console console = Console.getInstance();
 		boolean ok;
 		String answer;
+
+		boolean ret=false; 	
 
 		do {			
 			console.write(Message.RESUME.toString());
@@ -43,12 +43,13 @@ class TicTacToe {
 			}
 		} while (!ok);
 		
-		if (answer.contains(String.valueOf(Message.AFFIRMATIVE))) { // Codigo duplicado :(
+		if (answer.equals(String.valueOf(Message.AFFIRMATIVE))) { 
+			ret=true;
 			this.board.reset();
 			this.turn.reset();
 		}
 
-		return ok;
+		return ret;
 		
 	}
 
