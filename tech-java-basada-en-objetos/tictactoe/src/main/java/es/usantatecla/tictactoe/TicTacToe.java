@@ -26,37 +26,18 @@ class TicTacToe {
 		this.turn.writeWinner();
 	}
 
-	private boolean isResumedGame() {	
-		
-		Console console = Console.getInstance();
-		boolean ok;
-		String answer;
-
-		boolean ret=false; 	
-
-		do {			
-			console.write(Message.RESUME.toString());
-			answer = console.readString(Message.YES_NO_SUFFIX.toString());			
-			ok = answer.equals(String.valueOf(Message.AFFIRMATIVE)) || answer.equals(String.valueOf(Message.NEGATIVE));			 
-			if (!ok) {
-				console.writeln(Message.YES_NO_ERROR.toString());
-			}
-		} while (!ok);
-		
-		if (answer.equals(String.valueOf(Message.AFFIRMATIVE))) { 
-			ret=true;
+	private boolean isResumedGame() {
+		YesNoDialog yesNoDialog = new YesNoDialog();
+		yesNoDialog.read(Message.RESUME.toString());
+		if (yesNoDialog.isAffirmative()) {
 			this.board.reset();
 			this.turn.reset();
 		}
-
-		return ret;
-		
+		return yesNoDialog.isAffirmative();
 	}
 
 	public static void main(String[] args) {
 		new TicTacToe().play();
 	}
-
-	// Add YesNoDialog
 
 }

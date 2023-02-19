@@ -2,7 +2,7 @@ package es.usantatecla.tictactoe;
 
 // Sin usar
 
-class _YesNoDialog {
+class YesNoDialog {
 
 	private String answer;
 

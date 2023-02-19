@@ -14,10 +14,16 @@ public class  Stack<T> {
         list.delete(0);                   
     }
 
+    public T pick() {
+        return list.getValue(0);
+    }
+
     
     public T getValue(int position) {            
         return list.getValue(position);
     }
+
+
 
     public int length() {
         return list.length();
