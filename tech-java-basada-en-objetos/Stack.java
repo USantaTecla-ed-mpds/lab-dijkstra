@@ -14,7 +14,7 @@ public class  Stack<T> {
         list.delete(0);                   
     }
 
-    public T pick() {
+    public T peek() {
         return list.getValue(0);
     }
 

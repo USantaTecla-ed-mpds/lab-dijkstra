@@ -18,7 +18,7 @@ public class Test {
         stack.pop();
 
         System.out.println("Total de coordenadas "+stack.length());
-        System.out.println("Valor en la cima:"+stack.pick().toString());
+        System.out.println("Valor en la cima:"+stack.peek().toString());
         for(int i=0;i<=stack.length()-1;i++) {
            System.out.println("Coordenada "+String.valueOf(i)+" "+stack.getValue(i));
         }  
