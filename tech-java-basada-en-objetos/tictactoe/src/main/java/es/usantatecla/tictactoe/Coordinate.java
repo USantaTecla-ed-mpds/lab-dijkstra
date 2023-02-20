@@ -81,15 +81,7 @@ class Coordinate {
 	}
 
 	public boolean equals(Coordinate coordinate) {
-		if (this == coordinate)
-			return true;
-		if (coordinate == null)
-			return false;
-		if (this.coordinate.getColumn() != coordinate.getColumn())
-			return false;
-		if (this.coordinate.getRow() != coordinate.getRow())
-			return false;
-		return true;
+		return this.coordinate.equals(coordinate);		
 	}
 
 }
