@@ -3,19 +3,18 @@ package es.usantatecla.tictactoe;
 class Coordinate {
 
 	private static final int DIMENSION = 3;
-	private int row;
-	private int column;
-
+	private CoordinateBasic coordinate;
+	
 	public static int getDimension() {
 		return Coordinate.DIMENSION;
 	}
 
 	public Coordinate() {
+		this.coordinate=new CoordinateBasic();
 	}
 
 	public Coordinate(int row, int column) {
-		this.row = row;
-		this.column = column;
+		this.coordinate=new CoordinateBasic(row,column);
 	}
 
 	public Direction getDirection(Coordinate coordinate) {
@@ -43,29 +42,30 @@ class Coordinate {
 		if (coordinate == null) {
 			return false;
 		}
-		return this.row == coordinate.row;
+		return this.coordinate.getRow() == coordinate.getRow();
 	}
 
 	private boolean inVertical(Coordinate coordinate) {
 		if (coordinate == null) {
 			return false;
 		}
-		return this.column == coordinate.column;
+		return this.getColumn() == coordinate.getColumn();
 	}
 
 	private boolean inMainDiagonal() {
-		return this.row - this.column == 0;
+		return this.getRow() - this.getColumn() == 0;
 	}
 
 	private boolean inInverseDiagonal() {
-		return this.row + this.column == Coordinate.DIMENSION - 1;
+		return this.getRow() + this.getColumn() == Coordinate.DIMENSION - 1;
 	}
 
 	public void read(String title) {
 		BoundedIntDialog boundedIntDialog = new BoundedIntDialog(1, Coordinate.getDimension());
-		new Console().writeln(title);
-    this.row = boundedIntDialog.read(Message.ROW.toString()) - 1;
-		this.column = boundedIntDialog.read(Message.COLUMN.toString()) - 1;
+		new Console().writeln(title); 
+		
+    this.coordinate.setRow(boundedIntDialog.read(Message.ROW.toString()) - 1);
+		this.coordinate.setColumn(boundedIntDialog.read(Message.COLUMN.toString()) - 1);
 	}
 
 	public String getErrorMessage() {
@@ -73,11 +73,11 @@ class Coordinate {
 	}
 
 	public int getRow() {
-		return this.row;
+		return this.coordinate.getRow();
 	}
 
 	public int getColumn() {
-		return this.column;
+		return this.coordinate.getColumn();
 	}
 
 	public boolean equals(Coordinate coordinate) {
@@ -85,9 +85,9 @@ class Coordinate {
 			return true;
 		if (coordinate == null)
 			return false;
-		if (this.column != coordinate.column)
+		if (this.coordinate.getColumn() != coordinate.getColumn())
 			return false;
-		if (this.row != coordinate.row)
+		if (this.coordinate.getRow() != coordinate.getRow())
 			return false;
 		return true;
 	}
