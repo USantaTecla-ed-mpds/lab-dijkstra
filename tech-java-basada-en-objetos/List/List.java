@@ -1,3 +1,4 @@
+package List;
 
 
 public class  List<T> {
@@ -52,6 +53,15 @@ public class  List<T> {
             beforeNode.setNext(deletedNode.getNext());
         }                           
     }
+    public String toString() {
+        String toString="";    
+        for(int i=0;i<length();i++) {
+            toString=toString+","+moveTo(i).getValue().toString();
+        }              
+        return toString;
+    
+       }
+
 
    
 

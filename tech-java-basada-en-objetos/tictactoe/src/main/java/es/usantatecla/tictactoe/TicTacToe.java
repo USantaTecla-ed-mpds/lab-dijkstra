@@ -1,4 +1,4 @@
-package es.usantatecla.tictactoe;
+1package es.usantatecla.tictactoe;
 
 class TicTacToe {
 

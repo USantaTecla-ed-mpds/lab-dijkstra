@@ -8,6 +8,20 @@
             "type": "java",
             "name": "Launch Test",
             "request": "launch",
+            "mainClass": "List.Test",
+            "projectName": "lab_db95d642"
+        },
+        {
+            "type": "java",
+            "name": "Launch Test",
+            "request": "launch",
+            "mainClass": "Stack.Test",
+            "projectName": "lab_db95d642"
+        },
+        {
+            "type": "java",
+            "name": "Launch Test",
+            "request": "launch",
             "mainClass": "Test",
             "projectName": "lab_db95d642"
         },
