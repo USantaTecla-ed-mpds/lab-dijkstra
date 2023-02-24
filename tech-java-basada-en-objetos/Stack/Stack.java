@@ -35,11 +35,9 @@ public class  Stack<T> {
         toString=toString+","+moveTo(i).getValue().toString();
     }              
     return toString;
-
    }
 
    public boolean equals(Stack<T> stack) {
-
     boolean equals = true;
     for(int i=0;i<length();i++) {
             if(moveTo(i).getValue() != stack.moveTo(i).getValue()) {
@@ -48,7 +46,6 @@ public class  Stack<T> {
             }
         }     
     return equals;
-
    }
 
    public Stack<T> clone() {
@@ -76,7 +73,5 @@ public class  Stack<T> {
         }              
         return lenght;
     }
- 
-
 
 }

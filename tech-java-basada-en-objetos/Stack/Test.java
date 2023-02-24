@@ -14,10 +14,7 @@ public class Test {
         stack.pop();
         
         System.out.println("Valor en la cima luego de ejecutar pop:"+stack.peek().toString());
-        System.out.println("Clonando "+stack.clone().toString());
-        
-                
-        
+        System.out.println("Clonando "+stack.clone().toString());        
 
     }
 }
