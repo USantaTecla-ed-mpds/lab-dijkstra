@@ -40,12 +40,7 @@ public class Coordinate {
         return this.x == coordinate.x && this.y == coordinate.y;
     }
 
-    static public double distanceBetween(Coordinate begin,Coordinate end) {   
-        return Math.sqrt(
-            Math.pow(end.getX()-begin.getX(), 2)+
-             Math.pow(end.getY()-begin.getY(), 2));
-    }
-
+   
    
 
 }

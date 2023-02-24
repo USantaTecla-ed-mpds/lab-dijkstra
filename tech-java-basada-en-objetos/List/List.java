@@ -42,7 +42,7 @@ public class  List<T> {
         return moveTo(position).getValue();
     }
 
-    public void delete(int position) {
+    public T delete(int position) {
         Node<T> deletedNode=moveTo(position);
         if(position == 0) {
             Node<T> afterNode=moveTo(position+1);
@@ -51,7 +51,8 @@ public class  List<T> {
         } else {
             Node<T> beforeNode=moveTo(position-1);    
             beforeNode.setNext(deletedNode.getNext());
-        }                           
+        }   
+        return deletedNode.getValue();                        
     }
     public String toString() {
         String toString="";    
@@ -62,7 +63,6 @@ public class  List<T> {
     
        }
 
-
    
 
     private Node<T> moveTo(int position) { 
@@ -71,6 +71,10 @@ public class  List<T> {
         node =node.getNext();
        }                          
        return node;
+    }
+
+    public boolean isEmpty() {
+        return this.node == null;
     }
  
 
