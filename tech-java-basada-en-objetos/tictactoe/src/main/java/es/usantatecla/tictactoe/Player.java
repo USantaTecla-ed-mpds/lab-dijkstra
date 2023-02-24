@@ -2,19 +2,20 @@ package es.usantatecla.tictactoe;
 
 class Player {
 
-	private Color color;
-	private Board board;
+	
+	private PlayerView view;
+	
 
 	public Player(Color color, Board board) {
 		assert !color.isNull();
 		assert board != null;
-
-		this.color = color;
-		this.board = board;
+		
+		this.view = new PlayerView(color,board);
+	
 	}
 
 	public void play() {
-		if (!this.board.isComplete(color)) {
+		if (!this.view.getBoard().isComplete(view.getColor())) {
 			this.putToken();
 		} else {
 			this.moveToken();
@@ -22,14 +23,14 @@ class Player {
 	}
 
 	private void putToken() {
-		Message.TURN.writeln(this.color.name());
+		Message.TURN.writeln(this.view.getColor().name());
 		Coordinate coordinate;
 		Error error;
 		do {
 			coordinate = this.getCoordinate(Message.ENTER_COORDINATE_TO_PUT);
 			error = this.getPutTokenError(coordinate);
 		} while (!error.isNull());
-		this.board.putToken(coordinate, this.color);
+		this.view.getBoard().view.putToken(coordinate, this.view.getColor());
 	}
 
 	private Coordinate getCoordinate(Message message) {
@@ -44,7 +45,7 @@ class Player {
 		assert coordinate != null;
 
 		Error error = Error.NULL;
-		if (!this.board.isEmpty(coordinate)) {
+		if (!this.view.getBoard().view.isEmpty(coordinate)) {
 			error = Error.NOT_EMPTY;
 		}
 		error.writeln();
@@ -52,7 +53,7 @@ class Player {
 	}
 
 	private void moveToken() {
-		Message.TURN.writeln(this.color.name());
+		Message.TURN.writeln(this.view.getColor().name());
 		Coordinate origin;
 		Error error;
 		do {
@@ -64,14 +65,14 @@ class Player {
 			target = this.getCoordinate(Message.COORDINATE_TO_MOVE);
 			error = this.getTargetMoveTokenError(origin, target);
 		} while (error != Error.NULL);
-		this.board.moveToken(origin, target);
+		this.view.getBoard().view.moveToken(origin, target);
 	}
 
 	private Error getOriginMoveTokenError(Coordinate origin) {
 		assert origin != null;
 
 		Error error = Error.NULL;
-		if (!this.board.isOccupied(origin, this.color)) {
+		if (!this.view.getBoard().view.isOccupied(origin, this.view.getColor())) {
 			error = Error.NOT_OWNER;
 		}
 		error.writeln();
@@ -85,19 +86,20 @@ class Player {
 		Error error = Error.NULL;
 		if (origin.equals(target)) {
 			error = Error.SAME_COORDINATES;
-		} else if (!this.board.isEmpty(target)) {
+		} else if (!this.view.getBoard().view.isEmpty(target)) {
 			error = Error.NOT_EMPTY;
 		}
 		error.writeln();
 		return error;
 	}
 
-	public void writeWinner() {
-		Message.PLAYER_WIN.writeln(this.color.name());
-	}
 
 	public Color getColor() {
-		return this.color;
+		return this.view.getColor();
+	}
+
+	public PlayerView getView() {
+		return this.view;
 	}
 
 }

@@ -1,13 +1,16 @@
-1package es.usantatecla.tictactoe;
+package es.usantatecla.tictactoe;
 
 class TicTacToe {
 
 	private Board board;
 	private Turn turn;
+	
 
 	private TicTacToe() {
 		this.board = new Board();
 		this.turn = new Turn(this.board);
+		
+
 	}
 
 	private void play() {
@@ -18,10 +21,10 @@ class TicTacToe {
 
 	private void playGame() {
 		Message.TITLE.writeln();
-		this.board.write();
+		this.board.view.write();
 		do {
 			this.turn.play();
-			this.board.write();
+			this.board.view.write();
 		} while (!this.board.isTicTacToe(this.turn.getActiveColor()));
 		this.turn.writeWinner();
 	}
@@ -30,7 +33,7 @@ class TicTacToe {
 		YesNoDialog yesNoDialog = new YesNoDialog();
 		yesNoDialog.read(Message.RESUME.toString());
 		if (yesNoDialog.isAffirmative()) {
-			this.board.reset();
+			this.board.view.reset();
 			this.turn.reset();
 		}
 		return yesNoDialog.isAffirmative();
@@ -39,5 +42,6 @@ class TicTacToe {
 	public static void main(String[] args) {
 		new TicTacToe().play();
 	}
+
 
 }

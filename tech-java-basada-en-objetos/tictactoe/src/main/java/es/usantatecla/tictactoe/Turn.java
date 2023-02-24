@@ -30,7 +30,7 @@ class Turn {
 	}
 
 	public void writeWinner() {
-		this.players[this.activePlayer].writeWinner();
+		this.players[this.activePlayer].getView().writeWinner();
 	}
 
 	public Color getActiveColor() {

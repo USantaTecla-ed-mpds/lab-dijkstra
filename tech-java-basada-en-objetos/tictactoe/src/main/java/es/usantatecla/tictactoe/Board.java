@@ -1,21 +1,15 @@
 package es.usantatecla.tictactoe;
 
 class Board {
+	public BoardView view;
 
-	private Color[][] colors;
 
 	public Board() {
-		this.colors = new Color[Coordinate.getDimension()][Coordinate.getDimension()];
-		this.reset();
+		this.view = new BoardView();		
+		this.view.reset();
 	}
 
-	public void reset() {
-		for (int i = 0; i < Coordinate.getDimension(); i++) {
-			for (int j = 0; j < Coordinate.getDimension(); j++) {
-				this.colors[i][j] = Color.NULL;
-			}
-		}
-	}
+	
 
   public boolean isComplete(Color color) {
 		for(Coordinate coordinate : this.getCoordinates(color)) {
@@ -34,7 +28,7 @@ class Board {
 		int k = 0;
 		for (int i = 0; i < Coordinate.getDimension(); i++) {
 			for (int j = 0; j < Coordinate.getDimension(); j++) {
-				if (this.getColor(new Coordinate(i, j)) == color) {
+				if (this.view.getColor(new Coordinate(i, j)) == color) {
 					coordinates[k] = new Coordinate(i, j);
 					k++;
 				}
@@ -43,36 +37,11 @@ class Board {
 		return coordinates;
 	}
 
-	public void putToken(Coordinate coordinate, Color color) {
-		assert coordinate != null;
+	
 
-		this.colors[coordinate.getRow()][coordinate.getColumn()] = color;
-	}
+	
 
-	public void moveToken(Coordinate origin, Coordinate target) {
-		assert origin != null && !this.isEmpty(origin);
-		assert target != null && this.isEmpty(target);
-		assert !origin.equals(target);
-
-		Color color = this.getColor(origin);
-		this.putToken(origin, Color.NULL);
-		this.putToken(target, color);
-	}
-
-	private Color getColor(Coordinate coordinate) {
-		assert coordinate != null;
-
-		return this.colors[coordinate.getRow()][coordinate.getColumn()];
-	}
-
-	public boolean isOccupied(Coordinate coordinate, Color color) {
-		return this.getColor(coordinate) == color;
-	}
-
-	public boolean isEmpty(Coordinate coordinate) {
-		return this.isOccupied(coordinate, Color.NULL);
-	}
-
+	
 	public boolean isTicTacToe(Color color) {
 		assert !color.isNull();
 
@@ -105,18 +74,7 @@ class Board {
 		return directions;
 	}
 
-	public void write() {
-		Message.HORIZONTAL_LINE.writeln();
-		for (int i = 0; i < Coordinate.getDimension(); i++) {
-			Message.VERTICAL_LINE.write();
-			for (int j = 0; j < Coordinate.getDimension(); j++) {
-				this.getColor(new Coordinate(i, j)).write();
-				Message.VERTICAL_LINE.write();
-			}
-			Console.getInstance().writeln();
-		}
-		Message.HORIZONTAL_LINE.writeln();
-	}
+
 
 }
 

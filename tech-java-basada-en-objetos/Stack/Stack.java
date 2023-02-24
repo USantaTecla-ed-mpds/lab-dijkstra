@@ -8,9 +8,9 @@ public class  Stack<T> {
     }        
 
    public void push(T value) {        
-        Node<T> newNode = new Node<T>(value);
-        newNode.setNext(this.node);
-        this.node=newNode;                      
+     Node<T> newNode = new Node<T>(value);
+     newNode.setNext(this.node);
+     this.node=newNode;                      
    }
 
    public T pop() {
