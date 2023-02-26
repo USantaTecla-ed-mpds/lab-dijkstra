@@ -30,19 +30,21 @@ enum Message {
 	public static final String $MAX = "#max";
 
 	private String message;
+	private MessageView view;
 
 	private Message(String message) {
 		assert message != null;
+		this.view = new MessageView();
 		
 		this.message = message;
 	}
 
 	public void write() {
-		Console.getInstance().write(this.message);
+		this.view.write(this.message);
 	}
 
 	public void writeln() {
-		Console.getInstance().writeln(this.message);
+		this.view.writeln(this.message);
 	}
 
 	public void writeln(String string) {
@@ -50,7 +52,7 @@ enum Message {
 		assert this == Message.PLAYER_WIN || this == Message.TURN;
 
 		String parameter = this==Message.PLAYER_WIN ? Message.$PLAYER : Message.$COLOR;
-		Console.getInstance().writeln(this.message.replaceAll(parameter, string));
+		this.view.writeln(this.message.replaceAll(parameter, string));
 	}
 
 	public String toString() {

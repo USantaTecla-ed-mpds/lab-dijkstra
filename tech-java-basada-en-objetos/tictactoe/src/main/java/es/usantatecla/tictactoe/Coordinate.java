@@ -3,18 +3,21 @@ package es.usantatecla.tictactoe;
 class Coordinate {
 
 	private static final int DIMENSION = 3;
-	private CoordinateBasic coordinate;
+	private CoordinateBasic coordinateBasic;
+	private CoordinateView view;
 	
 	public static int getDimension() {
 		return Coordinate.DIMENSION;
 	}
 
-	public Coordinate() {
-		this.coordinate=new CoordinateBasic();
+	public Coordinate() {	
+		this.view = new CoordinateView();	
+		this.coordinateBasic=new CoordinateBasic();
 	}
 
 	public Coordinate(int row, int column) {
-		this.coordinate=new CoordinateBasic(row,column);
+		this.view = new CoordinateView();
+		this.coordinateBasic=new CoordinateBasic(row,column);
 	}
 
 	public Direction getDirection(Coordinate coordinate) {
@@ -42,7 +45,7 @@ class Coordinate {
 		if (coordinate == null) {
 			return false;
 		}
-		return this.coordinate.getRow() == coordinate.getRow();
+		return this.coordinateBasic.getRow() == coordinate.getRow();
 	}
 
 	private boolean inVertical(Coordinate coordinate) {
@@ -61,11 +64,9 @@ class Coordinate {
 	}
 
 	public void read(String title) {
-		BoundedIntDialog boundedIntDialog = new BoundedIntDialog(1, Coordinate.getDimension());
-		new Console().writeln(title); 
-		
-    this.coordinate.setRow(boundedIntDialog.read(Message.ROW.toString()) - 1);
-		this.coordinate.setColumn(boundedIntDialog.read(Message.COLUMN.toString()) - 1);
+	final int[] coordinate= view.read(title);
+	this.coordinateBasic.setColumn(coordinate[0]);		
+    this.coordinateBasic.setRow(coordinate[1]);		
 	}
 
 	public String getErrorMessage() {
@@ -73,15 +74,15 @@ class Coordinate {
 	}
 
 	public int getRow() {
-		return this.coordinate.getRow();
+		return this.coordinateBasic.getRow();
 	}
 
 	public int getColumn() {
-		return this.coordinate.getColumn();
+		return this.coordinateBasic.getColumn();
 	}
 
 	public boolean equals(Coordinate coordinate) {
-		return this.coordinate.equals(coordinate);		
+		return this.coordinateBasic.equals(coordinate.coordinateBasic);		
 	}
 
 }

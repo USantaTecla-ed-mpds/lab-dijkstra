@@ -3,9 +3,11 @@ package es.usantatecla.tictactoe;
 class BoundedIntDialog {
 
 	private ClosedInterval LIMITS;
+	private  BoundedIntDialogView view;
 
 	public BoundedIntDialog(int min, int max) {
 		assert min <= max;
+		this.view = new BoundedIntDialogView();
 
 		this.LIMITS = new ClosedInterval(min, max);
 	}
@@ -16,10 +18,10 @@ class BoundedIntDialog {
 		boolean ok;
 		int value;
 		do {
-			value = Console.getInstance().readInt(message + this.getLimits());
+			value = this.view.read(message + this.getLimits());
 			ok = this.LIMITS.isIncluded(value);
 			if (!ok) {
-				Console.getInstance().writeln(Message.BOUNDED_INT_ERROR.toString());
+				this.view.writeln(Message.BOUNDED_INT_ERROR.toString());		
 			}
 		} while (!ok);
 		return value;

@@ -1,22 +1,27 @@
 package es.usantatecla.tictactoe;
 
-// Sin usar
+
 
 class YesNoDialog {
 
 	private String answer;
+	private YesNoDialogView view;
+
+	public YesNoDialog() {
+		this.view = new YesNoDialogView();
+	}
 
 	public void read(String message) {
 		assert message != null;
 
-		Console console = Console.getInstance();
+		
 		boolean ok;
 		do {
-			console.write(message);
-			this.answer = console.readString(Message.YES_NO_SUFFIX.toString());
+			this.view.write(message);
+			this.answer = view.read(Message.YES_NO_SUFFIX.toString());
 			ok = this.isAffirmative() || this.isNegative();
 			if (!ok) {
-				console.writeln(Message.YES_NO_ERROR.toString());
+				this.view.writeln(Message.YES_NO_ERROR.toString());
 			}
 		} while (!ok);
 	}

@@ -21,10 +21,10 @@ class TicTacToe {
 
 	private void playGame() {
 		Message.TITLE.writeln();
-		this.board.view.write();
+		this.board.write();
 		do {
 			this.turn.play();
-			this.board.view.write();
+			this.board.write();
 		} while (!this.board.isTicTacToe(this.turn.getActiveColor()));
 		this.turn.writeWinner();
 	}
@@ -33,7 +33,7 @@ class TicTacToe {
 		YesNoDialog yesNoDialog = new YesNoDialog();
 		yesNoDialog.read(Message.RESUME.toString());
 		if (yesNoDialog.isAffirmative()) {
-			this.board.view.reset();
+			this.board.reset();
 			this.turn.reset();
 		}
 		return yesNoDialog.isAffirmative();

@@ -9,19 +9,23 @@ enum Error {
 	NULL;
 
 	private String message;
+	private ErrorView view;
 
 	private Error() {
+		this.view = new ErrorView();
 	}
+	
 
 	private Error(String message) {
 		assert message != null;
+		this.view = new ErrorView();
 		
 		this.message = message;
 	}
 
 	public void writeln() {
 		if (!this.isNull()) {
-			Console.getInstance().writeln(this.message);
+			this.view.writeln(this.message);
 		}
 	}
 
