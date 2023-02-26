@@ -1,26 +1,30 @@
 package Stack;
 
-public class  Stack<T> {
-    private Node<T> node;
+public class  Stack {
+    private Node node;
   
     public Stack() {
         this.node = null;               
     }        
 
-   public void push(T value) {        
-     Node<T> newNode = new Node<T>(value);
+   public void push(Integer value) {        
+     Node newNode = new Node(value);
      newNode.setNext(this.node);
      this.node=newNode;                      
    }
 
-   public T pop() {
-    Node<T> deletedNode=moveTo(0);
-    Node<T> afterNode=moveTo(1);
+   public Integer pop() {
+    assert !isEmpty();
+
+    Node deletedNode=moveTo(0);
+    Node afterNode=moveTo(1);
     this.node=afterNode;                  
     return deletedNode.getValue();                        
    }
     
-   public T peek(){
+   public Integer peek(){
+    assert !isEmpty();
+
     return node.getValue();
    }
 
@@ -37,7 +41,8 @@ public class  Stack<T> {
     return toString;
    }
 
-   public boolean equals(Stack<T> stack) {
+   public boolean equals(Stack stack) {
+    assert stack!=null;
     boolean equals = true;
     for(int i=0;i<length();i++) {
             if(moveTo(i).getValue() != stack.moveTo(i).getValue()) {
@@ -48,16 +53,16 @@ public class  Stack<T> {
     return equals;
    }
 
-   public Stack<T> clone() {
-    Stack<T> stack = new Stack<T>();
+   public Stack clone() {
+    Stack stack = new Stack();
     for(int i=length()-1;i>=0;i--) {
         stack.push(this.moveTo(i).getValue());
     }
     return stack;    
    }
 
-    private Node<T> moveTo(int position) { 
-       Node<T> node = this.node;
+    private Node moveTo(int position) { 
+       Node node = this.node;
        for(int i=0;i<position;i++) {
          node =node.getNext();
        }                          
@@ -66,7 +71,7 @@ public class  Stack<T> {
 
     public int length() { 
         int lenght=0;   
-        Node<T> node = this.node;    
+        Node node = this.node;    
         while (node !=null) {                                  
             node = node.getNext();   
             lenght++;                        

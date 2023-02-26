@@ -1,21 +1,21 @@
 package Stack;
 
-public  class  Node<T> {
-    final private T value;    
-    private Node<T> next;
+public  class  Node {
+    final private Integer value;    
+    private Node next;
 
-    public Node(T value) {
+    public Node(Integer value) {
         this.value = value;    
         this.next = null;       
     }
 
-    public T getValue() {
+    public Integer getValue() {
         return this.value;
     }
-    public void setNext(Node<T> node) {
+    public void setNext(Node node) {
         this.next = node;    
     }
-    public Node<T> getNext() {
+    public Node getNext() {
         return this.next;
     }
     
